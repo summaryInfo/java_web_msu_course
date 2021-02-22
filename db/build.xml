@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<project name="init_database" basedir=".." default="all">
+    <property file="build.properties"/>
+
+    <target name="all" depends="drop_db, create_db, create_tables, fill_tables"/>
+
+    <target name="create_db">
+        <sql classpath="${db.classpath}"
+             driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.password}"
+             autocommit="True"
+             src="${db.dir}/create_db.sql">
+        </sql>
+    </target>
+
+    <target name="drop_db">
+        <sql classpath="${db.classpath}"
+             driver="${db.driver}"
+             url="${db.url}"
+             userid="${db.user}"
+             password="${db.password}"
+             autocommit="True"
+             src="${db.dir}/drop_db.sql">
+        </sql>
+    </target>
+
+    <target name="create_tables">
+        <sql classpath="${db.classpath}"
+             driver="${db.driver}"
+             url="${db.url}${db.database}"
+             userid="${db.user}"
+             password="${db.password}"
+             autocommit="True"
+             src="${db.dir}/create_tables.sql">
+        </sql>
+    </target>
+
+    <target name="drop_tables">
+        <sql classpath="${db.classpath}"
+             driver="${db.driver}"
+             url="${db.url}${db.database}"
+             userid="${db.user}"
+             password="${db.password}"
+             autocommit="True"
+             src="${db.dir}/drop_tables.sql">
+        </sql>
+    </target>
+
+    <target name="fill_tables">
+        <sql classpath="${db.classpath}"
+             driver="${db.driver}"
+             url="${db.url}${db.database}"
+             userid="${db.user}"
+             password="${db.password}"
+             autocommit="True"
+             src="${db.dir}/fill_tables.sql">
+        </sql>
+    </target>
+</project>
