@@ -1,3 +1,7 @@
+Every page also contains menu with buttons referring to
+Products, Consumers, Providers, Orders, Supplies,
+Instances, Product categories and About pages.
+
 ## Products
 * Search fields
     * id
