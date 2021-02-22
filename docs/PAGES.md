@@ -58,6 +58,7 @@ Instances, Product categories and About pages.
 * List of all orders (query result, split into pages)
     * Every entry is a collapsible, that expands to detailed info, modify and delete buttons
     * Also has link that leads to "Supplies" page with provider set to this provider
+    * Has button to perform order (select appropriate product instances show them and remove from database)
 * Page switching (forward, backward and page number buttons; for large number of results)
 
 ## Create or modify order
@@ -76,6 +77,7 @@ Instances, Product categories and About pages.
 * List of all orders (query result, split into pages)
     * Every entry is a collapsible, that expands to detailed info, modify and delete buttons
     * Also has link that leads to "Supplies" page with provider set to this provider
+    * Has button to perform supply (create new product instances and show them)
 * Page switching (forward, backward and page number buttons; for large number of results)
 
 ## Create or modify supply
