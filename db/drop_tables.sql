@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS product_cats;
-DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS product_instance;
-DROP TABLE IF EXISTS providers;
-DROP TABLE IF EXISTS consumers;
 DROP TABLE IF EXISTS supplies;
 DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS providers;
+DROP TABLE IF EXISTS consumers;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS product_categories;
