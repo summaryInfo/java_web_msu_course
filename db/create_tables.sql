@@ -1,7 +1,3 @@
-DROP DATABASE IF EXISTS storage;
-CREATE DATABASE storage;
-\connect storage
-
 CREATE TABLE product_cats(
     type_id serial PRIMARY KEY,
     name text NOT NULL,
