@@ -37,6 +37,17 @@
         </sql>
     </target>
 
+    <target name="select_tables">
+        <sql classpath="${db.classpath}"
+             driver="${db.driver}"
+             url="${db.url}${db.database}"
+             userid="${db.user}"
+             password="${db.password}"
+             autocommit="True"
+             src="${db.dir}/select_tables.sql">
+        </sql>
+    </target>
+
     <target name="drop_tables">
         <sql classpath="${db.classpath}"
              driver="${db.driver}"
