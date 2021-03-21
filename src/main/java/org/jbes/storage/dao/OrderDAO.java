@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Date;
 
 public class OrderDAO extends GenericDAO<Order> {
-    OrderDAO() {
+    public OrderDAO() {
         super(Order.class);
     }
 
-    List<Order> findAllMatching(Consumer consumer, Product product, Double amountLo, Double amountHi, Date timeLo,
+    public List<Order> findAllMatching(Consumer consumer, Product product, Double amountLo, Double amountHi, Date timeLo,
             Date timeHi, Boolean completed) {
         CriteriaBuilder builder = HibernateInitiallizationManager.getSessionFactory().getCriteriaBuilder();
         Session session = HibernateInitiallizationManager.createSession();

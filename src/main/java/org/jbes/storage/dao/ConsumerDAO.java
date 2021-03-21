@@ -8,11 +8,11 @@ import javax.persistence.criteria.*;
 import java.util.List;
 
 public class ConsumerDAO extends GenericDAO<Consumer> {
-    ConsumerDAO() {
+    public ConsumerDAO() {
         super(Consumer.class);
     }
 
-    List<Consumer> findAllMatching(String name, String description, String address, String tel, String email) {
+    public List<Consumer> findAllMatching(String name, String description, String address, String tel, String email) {
         CriteriaBuilder builder = HibernateInitiallizationManager.getSessionFactory().getCriteriaBuilder();
         Session session = HibernateInitiallizationManager.createSession();
         CriteriaQuery<Consumer> query = session.getCriteriaBuilder().createQuery(Consumer.class);

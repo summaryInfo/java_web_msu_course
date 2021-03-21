@@ -9,7 +9,7 @@ import org.jbes.storage.HibernateInitiallizationManager;
 public class GenericDAO<T> {
     private Class<T> thisClass;
 
-    GenericDAO(Class<T> thisClass) {
+    protected GenericDAO(Class<T> thisClass) {
         this.thisClass = thisClass;
     }
 

@@ -9,11 +9,11 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class ProductCategoryDAO extends GenericDAO<ProductCategory> {
-    ProductCategoryDAO() {
+    public ProductCategoryDAO() {
         super(ProductCategory.class);
     }
 
-    List<ProductCategory> findAllMatching(String name, String description) {
+    public List<ProductCategory> findAllMatching(String name, String description) {
         CriteriaBuilder builder = HibernateInitiallizationManager.getSessionFactory().getCriteriaBuilder();
         Session session = HibernateInitiallizationManager.createSession();
         CriteriaQuery<ProductCategory> query = session.getCriteriaBuilder().createQuery(ProductCategory.class);

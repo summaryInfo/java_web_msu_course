@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Date;
 
 public class SupplyDAO extends GenericDAO<Supply> {
-    SupplyDAO() {
+    public SupplyDAO() {
         super(Supply.class);
     }
 
-    List<Supply> findAllMatching(Provider provider, Product product, Double amountLo, Double amountHi, Date timeLo,
+    public List<Supply> findAllMatching(Provider provider, Product product, Double amountLo, Double amountHi, Date timeLo,
             Date timeHi, Boolean completed) {
         CriteriaBuilder builder = HibernateInitiallizationManager.getSessionFactory().getCriteriaBuilder();
         Session session = HibernateInitiallizationManager.createSession();

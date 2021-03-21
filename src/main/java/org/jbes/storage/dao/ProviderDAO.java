@@ -10,11 +10,11 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class ProviderDAO extends GenericDAO<Provider> {
-    ProviderDAO() {
+    public ProviderDAO() {
         super(Provider.class);
     }
 
-    List<Provider> findAllMatching(String name, String description, String address, String tel, String email) {
+    public List<Provider> findAllMatching(String name, String description, String address, String tel, String email) {
         CriteriaBuilder builder = HibernateInitiallizationManager.getSessionFactory().getCriteriaBuilder();
         Session session = HibernateInitiallizationManager.createSession();
         CriteriaQuery<Provider> query = session.getCriteriaBuilder().createQuery(Provider.class);
