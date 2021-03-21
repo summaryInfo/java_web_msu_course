@@ -49,13 +49,9 @@ public class GenericDAO<T> {
 
     public List<T> findAll() {
         Session session = HibernateInitiallizationManager.getSessionFactory().openSession();
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<T> cq = cb.createQuery(thisClass);
-        Root<T> rootEntry = cq.from(thisClass);
-        CriteriaQuery<T> all = cq.select(rootEntry);
-
-        TypedQuery<T> allQuery = session.createQuery(all);
+        CriteriaQuery<T> query = session.getCriteriaBuilder().createQuery(thisClass);
+        List<T> result = session.createQuery(query).getResultList();
         session.close();
-        return allQuery.getResultList();
+        return result;
     }
 }
