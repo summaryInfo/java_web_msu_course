@@ -15,7 +15,7 @@ public class HibernateInitiallizationManager {
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
-                Configuration configuration = new Configuration().configure();
+                Configuration configuration = new Configuration();
                 configuration.addAnnotatedClass(Consumer.class);
                 configuration.addAnnotatedClass(Order.class);
                 configuration.addAnnotatedClass(ProductCategory.class);
