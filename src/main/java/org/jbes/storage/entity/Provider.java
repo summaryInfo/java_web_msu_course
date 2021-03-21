@@ -1,8 +1,9 @@
 package org.jbes.storage.entity;
 
 import javax.persistence.*;
-import java.util.Arrays;
 import org.hibernate.annotations.Type;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "providers")
@@ -17,17 +18,17 @@ public class Provider {
 
     private String description;
 
-    @Type(type = "string-array")
+    @Type(type = "com.vladmihalcea.hibernate.type.array.ListArrayType")
     @Column(nullable = false, name = "address", columnDefinition = "text[]")
-    private String[] address;
+    private List<String> address = new ArrayList<String>();
 
-    @Type(type = "string-array")
+    @Type(type = "com.vladmihalcea.hibernate.type.array.ListArrayType")
     @Column(nullable = false, name = "tel", columnDefinition = "text[]")
-    private String[] tel;
+    private List<String> tel = new ArrayList<String>();
 
-    @Type(type = "string-array")
+    @Type(type = "com.vladmihalcea.hibernate.type.array.ListArrayType")
     @Column(nullable = false, name = "email", columnDefinition = "text[]")
-    private String[] email;
+    private List<String> email = new ArrayList<String>();
 
     public Provider() {
     }
@@ -56,27 +57,27 @@ public class Provider {
         this.description = description;
     }
 
-    public String[] getAddress() {
+    public List<String> getAddress() {
         return address;
     }
 
-    public void setAddress(String[] address) {
+    public void setAddress(List<String> address) {
         this.address = address;
     }
 
-    public String[] getTel() {
+    public List<String> getTel() {
         return tel;
     }
 
-    public void setTel(String[] tel) {
+    public void setTel(List<String> tel) {
         this.tel = tel;
     }
 
-    public String[] getEmail() {
+    public List<String> getEmail() {
         return email;
     }
 
-    public void setEmail(String[] email) {
+    public void setEmail(List<String> email) {
         this.email = email;
     }
 
@@ -93,18 +94,21 @@ public class Provider {
         if ((description == null) != (other.description == null)
                 || (description != null && !description.equals(other.description)))
             return false;
-        if (!Arrays.equals(address, other.address))
+        if ((address == null) != (other.address == null)
+                || (address != null && !address.equals(other.address)))
             return false;
-        if (!Arrays.equals(tel, other.tel))
+        if ((tel == null) != (other.tel == null)
+                || (tel != null && !tel.equals(other.tel)))
             return false;
-        if (!Arrays.equals(email, other.email))
+        if ((email == null) != (other.email == null)
+                || (email != null && !email.equals(other.email)))
             return false;
         return true;
     }
 
     public String toString() {
-        return "Consumer(consumerId=" + providerId.toString() + ", name=" + name.toString() + ", description="
-                + description.toString() + ", address={" + Arrays.toString(address) + "}, tel={" + Arrays.toString(tel)
-                + "}, email={" + Arrays.toString(email) + "})";
+        return "Provider(providerId=" + providerId.toString() + ", name=" + name.toString() + ", description="
+                + description.toString() + ", address={" + address.toString() + "}, tel={" + tel.toString()
+                + "}, email={" + email.toString() + "})";
     }
 }

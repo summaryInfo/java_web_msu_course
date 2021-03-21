@@ -1,7 +1,11 @@
 package org.jbes.storage;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import com.vladmihalcea.hibernate.type.array.ListArrayType;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,8 +28,14 @@ public class HibernateInitiallizationManager {
                 configuration.addAnnotatedClass(Provider.class);
                 configuration.addAnnotatedClass(Supply.class);
 
-                StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-                sessionFactory = configuration.buildSessionFactory(builder.build());
+                StandardServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+
+                MetadataSources metadataSources = new MetadataSources(registry);
+                Metadata metadata = metadataSources.getMetadataBuilder()
+                  .applyBasicType(ListArrayType.INSTANCE)
+                  .build();
+
+                sessionFactory = metadata.getSessionFactoryBuilder().build();
             } catch (Exception e) {
                 System.out.println("Unable to create session factory: " + e);
             }
