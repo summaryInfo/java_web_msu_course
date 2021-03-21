@@ -41,7 +41,10 @@ public class GenericDAO<T> {
     }
 
     public T findById(Long id) {
-        return HibernateInitiallizationManager.getSessionFactory().openSession().get(thisClass, id);
+        Session session = HibernateInitiallizationManager.getSessionFactory().openSession();
+        T entity = session.get(thisClass, id); 
+        session.close();
+        return entity;
     }
 
     public List<T> findAll() {
