@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<project name="java_web_msu" default="run">
+    <property file="build.properties"/>
+
+    <target name="path">
+        <mkdir dir="${project.dst}"/>
+        <mkdir dir="${project.docs}"/>
+        <mkdir dir="${test.dst}"/>
+    </target>
+
+    <target name="clean" depends="path">
+        <echo> Cleaning-up project source... </echo>
+        <delete dir="${project.dst}"/>
+        <delete dir="${test.dst}"/>
+    </target>
+    
+    <path id="classpath">
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="build" depends="path">
+        <echo> Compiling the project... </echo>
+        <javac srcdir="${project.src}:${test.src}"
+            destdir="${project.dst}"
+            includeantruntime="false"
+            classpathref="classpath">     
+            <compilerarg value="-Xlint:deprecation"/>
+            <compilerarg value="-Xlint:unchecked"/>
+        </javac>
+    </target>
+
+    <target name="run" depends="build">
+        <echo> Running application... </echo>
+        <java classname="org.jbes.storage.Main" classpath="${project.dst}" classpathref="classpath">
+            <classpath>
+                <pathelement path="src/main/resources"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="create-javadoc" depends="path">
+        <mkdir dir="${project.docs}" />
+        <javadoc destdir="${project.docs}"
+            use="true"
+            private="true"
+            author="Baskov Evgeniy"
+            doctitle="JavaWebMSU Documentation">
+        <fileset dir="${project.src}">
+        </fileset>
+        </javadoc>
+    </target>
+
+    <taskdef name="testng" classname="org.testng.TestNGAntTask" classpath="lib/testng-7.4.0.jar"/>
+
+    <import file="${db.dir}/build.xml"/>
+    
+    <target name="test" depends="build,init_database.all">
+        <fileset id="tests" dir="${project.dst}">
+            <include name="*"/>
+        </fileset>
+
+        <testng mode="mixed" classfilesetref="tests" outputdir="${test.dst}">
+            <classpath location="${project.dst}"/>
+            <classpath>
+                <fileset dir="${lib.dir}" includes="*.jar"/>
+                <fileset dir="${project.dst}" includes="*"/>
+                <pathelement path="src/main/resources"/>
+            </classpath>
+            <xmlfileset dir="." includes="testng.xml"/>
+        </testng>
+    </target>
+</project>
