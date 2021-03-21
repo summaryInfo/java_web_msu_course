@@ -79,4 +79,21 @@ public class Supply {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
+
+    public boolean deep_equal(Supply other) {
+        if (((supplyId == null) != (other.supplyId == null)) || (supplyId != null && !supplyId.equals(other.supplyId)))
+            return false;
+        if (((provider == null) != (other.provider == null))
+                || (provider != null && !provider.deep_equal(other.provider)))
+            return false;
+        if (((product == null) != (other.product == null)) || (product != null && !product.deep_equal(other.product)))
+            return false;
+        if (amount != amount)
+            return false;
+        if (((time == null) != (other.time == null)) || (time != null && !time.equals(other.time)))
+            return false;
+        if (completed != other.completed)
+            return false;
+        return true;
+    }
 }

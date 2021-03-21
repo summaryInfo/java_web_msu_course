@@ -41,4 +41,16 @@ public class ProductCategory {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public boolean deep_equal(ProductCategory other) {
+        if (((categoryId == null) != (other.categoryId == null))
+                || (categoryId != null && !categoryId.equals(other.categoryId)))
+            return false;
+        if (((name == null) != (other.name == null)) || (name != null && !name.equals(other.name)))
+            return false;
+        if (((description == null) != (other.description == null))
+                || (description != null && !description.equals(other.description)))
+            return false;
+        return true;
+    }
 }

@@ -115,4 +115,28 @@ public class ProductInstance {
     public void setDestination(Order destination) {
         this.destination = destination;
     }
+
+    public boolean deep_equal(ProductInstance other) {
+        if (((instanceId == null) != (other.instanceId == null))
+                || (instanceId != null && !instanceId.equals(other.instanceId)))
+            return false;
+        if (((product == null) != (other.product == null)) || (product != null && !product.deep_equal(other.product)))
+            return false;
+        if (amount != other.amount)
+            return false;
+        if (((arrival == null) != (other.arrival == null)) || (arrival != null && !arrival.equals(other.arrival)))
+            return false;
+        if (((expires == null) != (other.expires == null)) || (expires != null && !expires.equals(other.expires)))
+            return false;
+        if (roomNo != other.roomNo)
+            return false;
+        if (shelfNo != other.shelfNo)
+            return false;
+        if (((source == null) != (other.source == null)) || (source != null && !source.deep_equal(other.source)))
+            return false;
+        if (((destination == null) != (other.destination == null))
+                || (destination != null && !destination.deep_equal(other.destination)))
+            return false;
+        return true;
+    }
 }

@@ -28,51 +28,70 @@ public class Product {
     public Product() {
     }
 
-    Long getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    void setProductId(Long productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    ProductCategory getCategory() {
+    public ProductCategory getCategory() {
         return category;
     }
 
-    void setCategory(ProductCategory category) {
+    public void setCategory(ProductCategory category) {
         this.category = category;
     }
 
-    String getUnit() {
+    public String getUnit() {
         return unit;
     }
 
-    void setUnit(String unit) {
+    public void setUnit(String unit) {
         this.unit = unit;
     }
 
-    boolean getOversized() {
+    public boolean getOversized() {
         return oversized;
     }
 
-    void setOversized(boolean oversized) {
+    public void setOversized(boolean oversized) {
         this.oversized = oversized;
+    }
+
+    public boolean deep_equal(Product other) {
+        if (((productId == null) != (other.productId == null))
+                || (productId != null && !productId.equals(other.productId)))
+            return false;
+        if (((name == null) != (other.name == null)) || (name != null && !name.equals(other.name)))
+            return false;
+        if (((description == null) != (other.description == null))
+                || (description != null && !description.equals(other.description)))
+            return false;
+        if (((category == null) != (other.category == null))
+                || (category != null && !category.deep_equal(other.category)))
+            return false;
+        if (((unit == null) != (other.unit == null)) || (unit != null && !unit.equals(other.unit)))
+            return false;
+        if (oversized != other.oversized)
+            return false;
+        return true;
     }
 }

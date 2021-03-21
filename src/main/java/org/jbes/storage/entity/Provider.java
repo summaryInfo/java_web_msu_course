@@ -1,6 +1,7 @@
 package org.jbes.storage.entity;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -77,5 +78,27 @@ public class Provider {
 
     public void setEmail(String[] email) {
         this.email = email;
+    }
+
+    public boolean deep_equal(Provider other) {
+        if (other == null)
+            return false;
+        if (other.getClass() != Provider.class)
+            return false;
+        if ((providerId == null) != (other.providerId == null)
+                || (providerId != null && !providerId.equals(other.providerId)))
+            return false;
+        if ((name == null) != (other.name == null) || (name != null && !name.equals(other.name)))
+            return false;
+        if ((description == null) != (other.description == null)
+                || (description != null && !description.equals(other.description)))
+            return false;
+        if (!Arrays.equals(address, other.address))
+            return false;
+        if (!Arrays.equals(tel, other.tel))
+            return false;
+        if (!Arrays.equals(email, other.email))
+            return false;
+        return true;
     }
 }

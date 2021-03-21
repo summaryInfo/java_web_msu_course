@@ -2,6 +2,7 @@ package org.jbes.storage.entity;
 
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "consumers")
@@ -77,5 +78,27 @@ public class Consumer {
 
     public void setEmail(String[] email) {
         this.email = email;
+    }
+
+    public boolean deep_equal(Consumer other) {
+        if (other == null)
+            return false;
+        if (other.getClass() != Consumer.class)
+            return false;
+        if ((consumerId == null) != (other.consumerId == null)
+                || (consumerId != null && !consumerId.equals(other.consumerId)))
+            return false;
+        if ((name == null) != (other.name == null) || (name != null && !name.equals(other.name)))
+            return false;
+        if ((description == null) != (other.description == null)
+                || (description != null && !description.equals(other.description)))
+            return false;
+        if (!Arrays.equals(address, other.address))
+            return false;
+        if (!Arrays.equals(tel, other.tel))
+            return false;
+        if (!Arrays.equals(email, other.email))
+            return false;
+        return true;
     }
 }

@@ -79,4 +79,21 @@ public class Order {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
+
+    public boolean deep_equal(Order other) {
+        if (((orderId == null) != (other.orderId == null)) || (orderId != null && !orderId.equals(other.orderId)))
+            return false;
+        if (((consumer == null) != (other.consumer == null))
+                || (consumer != null && !consumer.deep_equal(other.consumer)))
+            return false;
+        if (((product == null) != (other.product == null)) || (product != null && !product.deep_equal(other.product)))
+            return false;
+        if (amount != amount)
+            return false;
+        if (((time == null) != (other.time == null)) || (time != null && !time.equals(other.time)))
+            return false;
+        if (completed != other.completed)
+            return false;
+        return true;
+    }
 }
