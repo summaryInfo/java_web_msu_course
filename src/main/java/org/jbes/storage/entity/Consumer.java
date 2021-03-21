@@ -101,4 +101,10 @@ public class Consumer {
             return false;
         return true;
     }
+
+    public String toString() {
+        return "Consumer(consumerId=" + consumerId.toString() + ", name=" + name.toString() + ", description="
+                + description.toString() + ", address={" + Arrays.toString(address) + "}, tel={" + Arrays.toString(tel)
+                + "}, email={" + Arrays.toString(email) + "})";
+    }
 }
