@@ -1,3 +1,9 @@
+-- This is a helper function to use javax persistence criteria API
+-- for PostgreSQL array types
+CREATE OR REPLACE FUNCTION arrayAnyLike(arrayContent text[], searchKey text) RETURNS BOOLEAN as $$
+SELECT count(*) != 0 FROM unnest($1)) elem WHERE elem LIKE $2;
+$$ LANGUAGE SQL;
+
 CREATE TABLE product_categories(
     category_id serial PRIMARY KEY,
     name text NOT NULL,

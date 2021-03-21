@@ -11,9 +11,9 @@ public class Supply {
     @Column(name = "supply_id")
     private Long supplyId;
 
-    @JoinColumn(nullable = false, name = "consumer_id")
+    @JoinColumn(nullable = false, name = "provider_id")
     @ManyToOne
-    private Consumer consumer;
+    private Provider provider;
 
     @JoinColumn(nullable = false, name = "product_id")
     @ManyToOne
@@ -40,12 +40,12 @@ public class Supply {
         this.supplyId = supplyId;
     }
 
-    public Consumer getConsumer() {
-        return consumer;
+    public Provider getProvider() {
+        return provider;
     }
 
-    public void setConsumer(Consumer consumer) {
-        this.consumer = consumer;
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
 
     public Product getProduct() {

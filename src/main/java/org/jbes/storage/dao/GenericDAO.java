@@ -1,10 +1,7 @@
 package org.jbes.storage.dao;
 
 import java.util.List;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.jbes.storage.HibernateInitiallizationManager;
@@ -17,7 +14,7 @@ public class GenericDAO<T> {
     }
 
     public void save(T entity) {
-        Session session = HibernateInitiallizationManager.getSessionFactory().openSession();
+        Session session = HibernateInitiallizationManager.createSession();
         Transaction tx = session.beginTransaction();
         session.save(entity);
         tx.commit();
@@ -25,7 +22,7 @@ public class GenericDAO<T> {
     }
 
     public void update(T entity) {
-        Session session = HibernateInitiallizationManager.getSessionFactory().openSession();
+        Session session = HibernateInitiallizationManager.createSession();
         Transaction tx = session.beginTransaction();
         session.update(entity);
         tx.commit();
@@ -33,7 +30,7 @@ public class GenericDAO<T> {
     }
 
     public void delete(T entity) {
-        Session session = HibernateInitiallizationManager.getSessionFactory().openSession();
+        Session session = HibernateInitiallizationManager.createSession();
         Transaction tx = session.beginTransaction();
         session.delete(entity);
         tx.commit();
@@ -41,17 +38,9 @@ public class GenericDAO<T> {
     }
 
     public T findById(Long id) {
-        Session session = HibernateInitiallizationManager.getSessionFactory().openSession();
+        Session session = HibernateInitiallizationManager.createSession();
         T entity = session.get(thisClass, id); 
         session.close();
         return entity;
-    }
-
-    public List<T> findAll() {
-        Session session = HibernateInitiallizationManager.getSessionFactory().openSession();
-        CriteriaQuery<T> query = session.getCriteriaBuilder().createQuery(thisClass);
-        List<T> result = session.createQuery(query).getResultList();
-        session.close();
-        return result;
     }
 }

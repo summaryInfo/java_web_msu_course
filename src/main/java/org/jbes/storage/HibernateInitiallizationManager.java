@@ -1,9 +1,11 @@
 package org.jbes.storage;
 
-import org.jbes.storage.entity.*;
-import org.hibernate.SessionFactory;
+import javax.persistence.criteria.CriteriaBuilder;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.jbes.storage.entity.*;
 
 public class HibernateInitiallizationManager {
     private static SessionFactory sessionFactory;
@@ -29,5 +31,13 @@ public class HibernateInitiallizationManager {
             }
         }
         return sessionFactory;
+    }
+
+    public static Session createSession() {
+        return getSessionFactory().openSession();
+    }
+
+    public static CriteriaBuilder getCriteriaBuilder() {
+        return getSessionFactory().getCriteriaBuilder();
     }
 }
