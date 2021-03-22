@@ -108,7 +108,7 @@ public class Consumer {
                 + (name != null ? name.toString() : "<NULL>") + ", description="
                 + (description != null ? description.toString() : "<NULL>") + ", address="
                 + (address != null ? address.toString() : "<NULL>") + ", tel="
-                + (tel != null ? tel.toString() : "<NULL>") + ", email="
-                + (email != null ? email.toString() : "<NULL>") + ")";
+                + (tel != null ? tel.toString() : "<NULL>") + ", email=" + (email != null ? email.toString() : "<NULL>")
+                + ")";
     }
 }

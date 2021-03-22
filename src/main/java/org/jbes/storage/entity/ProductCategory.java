@@ -43,14 +43,24 @@ public class ProductCategory {
     }
 
     public boolean equals(ProductCategory other) {
-        if (((categoryId == null) != (other.categoryId == null))
+        if (other == null)
+            return false;
+        if (other.getClass() != ProductCategory.class)
+            return false;
+        if ((categoryId == null) != (other.categoryId == null)
                 || (categoryId != null && !categoryId.equals(other.categoryId)))
             return false;
-        if (((name == null) != (other.name == null)) || (name != null && !name.equals(other.name)))
+        if ((name == null) != (other.name == null) || (name != null && !name.equals(other.name)))
             return false;
-        if (((description == null) != (other.description == null))
+        if ((description == null) != (other.description == null)
                 || (description != null && !description.equals(other.description)))
             return false;
         return true;
+    }
+
+    public String toString() {
+        return "ProductCategory(categoryId=" + (categoryId != null ? categoryId.toString() : "<NULL>") + ", name="
+                + (name != null ? name.toString() : "<NULL>") + ", description="
+                + (description != null ? description.toString() : "<NULL>") + ")";
     }
 }

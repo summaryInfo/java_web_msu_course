@@ -81,10 +81,13 @@ public class Order {
     }
 
     public boolean equals(Order other) {
+        if (other == null)
+            return false;
+        if (other.getClass() != Order.class)
+            return false;
         if (((orderId == null) != (other.orderId == null)) || (orderId != null && !orderId.equals(other.orderId)))
             return false;
-        if (((consumer == null) != (other.consumer == null))
-                || (consumer != null && !consumer.equals(other.consumer)))
+        if (((consumer == null) != (other.consumer == null)) || (consumer != null && !consumer.equals(other.consumer)))
             return false;
         if (((product == null) != (other.product == null)) || (product != null && !product.equals(other.product)))
             return false;

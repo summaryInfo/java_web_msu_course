@@ -94,14 +94,11 @@ public class Provider {
         if ((description == null) != (other.description == null)
                 || (description != null && !description.equals(other.description)))
             return false;
-        if ((address == null) != (other.address == null)
-                || (address != null && !address.equals(other.address)))
+        if ((address == null) != (other.address == null) || (address != null && !address.equals(other.address)))
             return false;
-        if ((tel == null) != (other.tel == null)
-                || (tel != null && !tel.equals(other.tel)))
+        if ((tel == null) != (other.tel == null) || (tel != null && !tel.equals(other.tel)))
             return false;
-        if ((email == null) != (other.email == null)
-                || (email != null && !email.equals(other.email)))
+        if ((email == null) != (other.email == null) || (email != null && !email.equals(other.email)))
             return false;
         return true;
     }
@@ -111,7 +108,7 @@ public class Provider {
                 + (name != null ? name.toString() : "<NULL>") + ", description="
                 + (description != null ? description.toString() : "<NULL>") + ", address="
                 + (address != null ? address.toString() : "<NULL>") + ", tel="
-                + (tel != null ? tel.toString() : "<NULL>") + ", email="
-                + (email != null ? email.toString() : "<NULL>") + ")";
+                + (tel != null ? tel.toString() : "<NULL>") + ", email=" + (email != null ? email.toString() : "<NULL>")
+                + ")";
     }
 }

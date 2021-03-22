@@ -77,6 +77,10 @@ public class Product {
     }
 
     public boolean equals(Product other) {
+        if (other == null)
+            return false;
+        if (other.getClass() != Product.class)
+            return false;
         if (((productId == null) != (other.productId == null))
                 || (productId != null && !productId.equals(other.productId)))
             return false;
@@ -85,8 +89,7 @@ public class Product {
         if (((description == null) != (other.description == null))
                 || (description != null && !description.equals(other.description)))
             return false;
-        if (((category == null) != (other.category == null))
-                || (category != null && !category.equals(other.category)))
+        if (((category == null) != (other.category == null)) || (category != null && !category.equals(other.category)))
             return false;
         if (((unit == null) != (other.unit == null)) || (unit != null && !unit.equals(other.unit)))
             return false;

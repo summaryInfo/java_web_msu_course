@@ -81,10 +81,13 @@ public class Supply {
     }
 
     public boolean equals(Supply other) {
+        if (other == null)
+            return false;
+        if (other.getClass() != Supply.class)
+            return false;
         if (((supplyId == null) != (other.supplyId == null)) || (supplyId != null && !supplyId.equals(other.supplyId)))
             return false;
-        if (((provider == null) != (other.provider == null))
-                || (provider != null && !provider.equals(other.provider)))
+        if (((provider == null) != (other.provider == null)) || (provider != null && !provider.equals(other.provider)))
             return false;
         if (((product == null) != (other.product == null)) || (product != null && !product.equals(other.product)))
             return false;

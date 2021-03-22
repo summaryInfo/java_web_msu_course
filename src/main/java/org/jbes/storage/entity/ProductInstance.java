@@ -117,6 +117,10 @@ public class ProductInstance {
     }
 
     public boolean equals(ProductInstance other) {
+        if (other == null)
+            return false;
+        if (other.getClass() != ProductInstance.class)
+            return false;
         if (((instanceId == null) != (other.instanceId == null))
                 || (instanceId != null && !instanceId.equals(other.instanceId)))
             return false;
