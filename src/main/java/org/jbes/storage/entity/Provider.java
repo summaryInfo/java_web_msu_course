@@ -107,8 +107,11 @@ public class Provider {
     }
 
     public String toString() {
-        return "Provider(providerId=" + providerId.toString() + ", name=" + name.toString() + ", description="
-                + description.toString() + ", address={" + address.toString() + "}, tel={" + tel.toString()
-                + "}, email={" + email.toString() + "})";
+        return "Provider(providerId=" + (providerId != null ? providerId.toString() : "<NULL>") + ", name="
+                + (name != null ? name.toString() : "<NULL>") + ", description="
+                + (description != null ? description.toString() : "<NULL>") + ", address="
+                + (address != null ? address.toString() : "<NULL>") + ", tel="
+                + (tel != null ? tel.toString() : "<NULL>") + ", email="
+                + (email != null ? email.toString() : "<NULL>") + ")";
     }
 }

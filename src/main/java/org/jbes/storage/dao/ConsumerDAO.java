@@ -1,7 +1,6 @@
 package org.jbes.storage.dao;
 
-import org.jbes.storage.entity.Consumer;
-import org.jbes.storage.entity.Consumer_;
+import org.jbes.storage.entity.*;
 import org.jbes.storage.HibernateInitiallizationManager;
 import org.hibernate.Session;
 import javax.persistence.criteria.*;
