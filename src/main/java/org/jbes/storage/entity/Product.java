@@ -76,7 +76,7 @@ public class Product {
         this.oversized = oversized;
     }
 
-    public boolean deep_equal(Product other) {
+    public boolean equals(Product other) {
         if (((productId == null) != (other.productId == null))
                 || (productId != null && !productId.equals(other.productId)))
             return false;
@@ -86,7 +86,7 @@ public class Product {
                 || (description != null && !description.equals(other.description)))
             return false;
         if (((category == null) != (other.category == null))
-                || (category != null && !category.deep_equal(other.category)))
+                || (category != null && !category.equals(other.category)))
             return false;
         if (((unit == null) != (other.unit == null)) || (unit != null && !unit.equals(other.unit)))
             return false;

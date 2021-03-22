@@ -81,7 +81,7 @@ public class Provider {
         this.email = email;
     }
 
-    public boolean deep_equal(Provider other) {
+    public boolean equals(Provider other) {
         if (other == null)
             return false;
         if (other.getClass() != Provider.class)

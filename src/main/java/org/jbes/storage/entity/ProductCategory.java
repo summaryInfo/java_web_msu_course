@@ -42,7 +42,7 @@ public class ProductCategory {
         this.description = description;
     }
 
-    public boolean deep_equal(ProductCategory other) {
+    public boolean equals(ProductCategory other) {
         if (((categoryId == null) != (other.categoryId == null))
                 || (categoryId != null && !categoryId.equals(other.categoryId)))
             return false;

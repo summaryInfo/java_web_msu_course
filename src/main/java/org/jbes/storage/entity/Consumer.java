@@ -81,7 +81,7 @@ public class Consumer {
         this.email = email;
     }
 
-    public boolean deep_equal(Consumer other) {
+    public boolean equals(Consumer other) {
         if (other == null)
             return false;
         if (other.getClass() != Consumer.class)

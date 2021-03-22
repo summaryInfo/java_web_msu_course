@@ -80,13 +80,13 @@ public class Supply {
         this.completed = completed;
     }
 
-    public boolean deep_equal(Supply other) {
+    public boolean equals(Supply other) {
         if (((supplyId == null) != (other.supplyId == null)) || (supplyId != null && !supplyId.equals(other.supplyId)))
             return false;
         if (((provider == null) != (other.provider == null))
-                || (provider != null && !provider.deep_equal(other.provider)))
+                || (provider != null && !provider.equals(other.provider)))
             return false;
-        if (((product == null) != (other.product == null)) || (product != null && !product.deep_equal(other.product)))
+        if (((product == null) != (other.product == null)) || (product != null && !product.equals(other.product)))
             return false;
         if (amount != amount)
             return false;

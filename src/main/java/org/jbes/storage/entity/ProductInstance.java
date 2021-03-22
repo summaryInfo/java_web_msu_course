@@ -116,11 +116,11 @@ public class ProductInstance {
         this.destination = destination;
     }
 
-    public boolean deep_equal(ProductInstance other) {
+    public boolean equals(ProductInstance other) {
         if (((instanceId == null) != (other.instanceId == null))
                 || (instanceId != null && !instanceId.equals(other.instanceId)))
             return false;
-        if (((product == null) != (other.product == null)) || (product != null && !product.deep_equal(other.product)))
+        if (((product == null) != (other.product == null)) || (product != null && !product.equals(other.product)))
             return false;
         if (amount != other.amount)
             return false;
@@ -132,10 +132,10 @@ public class ProductInstance {
             return false;
         if (shelfNo != other.shelfNo)
             return false;
-        if (((source == null) != (other.source == null)) || (source != null && !source.deep_equal(other.source)))
+        if (((source == null) != (other.source == null)) || (source != null && !source.equals(other.source)))
             return false;
         if (((destination == null) != (other.destination == null))
-                || (destination != null && !destination.deep_equal(other.destination)))
+                || (destination != null && !destination.equals(other.destination)))
             return false;
         return true;
     }

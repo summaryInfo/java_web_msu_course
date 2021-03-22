@@ -80,13 +80,13 @@ public class Order {
         this.completed = completed;
     }
 
-    public boolean deep_equal(Order other) {
+    public boolean equals(Order other) {
         if (((orderId == null) != (other.orderId == null)) || (orderId != null && !orderId.equals(other.orderId)))
             return false;
         if (((consumer == null) != (other.consumer == null))
-                || (consumer != null && !consumer.deep_equal(other.consumer)))
+                || (consumer != null && !consumer.equals(other.consumer)))
             return false;
-        if (((product == null) != (other.product == null)) || (product != null && !product.deep_equal(other.product)))
+        if (((product == null) != (other.product == null)) || (product != null && !product.equals(other.product)))
             return false;
         if (amount != amount)
             return false;
