@@ -42,11 +42,13 @@ public class ProductCategory {
         this.description = description;
     }
 
-    public boolean equals(ProductCategory other) {
-        if (other == null)
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
             return false;
-        if (other.getClass() != ProductCategory.class)
+        if (obj.getClass() != ProductCategory.class)
             return false;
+        ProductCategory other = (ProductCategory) obj;
         if ((categoryId == null) != (other.categoryId == null)
                 || (categoryId != null && !categoryId.equals(other.categoryId)))
             return false;
@@ -58,6 +60,7 @@ public class ProductCategory {
         return true;
     }
 
+    @Override
     public String toString() {
         return "ProductCategory(categoryId=" + (categoryId != null ? categoryId.toString() : "<NULL>") + ", name="
                 + (name != null ? name.toString() : "<NULL>") + ", description="

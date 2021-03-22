@@ -80,11 +80,13 @@ public class Supply {
         this.completed = completed;
     }
 
-    public boolean equals(Supply other) {
-        if (other == null)
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
             return false;
-        if (other.getClass() != Supply.class)
+        if (obj.getClass() != Supply.class)
             return false;
+        Supply other = (Supply) obj;
         if (((supplyId == null) != (other.supplyId == null)) || (supplyId != null && !supplyId.equals(other.supplyId)))
             return false;
         if (((provider == null) != (other.provider == null)) || (provider != null && !provider.equals(other.provider)))
@@ -98,5 +100,13 @@ public class Supply {
         if (completed != other.completed)
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Supply(supplyId=" + (supplyId != null ? supplyId.toString() : "<NULL>") + ", provider="
+                + (provider != null ? provider.toString() : "<NULL>") + ", product="
+                + (product != null ? product.toString() : "<NULL>") + ", amount=" + Double.toString(amount) + ", time="
+                + (time != null ? time.toString() : "<NULL>") + ", completed=" + Boolean.toString(completed) + ")";
     }
 }

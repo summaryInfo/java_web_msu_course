@@ -116,11 +116,13 @@ public class ProductInstance {
         this.destination = destination;
     }
 
-    public boolean equals(ProductInstance other) {
-        if (other == null)
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
             return false;
-        if (other.getClass() != ProductInstance.class)
+        if (obj.getClass() != ProductInstance.class)
             return false;
+        ProductInstance other = (ProductInstance) obj;
         if (((instanceId == null) != (other.instanceId == null))
                 || (instanceId != null && !instanceId.equals(other.instanceId)))
             return false;
@@ -142,5 +144,16 @@ public class ProductInstance {
                 || (destination != null && !destination.equals(other.destination)))
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductInstance(instanceId=" + (instanceId != null ? instanceId.toString() : "<NULL>") + ", product="
+                + (product != null ? product.toString() : "<NULL>") + ", amount=" + Double.toString(amount)
+                + ", arrival=" + (arrival != null ? arrival.toString() : "<NULL>") + ", expires="
+                + (expires != null ? expires.toString() : "<NULL>") + ", roomNo=" + Integer.toString(roomNo)
+                + ", shelfNo=" + Integer.toString(shelfNo) + ", source="
+                + (source != null ? source.toString() : "<NULL>") + ", destination="
+                + (destination != null ? destination.toString() : "<NULL>") + ")";
     }
 }

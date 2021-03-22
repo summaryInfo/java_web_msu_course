@@ -81,11 +81,13 @@ public class Consumer {
         this.email = email;
     }
 
-    public boolean equals(Consumer other) {
-        if (other == null)
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
             return false;
-        if (other.getClass() != Consumer.class)
+        if (obj.getClass() != Consumer.class)
             return false;
+        Consumer other = (Consumer) obj;
         if ((consumerId == null) != (other.consumerId == null)
                 || (consumerId != null && !consumerId.equals(other.consumerId)))
             return false;
@@ -103,6 +105,7 @@ public class Consumer {
         return true;
     }
 
+    @Override
     public String toString() {
         return "Consumer(consumerId=" + (consumerId != null ? consumerId.toString() : "<NULL>") + ", name="
                 + (name != null ? name.toString() : "<NULL>") + ", description="

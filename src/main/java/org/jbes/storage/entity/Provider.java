@@ -81,11 +81,13 @@ public class Provider {
         this.email = email;
     }
 
-    public boolean equals(Provider other) {
-        if (other == null)
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
             return false;
-        if (other.getClass() != Provider.class)
+        if (obj.getClass() != Provider.class)
             return false;
+        Provider other = (Provider) obj;
         if ((providerId == null) != (other.providerId == null)
                 || (providerId != null && !providerId.equals(other.providerId)))
             return false;
@@ -103,6 +105,7 @@ public class Provider {
         return true;
     }
 
+    @Override
     public String toString() {
         return "Provider(providerId=" + (providerId != null ? providerId.toString() : "<NULL>") + ", name="
                 + (name != null ? name.toString() : "<NULL>") + ", description="

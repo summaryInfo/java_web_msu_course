@@ -80,11 +80,13 @@ public class Order {
         this.completed = completed;
     }
 
-    public boolean equals(Order other) {
-        if (other == null)
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
             return false;
-        if (other.getClass() != Order.class)
+        if (obj.getClass() != Order.class)
             return false;
+        Order other = (Order) obj;
         if (((orderId == null) != (other.orderId == null)) || (orderId != null && !orderId.equals(other.orderId)))
             return false;
         if (((consumer == null) != (other.consumer == null)) || (consumer != null && !consumer.equals(other.consumer)))
@@ -98,5 +100,13 @@ public class Order {
         if (completed != other.completed)
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Order(orderId=" + (orderId != null ? orderId.toString() : "<NULL>") + ", consumer="
+                + (consumer != null ? consumer.toString() : "<NULL>") + ", product="
+                + (product != null ? product.toString() : "<NULL>") + ", amount=" + Double.toString(amount) + ", time="
+                + (time != null ? time.toString() : "<NULL>") + ", completed=" + Boolean.toString(completed) + ")";
     }
 }

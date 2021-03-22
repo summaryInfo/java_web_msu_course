@@ -76,11 +76,13 @@ public class Product {
         this.oversized = oversized;
     }
 
-    public boolean equals(Product other) {
-        if (other == null)
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
             return false;
-        if (other.getClass() != Product.class)
+        if (obj.getClass() != Product.class)
             return false;
+        Product other = (Product) obj;
         if (((productId == null) != (other.productId == null))
                 || (productId != null && !productId.equals(other.productId)))
             return false;
@@ -96,5 +98,13 @@ public class Product {
         if (oversized != other.oversized)
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Product(productId=" + productId.toString() + ", name=" + (name != null ? name.toString() : "<NULL>")
+                + ", description=" + (description != null ? description.toString() : "<NULL>") + ", category="
+                + (category != null ? category.toString() : "<NULL>") + ", unit="
+                + (unit != null ? unit.toString() : "<NULL>") + ", oversized=" + Boolean.toString(oversized) + ")";
     }
 }
