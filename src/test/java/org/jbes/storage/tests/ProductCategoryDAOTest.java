@@ -1,46 +1,61 @@
 package org.jbes.storage.tests;
 
-import org.testng.annotations.Test;
-import org.testng.Assert;
+import java.util.ArrayList;
+import java.util.List;
 import org.jbes.storage.dao.*;
 import org.jbes.storage.entity.*;
-import java.util.List;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import org.testng.Assert;
 
 public class ProductCategoryDAOTest {
-    @Test
-    public void testFindAllMatching() {
+    private List<ProductCategory> clist;
+    private ProductCategoryDAO dao;
+
+    @BeforeClass
+    public void init() {
         /* At this point db is initiallized with values from fill_tables.sql */
-        ProductCategoryDAO dao = new ProductCategoryDAO();
+        dao = new ProductCategoryDAO();
+        clist = new ArrayList<ProductCategory>();
+        clist.add(new ProductCategory( 1L, "продукты", null));
+        clist.add(new ProductCategory( 2L, "бытовая химия", null));
+        clist.add(new ProductCategory(3L, "одежда/обувь", null));
+        clist.add(new ProductCategory(4L, "бытовая электроника", null));
+    }
+
+    @Test
+    public void testFindAllMatching1() {
         List<ProductCategory> results = dao.findAllMatching(null, null);
+
         System.out.println("Got caterories:");
         for (ProductCategory cat : results) {
-            System.out.println(cat.toString());
+            System.out.println(cat);
         }
+
         System.out.println("Expected caterories:");
-        ProductCategory c1 = new ProductCategory();
-        c1.setCategoryId(1L);
-        c1.setName("продукты");
-        c1.setDescription(null);
-        System.out.println(c1.toString());
-        Assert.assertEquals(results.contains(c1), true, "Result does not contain all rectords 1");
-        ProductCategory c2 = new ProductCategory();
-        c2.setCategoryId(2L);
-        c2.setName("бытовая химия");
-        c2.setDescription(null);
-        System.out.println(c2.toString());
-        Assert.assertEquals(results.contains(c2), true, "Result does not contain all rectords 2");
-        ProductCategory c3 = new ProductCategory();
-        c3.setCategoryId(3L);
-        c3.setName("одежда/обувь");
-        c3.setDescription(null);
-        System.out.println(c3.toString());
-        Assert.assertEquals(results.contains(c3), true, "Result does not contain all rectords 3");
-        results.contains(c3);
-        ProductCategory c4 = new ProductCategory();
-        c4.setCategoryId(4L);
-        c4.setName("бытовая электроника");
-        c4.setDescription(null);
-        System.out.println(c4.toString());
-        Assert.assertEquals(results.contains(c4), true, "Result does not contain all rectords 4");
+
+        for (ProductCategory exp : clist) {
+            System.out.println(exp);
+            Assert.assertEquals(results.contains(exp), true, "Result does not contain all rectords");
+        }
+
+        Assert.assertEquals(results.size(), clist.size(), "Result contains extra elements");
+    }
+
+    @Test
+    public void testFindAllMatching2() {
+        List<ProductCategory> results = dao.findAllMatching("продукты", null);
+
+        System.out.println("Got categories:");
+        for (ProductCategory cat : results) {
+            System.out.println(cat);
+        }
+
+        System.out.println("Expected categories:");
+
+        System.out.println(clist.get(0));
+        Assert.assertEquals(results.contains(clist.get(0)), true, "Result does not contain all rectords");
+
+        Assert.assertEquals(results.size(), 1, "Result contains extra elements");
     }
 }

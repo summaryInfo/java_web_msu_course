@@ -49,11 +49,11 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public Consumer getConsumerId() {
+    public Consumer getConsumer() {
         return consumer;
     }
 
-    public void setConsumerId(Consumer consumer) {
+    public void setConsumer(Consumer consumer) {
         this.consumer = consumer;
     }
 
