@@ -32,6 +32,15 @@ public class Supply {
     public Supply() {
     }
 
+    public Supply(Long supplyId, Provider provider, Product product, double amount, Date time, boolean completed) {
+        this.supplyId = supplyId;
+        this.provider = provider;
+        this.product = product;
+        this.amount = amount;
+        this.time = time;
+        this.completed = completed;
+    }
+
     public Long getSupplyId() {
         return supplyId;
     }

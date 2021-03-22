@@ -32,6 +32,15 @@ public class Order {
     public Order() {
     }
 
+    public Order(Long orderId, Consumer consumer, Product product, double amount, Date time, boolean completed) {
+        this.orderId = orderId;
+        this.consumer = consumer;
+        this.product = product;
+        this.amount = amount;
+        this.time = time;
+        this.completed = completed;
+    }
+
     public Long getOrderId() {
         return orderId;
     }

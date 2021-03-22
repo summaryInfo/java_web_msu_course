@@ -28,6 +28,16 @@ public class Product {
     public Product() {
     }
 
+    public Product(Long productId, String name, String description, ProductCategory category, String unit,
+            boolean oversized) {
+        this.productId = productId;
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.unit = unit;
+        this.oversized = oversized;
+    }
+
     public Long getProductId() {
         return productId;
     }

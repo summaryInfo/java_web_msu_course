@@ -44,6 +44,19 @@ public class ProductInstance {
     public ProductInstance() {
     }
 
+    public ProductInstance(Long instanceId, Product product, double amount, Date arrival, Date expires, int roomNo,
+            int shelfNo, Supply source, Order destination) {
+        this.instanceId = instanceId;
+        this.product = product;
+        this.amount = amount;
+        this.arrival = arrival;
+        this.expires = expires;
+        this.roomNo = roomNo;
+        this.shelfNo = shelfNo;
+        this.source = source;
+        this.destination = destination;
+    }
+
     public Long getInstanceId() {
         return instanceId;
     }

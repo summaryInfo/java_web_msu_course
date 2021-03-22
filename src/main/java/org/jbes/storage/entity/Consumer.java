@@ -33,6 +33,15 @@ public class Consumer {
     public Consumer() {
     }
 
+    public Consumer(Long id, String name, String description, List<String> address, List<String> tel, List<String> email) {
+        this.consumerId = id;
+        this.name = name;
+        this.description = description;
+        this.address = address;
+        this.tel = tel;
+        this.email = email;
+    }
+
     public Long getConsumerId() {
         return consumerId;
     }

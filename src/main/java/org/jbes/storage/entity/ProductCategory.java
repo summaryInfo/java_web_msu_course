@@ -18,6 +18,12 @@ public class ProductCategory {
     public ProductCategory() {
     }
 
+    public ProductCategory(Long categoryId, String name, String description) {
+        this.categoryId = categoryId;
+        this.name = name;
+        this.description = description;
+    }
+
     public Long getCategoryId() {
         return categoryId;
     }

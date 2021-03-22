@@ -33,6 +33,16 @@ public class Provider {
     public Provider() {
     }
 
+    public Provider(Long providerId, String name, String description, List<String> address, List<String> tel,
+            List<String> email) {
+        this.providerId = providerId;
+        this.name = name;
+        this.description = description;
+        this.address = address;
+        this.tel = tel;
+        this.email = email;
+    }
+
     public Long getProviderId() {
         return providerId;
     }
