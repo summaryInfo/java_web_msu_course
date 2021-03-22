@@ -14,8 +14,6 @@ import org.jbes.storage.entity.*;
 public class HibernateInitiallizationManager {
     private static SessionFactory sessionFactory;
 
-    private HibernateInitiallizationManager() {}
-
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
@@ -28,14 +26,7 @@ public class HibernateInitiallizationManager {
                 configuration.addAnnotatedClass(Provider.class);
                 configuration.addAnnotatedClass(Supply.class);
 
-                StandardServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-
-                MetadataSources metadataSources = new MetadataSources(registry);
-                Metadata metadata = metadataSources.getMetadataBuilder()
-                  .applyBasicType(ListArrayType.INSTANCE)
-                  .build();
-
-                sessionFactory = metadata.getSessionFactoryBuilder().build();
+                sessionFactory = configuration.buildSessionFactory();
             } catch (Exception e) {
                 System.out.println("Unable to create session factory: " + e);
             }
