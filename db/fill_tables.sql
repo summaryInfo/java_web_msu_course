@@ -1,8 +1,8 @@
 INSERT INTO product_categories(category_id, name, description) VALUES
-    (1, 'продукты', NULL),
-    (2, 'бытовая химия', NULL),
-    (3, 'одежда/обувь', NULL),
-    (4, 'бытовая электроника', NULL);
+    (1, 'Food', NULL),
+    (2, 'Household chemicals', NULL),
+    (3, 'Clothes', NULL),
+    (4, 'Consumer electronics', NULL);
 
 INSERT INTO products(product_id, name, description, category_id, unit, oversized) VALUES
     (1, 'Potatoes', NULL, 1, 'Killogram', FALSE),
