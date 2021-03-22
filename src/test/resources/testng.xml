@@ -1,0 +1,43 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Suite" verbose="1" >
+    <test name="ConsumerDAOTest">
+        <classes>
+            <class name="org.jbes.storage.tests.ConsumerDAOTest"/>
+        </classes>
+    </test>
+    <test name="OrderDAOTest">
+        <classes>
+            <class name="org.jbes.storage.tests.OrderDAOTest"/>
+        </classes>
+    </test>
+    <test name="GenericDAOTest">
+        <classes>
+            <class name="org.jbes.storage.tests.GenericDAOTest"/>
+        </classes>
+    </test>
+    <test name="ProductDAOTest">
+        <classes>
+            <class name="org.jbes.storage.tests.ProductDAOTest"/>
+        </classes>
+    </test>
+    <test name="ProductCategoryDAOTest">
+        <classes>
+            <class name="org.jbes.storage.tests.ProductCategoryDAOTest"/>
+        </classes>
+    </test>
+    <test name="ProductInstanceDAOTest">
+        <classes>
+            <class name="org.jbes.storage.tests.ProductInstanceDAOTest"/>
+        </classes>
+    </test>
+    <test name="ProviderDAOTest">
+        <classes>
+            <class name="org.jbes.storage.tests.ProviderDAOTest"/>
+        </classes>
+    </test>
+    <test name="SupplyDAOTest">
+        <classes>
+            <class name="org.jbes.storage.tests.SupplyDAOTest"/>
+        </classes>
+    </test>
+</suite>

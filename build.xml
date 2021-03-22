@@ -68,7 +68,7 @@
                 <fileset dir="${project.dst}" includes="*"/>
                 <pathelement path="src/main/resources"/>
             </classpath>
-            <xmlfileset dir="." includes="testng.xml"/>
+            <xmlfileset dir="src/test/resources" includes="testng.xml"/>
         </testng>
     </target>
 </project>
