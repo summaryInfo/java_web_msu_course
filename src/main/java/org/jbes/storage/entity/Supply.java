@@ -7,15 +7,14 @@ import java.util.Date;
 @Table(name = "supplies")
 public class Supply {
     @Id
-    @GeneratedValue
-    @Column(name = "supply_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long supplyId;
 
-    @JoinColumn(nullable = false, name = "provider_id")
+    @JoinColumn(nullable = false, name = "providerId")
     @ManyToOne
     private Provider provider;
 
-    @JoinColumn(nullable = false, name = "product_id")
+    @JoinColumn(nullable = false, name = "productId")
     @ManyToOne
     private Product product;
 

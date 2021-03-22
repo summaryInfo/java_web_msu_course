@@ -24,6 +24,7 @@
         <echo> Compiling the project... </echo>
         <javac srcdir="${project.src}:${test.src}"
             destdir="${project.dst}"
+            debug="true"
             includeantruntime="false"
             classpathref="classpath">     
             <compilerarg value="-Xlint:deprecation"/>

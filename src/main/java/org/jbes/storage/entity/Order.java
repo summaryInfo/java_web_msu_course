@@ -7,15 +7,14 @@ import java.util.Date;
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue
-    @JoinColumn(name = "order_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
-    @JoinColumn(name = "consumer_id", nullable = false)
+    @JoinColumn(nullable = false, name = "consumerId")
     @ManyToOne
     private Consumer consumer;
 
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(nullable = false, name = "productId")
     @ManyToOne
     private Product product;
 

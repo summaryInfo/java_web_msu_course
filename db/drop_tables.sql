@@ -1,5 +1,5 @@
 DROP FUNCTION IF EXISTS arrayAnyLike;
-DROP TABLE IF EXISTS product_instance;
+DROP TABLE IF EXISTS product_instances;
 DROP TABLE IF EXISTS supplies;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS providers;

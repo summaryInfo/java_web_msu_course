@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Expression;
 import java.util.List;
 import java.util.Date;
 
@@ -21,26 +22,39 @@ public class SupplyDAO extends GenericDAO<Supply> {
         CriteriaQuery<Supply> query = session.getCriteriaBuilder().createQuery(Supply.class);
         Root<Supply> root = query.from(Supply.class);
 
+        Expression<Boolean> restr = null;
+
         if (provider != null) {
-            query = query.where(builder.equal(root.get(Supply_.provider), provider));
+            Expression<Boolean> n = builder.equal(root.get(Supply_.provider), provider);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (product != null) {
-            query = query.where(builder.equal(root.get(Supply_.product), product));
+            Expression<Boolean> n = builder.equal(root.get(Supply_.product), product);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (amountLo != null) {
-            query = query.where(builder.greaterThanOrEqualTo(root.get(Supply_.amount), amountLo));
+            Expression<Boolean> n = builder.greaterThanOrEqualTo(root.get(Supply_.amount), amountLo);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (amountHi != null) {
-            query = query.where(builder.lessThanOrEqualTo(root.get(Supply_.amount), amountHi));
+            Expression<Boolean> n = builder.lessThanOrEqualTo(root.get(Supply_.amount), amountHi);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (timeLo != null) {
-            query = query.where(builder.greaterThanOrEqualTo(root.get(Supply_.time), timeLo));
+            Expression<Boolean> n = builder.greaterThanOrEqualTo(root.get(Supply_.time), timeLo);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (timeHi != null) {
-            query = query.where(builder.lessThanOrEqualTo(root.get(Supply_.time), timeHi));
+            Expression<Boolean> n = builder.lessThanOrEqualTo(root.get(Supply_.time), timeHi);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (completed != null) {
-            query = query.where(builder.equal(root.get(Supply_.completed), completed));
+            Expression<Boolean> n = builder.equal(root.get(Supply_.completed), completed);
+            restr = restr != null ? builder.and(restr, n) : n;
+        }
+
+        if (restr != null) {
+            query = query.where(restr);
         }
 
         List<Supply> result = session.createQuery(query).getResultList();

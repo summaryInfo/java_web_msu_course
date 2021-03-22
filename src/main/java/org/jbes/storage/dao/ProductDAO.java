@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Expression;
 import java.util.List;
 
 public class ProductDAO extends GenericDAO<Product> {
@@ -19,20 +20,31 @@ public class ProductDAO extends GenericDAO<Product> {
         CriteriaQuery<Product> query = session.getCriteriaBuilder().createQuery(Product.class);
         Root<Product> root = query.from(Product.class);
 
+        Expression<Boolean> restr = null;
+
         if (name != null) {
-            query = query.where(builder.like(root.get(Product_.name), name));
+            Expression<Boolean> n = builder.like(root.get(Product_.name), name);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (description != null) {
-            query = query.where(builder.like(root.get(Product_.description), description));
+            Expression<Boolean> n = builder.like(root.get(Product_.description), description);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (category != null) {
-            query = query.where(builder.equal(root.get(Product_.category), category));
+            Expression<Boolean> n = builder.equal(root.get(Product_.category), category);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (unit != null) {
-            query = query.where(builder.like(root.get(Product_.unit), unit));
+            Expression<Boolean> n = builder.like(root.get(Product_.unit), unit);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (oversized != null) {
-            query = query.where(builder.equal(root.get(Product_.oversized), oversized));
+            Expression<Boolean> n = builder.equal(root.get(Product_.oversized), oversized);
+            restr = restr != null ? builder.and(restr, n) : n;
+        }
+
+        if (restr != null) {
+            query = query.where(restr);
         }
 
         List<Product> result = session.createQuery(query).getResultList();

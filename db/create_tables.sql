@@ -3,22 +3,22 @@
 CREATE OR REPLACE FUNCTION arrayAnyLike(arrayContents text[], searchKey text) RETURNS BOOLEAN as 'SELECT count(*) != 0 FROM unnest(arrayContents) elem WHERE elem LIKE searchKey;' LANGUAGE SQL;
 
 CREATE TABLE product_categories(
-    category_id serial PRIMARY KEY,
+    categoryId serial PRIMARY KEY,
     name text NOT NULL,
     description text
 );
 
 CREATE TABLE products(
-    product_id serial PRIMARY KEY,
+    productId serial PRIMARY KEY,
     name text NOT NULL,
     description text,
-    category_id integer REFERENCES product_categories(category_id) NOT NULL,
+    categoryId integer REFERENCES product_categories(categoryId) NOT NULL,
     unit text NOT NULL,
     oversized boolean NOT NULL
 );
 
 CREATE TABLE providers(
-    provider_id serial PRIMARY KEY,
+    providerId serial PRIMARY KEY,
     name text NOT NULL,
     description text,
     address text[] NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE providers(
 );
 
 CREATE TABLE consumers(
-    consumer_id serial PRIMARY KEY,
+    consumerId serial PRIMARY KEY,
     name text NOT NULL,
     description text,
     address text[] NOT NULL,
@@ -36,32 +36,32 @@ CREATE TABLE consumers(
 );
 
 CREATE TABLE supplies(
-    supply_id serial PRIMARY KEY,
-	provider_id integer REFERENCES providers(provider_id) NOT NULL,
-    product_id integer REFERENCES products(product_id) NOT NULL,
-    amount real NOT NULL CONSTRAINT amount_non_neg CHECK(amount > 0),
+    supplyId serial PRIMARY KEY,
+	providerId integer REFERENCES providers(providerId) NOT NULL,
+    productId integer REFERENCES products(productId) NOT NULL,
+    amount real NOT NULL CONSTRAINT amountNonNeg CHECK(amount > 0),
     time timestamp NOT NULL,
     completed boolean NOT NULL
 );
 
 CREATE TABLE orders(
-    order_id serial PRIMARY KEY,
-	consumer_id integer REFERENCES consumers(consumer_id) NOT NULL,
-    product_id integer REFERENCES products(product_id) NOT NULL,
-    amount real NOT NULL CONSTRAINT amount_non_neg CHECK(amount > 0),
+    orderId serial PRIMARY KEY,
+	consumerId integer REFERENCES consumers(consumerId) NOT NULL,
+    productId integer REFERENCES products(productId) NOT NULL,
+    amount real NOT NULL CONSTRAINT amountNonNeg CHECK(amount > 0),
     time timestamp NOT NULL,
     completed boolean NOT NULL
 );
 
-CREATE TABLE product_instance(
-    instance_id serial PRIMARY KEY,
-    product_id integer REFERENCES products(product_id) NOT NULL,
+CREATE TABLE product_instances(
+    instanceId serial PRIMARY KEY,
+    productId integer REFERENCES products(productId) NOT NULL,
     amount real NOT NULL,
     arrival timestamp NOT NULL,
     expires timestamp,
-    room_no integer NOT NULL,
-    shelf_no integer NOT NULL,
-    source integer REFERENCES supplies(supply_id) NOT NULL,
-    destination integer REFERENCES orders(order_id)
+    roomNo integer NOT NULL,
+    shelfNo integer NOT NULL,
+    source integer REFERENCES supplies(supplyId) NOT NULL,
+    destination integer REFERENCES orders(orderId)
 );
 

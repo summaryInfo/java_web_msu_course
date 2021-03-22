@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Expression;
 import java.util.List;
 import java.util.Date;
 
@@ -21,38 +22,55 @@ public class ProductInstanceDAO extends GenericDAO<ProductInstance> {
         CriteriaQuery<ProductInstance> query = session.getCriteriaBuilder().createQuery(ProductInstance.class);
         Root<ProductInstance> root = query.from(ProductInstance.class);
 
+        Expression<Boolean> restr = null;
+
         if (product != null) {
-            query = query.where(builder.equal(root.get(ProductInstance_.product), product));
+            Expression<Boolean> n = builder.equal(root.get(ProductInstance_.product), product);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (amountLo != null) {
-            query = query.where(builder.greaterThanOrEqualTo(root.get(ProductInstance_.amount), amountLo));
+            Expression<Boolean> n = builder.greaterThanOrEqualTo(root.get(ProductInstance_.amount), amountLo);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (amountHi != null) {
-            query = query.where(builder.lessThanOrEqualTo(root.get(ProductInstance_.amount), amountHi));
+            Expression<Boolean> n = builder.lessThanOrEqualTo(root.get(ProductInstance_.amount), amountHi);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (arrivalLo != null) {
-            query = query.where(builder.greaterThanOrEqualTo(root.get(ProductInstance_.arrival), arrivalLo));
+            Expression<Boolean> n = builder.greaterThanOrEqualTo(root.get(ProductInstance_.arrival), arrivalLo);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (arrivalHi != null) {
-            query = query.where(builder.lessThanOrEqualTo(root.get(ProductInstance_.arrival), arrivalHi));
+            Expression<Boolean> n = builder.lessThanOrEqualTo(root.get(ProductInstance_.arrival), arrivalHi);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (expiresLo != null) {
-            query = query.where(builder.greaterThanOrEqualTo(root.get(ProductInstance_.expires), expiresLo));
+            Expression<Boolean> n = builder.greaterThanOrEqualTo(root.get(ProductInstance_.expires), expiresLo);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (expiresHi != null) {
-            query = query.where(builder.lessThanOrEqualTo(root.get(ProductInstance_.expires), expiresHi));
+            Expression<Boolean> n = builder.lessThanOrEqualTo(root.get(ProductInstance_.expires), expiresHi);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (roomNo != null) {
-            query = query.where(builder.equal(root.get(ProductInstance_.roomNo), roomNo));
+            Expression<Boolean> n = builder.equal(root.get(ProductInstance_.roomNo), roomNo);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (shelfNo != null) {
-            query = query.where(builder.equal(root.get(ProductInstance_.shelfNo), shelfNo));
+            Expression<Boolean> n = builder.equal(root.get(ProductInstance_.shelfNo), shelfNo);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (source != null) {
-            query = query.where(builder.equal(root.get(ProductInstance_.source), source));
+            Expression<Boolean> n = builder.equal(root.get(ProductInstance_.source), source);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (destination != null) {
-            query = query.where(builder.equal(root.get(ProductInstance_.destination), destination));
+            Expression<Boolean> n = builder.equal(root.get(ProductInstance_.destination), destination);
+            restr = restr != null ? builder.and(restr, n) : n;
+        }
+
+        if (restr != null) {
+            query = query.where(restr);
         }
 
         List<ProductInstance> result = session.createQuery(query).getResultList();

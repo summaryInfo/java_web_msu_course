@@ -8,11 +8,10 @@ import org.hibernate.annotations.CreationTimestamp;
 @Table(name = "product_instances")
 public class ProductInstance {
     @Id
-    @GeneratedValue
-    @Column(name = "instance_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long instanceId;
 
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(nullable = false, name = "productId")
     @ManyToOne
     private Product product;
 
@@ -27,18 +26,18 @@ public class ProductInstance {
     @Temporal(TemporalType.TIMESTAMP)
     private Date expires;
 
-    @Column(name = "room_no", nullable = false)
+    @Column(nullable = false)
     private int roomNo;
 
-    @Column(name = "shelf_no", nullable = false)
+    @Column(nullable = false)
     private int shelfNo;
 
-    @JoinColumn(nullable = false, name = "supply_id")
+    @JoinColumn(nullable = false, name = "source")
     @ManyToOne
     private Supply source;
 
-    @JoinColumn(name = "order_id")
     @ManyToOne
+    @JoinColumn(name = "destination")
     private Order destination;
 
     public ProductInstance() {

@@ -15,8 +15,8 @@ public class ConsumerDAOTest {
     @BeforeClass
     public void init() {
         dao = new ConsumerDAO();
-        cons = new Consumer(1L, "A potato consumer", null, new ArrayList<String>(),
-                new ArrayList<String>(List.of("4(444)444-44-44")), new ArrayList<String>(List.of("ilove@potates.com")));
+        cons = new Consumer(101L, "A potato consumer", null, new String[0], new String[] { "4(444)444-44-44" },
+                new String[] { "ilove@potates.com" });
     }
 
     @Test
@@ -28,7 +28,8 @@ public class ConsumerDAOTest {
 
     @Test
     public void testFindAllMatching2() {
-        List<Consumer> results = dao.findAllMatching("A potato consumer", null, null, cons.getTel().get(0), cons.getEmail().get(0));
+        List<Consumer> results = dao.findAllMatching("A potato consumer", null, null, cons.getTel()[0],
+                cons.getEmail()[0]);
         Assert.assertEquals(results.get(0), cons, "Result does not contain some required reults");
         Assert.assertEquals(results.size(), 1, "Non-matching results returned");
     }

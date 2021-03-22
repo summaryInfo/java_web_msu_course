@@ -1,6 +1,7 @@
 package org.jbes.storage.tests;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +24,14 @@ public class OrderDAOTest {
         consumerDao = new ConsumerDAO();
 
         plist = new ArrayList<Order>();
-        Consumer cons = consumerDao.findById(1L);
-        Product p1 = productDao.findById(1L);
-        Product p6 = productDao.findById(6L);
-        plist.add(new Order(1L, cons, p1, 30., DateFormat.getDateInstance().parse("2020-01-20"), true));
-        plist.add(new Order(2L, cons, p1, 30., DateFormat.getDateInstance().parse("2020-05-20"), false));
-        plist.add(new Order(3L, cons, p1, 40., DateFormat.getDateInstance().parse("2020-05-21"), false));
-        plist.add(new Order(4L, cons, p6, 1., DateFormat.getDateInstance().parse("2020-07-01"), false));
+        Consumer cons = consumerDao.findById(101L);
+        Product p1 = productDao.findById(101L);
+        Product p6 = productDao.findById(106L);
+        DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        plist.add(new Order(101L, cons, p1, 30., fmt.parse("2020-01-20"), true));
+        plist.add(new Order(102L, cons, p1, 30., fmt.parse("2020-05-20"), false));
+        plist.add(new Order(103L, cons, p1, 40., fmt.parse("2020-05-21"), false));
+        plist.add(new Order(104L, cons, p6, 1., fmt.parse("2020-07-01"), false));
     }
 
     @Test
@@ -52,10 +54,9 @@ public class OrderDAOTest {
     }
 
     @Test
-    public void testFindAllMatching2() throws ParseException {
+    public void testFindAllMatching2() {
         List<Order> results = dao.findAllMatching(plist.get(0).getConsumer(), plist.get(0).getProduct(), 20., 30.,
-                DateFormat.getDateInstance().parse("2020-01-20"), DateFormat.getDateInstance().parse("2020-01-20"),
-                true);
+                plist.get(0).getTime(), plist.get(0).getTime(), true);
 
         System.out.println("Got orders:");
         for (Order cat : results) {

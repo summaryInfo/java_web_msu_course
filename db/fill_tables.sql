@@ -1,59 +1,59 @@
-INSERT INTO product_categories(category_id, name, description) VALUES
-    (1, 'Food', NULL),
-    (2, 'Household chemicals', NULL),
-    (3, 'Clothes', NULL),
-    (4, 'Consumer electronics', NULL);
+INSERT INTO product_categories(categoryId, name, description) VALUES
+    (101, 'Food', NULL),
+    (102, 'Household chemicals', NULL),
+    (103, 'Clothes', NULL),
+    (104, 'Consumer electronics', NULL);
 
-INSERT INTO products(product_id, name, description, category_id, unit, oversized) VALUES
-    (1, 'Potatoes', NULL, 1, 'Killogram', FALSE),
-    (2, 'Lemon juice (1 liter)', NULL, 1, 'Item', FALSE),
-    (3, 'Soap', NULL, 2, 'Item', FALSE),
-    (4, 'T-Short', NULL, 3, 'Item', FALSE),
-    (5, 'Electric teapot', NULL, 4, 'Item', FALSE),
-    (6, 'Refrigerator', NULL, 4, 'Box', TRUE);
+INSERT INTO products(productId, name, description, categoryId, unit, oversized) VALUES
+    (101, 'Potatoes', NULL, 101, 'Killogram', FALSE),
+    (102, 'Lemon juice (1 liter)', NULL, 101, 'Item', FALSE),
+    (103, 'Soap', NULL, 102, 'Item', FALSE),
+    (104, 'T-Short', NULL, 103, 'Item', FALSE),
+    (105, 'Electric teapot', NULL, 104, 'Item', FALSE),
+    (106, 'Refrigerator', NULL, 104, 'Box', TRUE);
 
-INSERT INTO providers(provider_id, name, description, address, tel, email) VALUES
-    (1, 'Food source', 'Test description for food provider', '{}', '{"1(111)111-11-11"}', '{"food@source.com"}'),
-    (2, 'Chemicals source', 'Test description for chemicals source', '{}', '{"2(222)222-22-22"}', '{"contact@chemicals123.com"}'),
-    (3, 'Electronics provider', 'Test description for electronics provider', '{}', '{"3(333)333-33-33"}', '{"mail@allelectronics.net"}');
+INSERT INTO providers(providerId, name, description, address, tel, email) VALUES
+    (101, 'Food source', 'Test description for food provider', '{}', '{"1(111)111-11-11"}', '{"food@source.com"}'),
+    (102, 'Chemicals source', 'Test description for chemicals source', '{}', '{"2(222)222-22-22"}', '{"contact@chemicals123.com"}'),
+    (103, 'Electronics provider', 'Test description for electronics provider', '{}', '{"3(333)333-33-33"}', '{"mail@allelectronics.net"}');
 
-INSERT INTO consumers(consumer_id, name, description, address, tel, email) VALUES
-    (1, 'A potato consumer', NULL, '{}', '{"4(444)444-44-44"}', '{"ilove@potates.com"}');
+INSERT INTO consumers(consumerId, name, description, address, tel, email) VALUES
+    (101, 'A potato consumer', NULL, '{}', '{"4(444)444-44-44"}', '{"ilove@potates.com"}');
 
-INSERT INTO supplies(supply_id, provider_id, product_id, amount, time, completed) VALUES
-    (1, 1, 1, 20, '2020-12-21', TRUE),
-    (2, 1, 1, 10, '2020-11-21', TRUE),
-    (3, 1, 2, 10, '2021-01-13', TRUE),
-    (4, 2, 3, 10, '2021-02-12', TRUE),
-    (5, 2, 4, 10, '2021-01-29', FALSE),
-    (6, 3, 5, 10, '2020-11-21', TRUE),
-    (7, 3, 6, 10, '2021-01-28', TRUE);
+INSERT INTO supplies(supplyId, providerId, productId, amount, time, completed) VALUES
+    (101, 101, 101, 20, '2020-12-21', TRUE),
+    (102, 101, 101, 10, '2020-11-21', TRUE),
+    (103, 101, 102, 10, '2021-01-13', TRUE),
+    (104, 102, 103, 10, '2021-02-12', TRUE),
+    (105, 102, 104, 10, '2021-01-29', FALSE),
+    (106, 103, 105, 10, '2020-11-21', TRUE),
+    (107, 103, 106, 10, '2021-01-28', TRUE);
 
-INSERT INTO orders(order_id, consumer_id, product_id, amount, time, completed) VALUES
-    (1, 1, 1, 30, '2020-01-20', TRUE),
-    (2, 1, 1, 30, '2020-05-20', FALSE),
-    (3, 1, 1, 40, '2020-05-21', FALSE),
-    (4, 1, 6, 1, '2020-07-01', FALSE);
+INSERT INTO orders(orderId, consumerId, productId, amount, time, completed) VALUES
+    (101, 101, 101, 30, '2020-01-20', TRUE),
+    (102, 101, 101, 30, '2020-05-20', FALSE),
+    (103, 101, 101, 40, '2020-05-21', FALSE),
+    (104, 101, 106, 1, '2020-07-01', FALSE);
 
-INSERT INTO product_instance(instance_id, product_id, amount, arrival, expires, room_no, shelf_no, source, destination) VALUES
-    (1, 1, 10, '2020-12-21', '2021-06-03', 1, 1, 1, 2),
-    (2, 1, 10, '2020-12-21', '2021-06-03', 1, 1, 1, 2),
-    (3, 1, 10, '2020-12-21', '2021-06-03', 1, 2, 1, 2),
-    (4, 1, 10, '2020-12-21', '2021-06-03', 1, 2, 1, 3),
-    (5, 1, 15, '2020-11-17', '2021-04-03', 1, 3, 2, 3),
-    (6, 1, 15, '2020-11-17', '2021-04-03', 1, 3, 2, 3),
-    (7, 1, 15, '2020-11-17', '2021-04-03', 1, 3, 2, NULL),
-    (8, 2, 6, '2021-01-13', '2021-03-13', 1, 5, 3, NULL),
-    (9, 2, 6, '2021-01-13', '2021-03-13', 1, 6, 3, NULL),
-    (10, 3, 30, '2020-11-01', '2030-11-01', 2, 1, 4, NULL),
-    (11, 3, 30, '2020-11-01', '2030-11-01', 2, 2, 4, NULL),
-    (12, 4, 20, '2021-02-12', NULL, 2, 3, 5, NULL),
-    (13, 4, 20, '2021-02-12', NULL, 2, 4, 5, NULL),
-    (14, 4, 20, '2021-04-15', NULL, 2, 5, 5, NULL),
-    (15, 4, 20, '2021-04-15', NULL, 2, 6, 5, NULL),
-    (16, 5, 3, '2021-01-29', NULL, 2, 7, 6, NULL),
-    (17, 5, 3, '2021-01-29', NULL, 2, 8, 6, NULL),
-    (18, 5, 3, '2021-01-29', NULL, 2, 9, 6, NULL),
-    (19, 6, 1, '2021-01-28', NULL, 3, 1, 7, 4);
+INSERT INTO product_instances(instanceId, productId, amount, arrival, expires, roomNo, shelfNo, source, destination) VALUES
+    (101, 101, 10, '2020-12-21', '2021-06-03', 1, 1, 101, 102),
+    (102, 101, 10, '2020-12-21', '2021-06-03', 1, 1, 101, 102),
+    (103, 101, 10, '2020-12-21', '2021-06-03', 1, 2, 101, 102),
+    (104, 101, 10, '2020-12-21', '2021-06-03', 1, 2, 101, 103),
+    (105, 101, 15, '2020-11-17', '2021-04-03', 1, 3, 102, 103),
+    (106, 101, 15, '2020-11-17', '2021-04-03', 1, 3, 102, 103),
+    (107, 101, 15, '2020-11-17', '2021-04-03', 1, 3, 102, NULL),
+    (108, 102, 6, '2021-01-13', '2021-03-13', 1, 5, 103, NULL),
+    (109, 102, 6, '2021-01-13', '2021-03-13', 1, 6, 103, NULL),
+    (110, 103, 30, '2020-11-01', '2030-11-01', 2, 1, 104, NULL),
+    (111, 103, 30, '2020-11-01', '2030-11-01', 2, 2, 104, NULL),
+    (112, 104, 20, '2021-02-12', NULL, 2, 3, 105, NULL),
+    (113, 104, 20, '2021-02-12', NULL, 2, 4, 105, NULL),
+    (114, 104, 20, '2021-04-15', NULL, 2, 5, 105, NULL),
+    (115, 104, 20, '2021-04-15', NULL, 2, 6, 105, NULL),
+    (116, 105, 3, '2021-01-29', NULL, 2, 7, 106, NULL),
+    (117, 105, 3, '2021-01-29', NULL, 2, 8, 106, NULL),
+    (118, 105, 3, '2021-01-29', NULL, 2, 9, 106, NULL),
+    (119, 106, 1, '2021-01-28', NULL, 3, 1, 107, 104);
 
 

@@ -6,8 +6,7 @@ import javax.persistence.*;
 @Table(name = "products")
 public class Product {
     @Id
-    @GeneratedValue
-    @Column(name = "product_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
     @Column(nullable = false)
@@ -15,8 +14,8 @@ public class Product {
 
     private String description;
 
-    @JoinColumn(name = "category_id")
     @ManyToOne
+    @JoinColumn(name = "categoryId")
     private ProductCategory category;
 
     @Column(nullable = false)

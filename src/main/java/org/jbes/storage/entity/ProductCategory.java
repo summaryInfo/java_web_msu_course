@@ -6,8 +6,7 @@ import javax.persistence.*;
 @Table(name = "product_categories")
 public class ProductCategory {
     @Id
-    @GeneratedValue
-    @Column(name = "category_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
 
     @Column(nullable = false)

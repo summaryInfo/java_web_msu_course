@@ -1,7 +1,5 @@
 package org.jbes.storage.dao;
 
-import java.util.List;
-import javax.persistence.criteria.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.jbes.storage.HibernateInitiallizationManager;
@@ -13,12 +11,13 @@ public class GenericDAO<T> {
         this.thisClass = thisClass;
     }
 
-    public void save(T entity) {
+    public Long save(T entity) {
         Session session = HibernateInitiallizationManager.createSession();
         Transaction tx = session.beginTransaction();
-        session.save(entity);
+        Long res = (Long)session.save(entity);
         tx.commit();
         session.close();
+        return res;
     }
 
     public void update(T entity) {

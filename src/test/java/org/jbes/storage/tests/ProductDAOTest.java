@@ -22,20 +22,21 @@ public class ProductDAOTest {
 
         clist = new ArrayList<ProductCategory>();
         for (long i = 0; i < 4; i++) {
-            clist.add(catdao.findById(i));
+            clist.add(catdao.findById(i + 101L));
         }
 
-        plist.add(new Product(1L, "Potatoes", null, clist.get(0), "Killogram", false));
-        plist.add(new Product(2L, "Lemon juice (1 liter)", null, clist.get(0), "Item", false));
-        plist.add(new Product(3L, "Soap", null, clist.get(1), "Item", false));
-        plist.add(new Product(4L, "T-Short", null, clist.get(2), "Item", false));
-        plist.add(new Product(5L, "Electric teapot", null, clist.get(3), "Item", false));
-        plist.add(new Product(6L, "Refrigerator", null, clist.get(3), "Box", true));
+        plist = new ArrayList<Product>();
+        plist.add(new Product(101L, "Potatoes", null, clist.get(0), "Killogram", false));
+        plist.add(new Product(102L, "Lemon juice (1 liter)", null, clist.get(0), "Item", false));
+        plist.add(new Product(103L, "Soap", null, clist.get(1), "Item", false));
+        plist.add(new Product(104L, "T-Short", null, clist.get(2), "Item", false));
+        plist.add(new Product(105L, "Electric teapot", null, clist.get(3), "Item", false));
+        plist.add(new Product(106L, "Refrigerator", null, clist.get(3), "Box", true));
     }
 
     @Test
     public void testFindAllMatching1() {
-        List<Product> results = dao.findAllMatching("Potatoes", null, clist.get(0), "Killogram", false);
+        List<Product> results = dao.findAllMatching(null, null, null, null, null);
 
         System.out.println("Got products:");
         for (Product cat : results) {

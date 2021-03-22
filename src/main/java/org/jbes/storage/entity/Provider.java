@@ -2,15 +2,13 @@ package org.jbes.storage.entity;
 
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "providers")
 public class Provider {
     @Id
-    @GeneratedValue
-    @Column(name = "provider_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long providerId;
 
     @Column(nullable = false)
@@ -18,23 +16,23 @@ public class Provider {
 
     private String description;
 
-    @Type(type = "com.vladmihalcea.hibernate.type.array.ListArrayType")
+    @Type(type = "com.vladmihalcea.hibernate.type.array.StringArrayType")
     @Column(nullable = false, name = "address", columnDefinition = "text[]")
-    private List<String> address = new ArrayList<String>();
+    private String[] address = new String[0];
 
-    @Type(type = "com.vladmihalcea.hibernate.type.array.ListArrayType")
+    @Type(type = "com.vladmihalcea.hibernate.type.array.StringArrayType")
     @Column(nullable = false, name = "tel", columnDefinition = "text[]")
-    private List<String> tel = new ArrayList<String>();
+    private String[] tel = new String[0];
 
-    @Type(type = "com.vladmihalcea.hibernate.type.array.ListArrayType")
+    @Type(type = "com.vladmihalcea.hibernate.type.array.StringArrayType")
     @Column(nullable = false, name = "email", columnDefinition = "text[]")
-    private List<String> email = new ArrayList<String>();
+    private String[] email = new String[0];
 
     public Provider() {
     }
 
-    public Provider(Long providerId, String name, String description, List<String> address, List<String> tel,
-            List<String> email) {
+    public Provider(Long providerId, String name, String description, String[] address, String[] tel,
+            String[] email) {
         this.providerId = providerId;
         this.name = name;
         this.description = description;
@@ -67,27 +65,27 @@ public class Provider {
         this.description = description;
     }
 
-    public List<String> getAddress() {
+    public String[] getAddress() {
         return address;
     }
 
-    public void setAddress(List<String> address) {
+    public void setAddress(String[] address) {
         this.address = address;
     }
 
-    public List<String> getTel() {
+    public String[] getTel() {
         return tel;
     }
 
-    public void setTel(List<String> tel) {
+    public void setTel(String[] tel) {
         this.tel = tel;
     }
 
-    public List<String> getEmail() {
+    public String[] getEmail() {
         return email;
     }
 
-    public void setEmail(List<String> email) {
+    public void setEmail(String[] email) {
         this.email = email;
     }
 
@@ -106,11 +104,11 @@ public class Provider {
         if ((description == null) != (other.description == null)
                 || (description != null && !description.equals(other.description)))
             return false;
-        if ((address == null) != (other.address == null) || (address != null && !address.equals(other.address)))
+        if ((address == null) != (other.address == null) || (address != null && !Arrays.equals(other.address, address)))
             return false;
-        if ((tel == null) != (other.tel == null) || (tel != null && !tel.equals(other.tel)))
+        if ((tel == null) != (other.tel == null) || (tel != null && !Arrays.equals(other.tel, tel)))
             return false;
-        if ((email == null) != (other.email == null) || (email != null && !email.equals(other.email)))
+        if ((email == null) != (other.email == null) || (email != null && !Arrays.equals(other.email, email)))
             return false;
         return true;
     }

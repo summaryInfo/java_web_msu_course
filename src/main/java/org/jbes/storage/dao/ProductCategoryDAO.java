@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Expression;
 import java.util.List;
 
 public class ProductCategoryDAO extends GenericDAO<ProductCategory> {
@@ -19,11 +20,19 @@ public class ProductCategoryDAO extends GenericDAO<ProductCategory> {
         CriteriaQuery<ProductCategory> query = session.getCriteriaBuilder().createQuery(ProductCategory.class);
         Root<ProductCategory> root = query.from(ProductCategory.class);
 
+        Expression<Boolean> restr = null;
+
         if (name != null) {
-            query = query.where(builder.like(root.get(ProductCategory_.name), name));
+            Expression<Boolean> n = builder.like(root.get(ProductCategory_.name), name);
+            restr = restr != null ? builder.and(restr, n) : n;
         }
         if (description != null) {
-            query = query.where(builder.like(root.get(ProductCategory_.description), description));
+            Expression<Boolean> n = builder.like(root.get(ProductCategory_.description), description);
+            restr = restr != null ? builder.and(restr, n) : n;
+        }
+
+        if (restr != null) {
+            query = query.where(restr);
         }
 
         List<ProductCategory> result = session.createQuery(query).getResultList();

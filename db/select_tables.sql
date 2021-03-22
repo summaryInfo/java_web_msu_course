@@ -4,4 +4,4 @@ SELECT * FROM providers;
 SELECT * FROM consumers;
 SELECT * FROM supplies;
 SELECT * FROM orders;
-SELECT * FROM product_instance;
+SELECT * FROM product_instances;

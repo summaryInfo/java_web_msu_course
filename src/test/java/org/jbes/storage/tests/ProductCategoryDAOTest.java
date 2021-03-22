@@ -17,10 +17,10 @@ public class ProductCategoryDAOTest {
         /* At this point db is initiallized with values from fill_tables.sql */
         dao = new ProductCategoryDAO();
         clist = new ArrayList<ProductCategory>();
-        clist.add(new ProductCategory( 1L, "продукты", null));
-        clist.add(new ProductCategory( 2L, "бытовая химия", null));
-        clist.add(new ProductCategory(3L, "одежда/обувь", null));
-        clist.add(new ProductCategory(4L, "бытовая электроника", null));
+        clist.add(new ProductCategory(101L, "Food", null));
+        clist.add(new ProductCategory(102L, "Household chemicals", null));
+        clist.add(new ProductCategory(103L, "Clothes", null));
+        clist.add(new ProductCategory(104L, "Consumer electronics", null));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class ProductCategoryDAOTest {
 
     @Test
     public void testFindAllMatching2() {
-        List<ProductCategory> results = dao.findAllMatching("продукты", null);
+        List<ProductCategory> results = dao.findAllMatching("Food", null);
 
         System.out.println("Got categories:");
         for (ProductCategory cat : results) {
