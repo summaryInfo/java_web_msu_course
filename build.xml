@@ -32,6 +32,14 @@
         </javac>
     </target>
 
+    <target name="war" depends="build">
+        <war destfile="app.war" needxmlfile="false">
+            <fileset dir="${project.rsrc}"/>
+            <lib dir="${lib.dir}"/>
+            <classes dir="${project.dst}"/>
+        </war>
+    </target>
+
     <target name="run" depends="build">
         <echo> Running application... </echo>
         <java classname="org.jbes.storage.Main" classpath="${project.dst}" classpathref="classpath">

@@ -1,8 +1,9 @@
 package org.jbes.storage.dao;
 
+import org.springframework.stereotype.Component;
 import org.jbes.storage.entity.*;
-import org.jbes.storage.HibernateInitiallizationManager;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -10,16 +11,17 @@ import javax.persistence.criteria.Expression;
 import java.util.List;
 import java.util.Date;
 
+@Component
 public class ProductInstanceDAO extends GenericDAO<ProductInstance> {
-    public ProductInstanceDAO() {
-        super(ProductInstance.class);
+    public ProductInstanceDAO(SessionFactory factory) {
+        super(factory, ProductInstance.class);
     }
 
     public List<ProductInstance> findAllMatching(Product product, Double amountLo, Double amountHi, Date arrivalLo, Date arrivalHi,
             Date expiresLo, Date expiresHi, Integer roomNo, Integer shelfNo, Supply source, Order destination) {
-        CriteriaBuilder builder = HibernateInitiallizationManager.getSessionFactory().getCriteriaBuilder();
-        Session session = HibernateInitiallizationManager.createSession();
-        CriteriaQuery<ProductInstance> query = session.getCriteriaBuilder().createQuery(ProductInstance.class);
+        CriteriaBuilder builder = factory.getCriteriaBuilder();
+        Session session = factory.openSession();
+        CriteriaQuery<ProductInstance> query = builder.createQuery(ProductInstance.class);
         Root<ProductInstance> root = query.from(ProductInstance.class);
 
         Expression<Boolean> restr = null;

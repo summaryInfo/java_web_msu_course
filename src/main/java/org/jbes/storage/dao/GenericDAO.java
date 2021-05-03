@@ -1,18 +1,20 @@
 package org.jbes.storage.dao;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.jbes.storage.HibernateInitiallizationManager;
 
 public class GenericDAO<T> {
     private Class<T> thisClass;
-
-    protected GenericDAO(Class<T> thisClass) {
+    protected SessionFactory factory;
+    
+    protected GenericDAO(SessionFactory factory, Class<T> thisClass) {
         this.thisClass = thisClass;
+        this.factory = factory;
     }
 
     public Long save(T entity) {
-        Session session = HibernateInitiallizationManager.createSession();
+        Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
         Long res = (Long)session.save(entity);
         tx.commit();
@@ -21,7 +23,7 @@ public class GenericDAO<T> {
     }
 
     public void update(T entity) {
-        Session session = HibernateInitiallizationManager.createSession();
+        Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
         session.update(entity);
         tx.commit();
@@ -29,7 +31,7 @@ public class GenericDAO<T> {
     }
 
     public void delete(T entity) {
-        Session session = HibernateInitiallizationManager.createSession();
+        Session session = factory.openSession();
         Transaction tx = session.beginTransaction();
         session.delete(entity);
         tx.commit();
@@ -37,7 +39,7 @@ public class GenericDAO<T> {
     }
 
     public T findById(Long id) {
-        Session session = HibernateInitiallizationManager.createSession();
+        Session session = factory.openSession();
         T entity = session.get(thisClass, id);
         session.close();
         return entity;
