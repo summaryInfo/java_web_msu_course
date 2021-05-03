@@ -75,4 +75,42 @@ public class WebConfig implements WebMvcConfigurer {
     public static ProductCategoryDAO productCategoryDAO() {
         return new ProductCategoryDAO(sessionFactory());
     }
+
+    @Bean
+    @Scope("singleton")
+    public static ProductDAO productDAO() {
+        return new ProductDAO(sessionFactory());
+    }
+
+    @Bean
+    @Scope("singleton")
+    public static ProductInstanceDAO productInstanceDAO() {
+        return new ProductInstanceDAO(sessionFactory());
+    }
+
+
+    @Bean
+    @Scope("singleton")
+    public static OrderDAO orderDAO() {
+        return new OrderDAO(sessionFactory());
+    }
+
+    @Bean
+    @Scope("singleton")
+    public static SupplyDAO supplyDAO() {
+        return new SupplyDAO(sessionFactory());
+    }
+
+    @Bean
+    @Scope("singleton")
+    public static ProviderDAO providerDAO() {
+        return new ProviderDAO(sessionFactory());
+    }
+
+    @Bean
+    @Scope("singleton")
+    public static ConsumerDAO consumerDAO() {
+        return new ConsumerDAO(sessionFactory());
+    }
+
 }
