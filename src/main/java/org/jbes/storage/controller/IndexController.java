@@ -8,9 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView allFilms() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView("index");
+        int[] a = new int[] {1,2,3,4};
+        modelAndView.addObject("ints", a);
         return modelAndView;
     }
 }
