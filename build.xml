@@ -44,7 +44,7 @@
         <echo> Running application... </echo>
         <java classname="org.jbes.storage.Main" classpath="${project.dst}" classpathref="classpath">
             <classpath>
-                <pathelement path="src/main/resources"/>
+                <pathelement path="src/main/webapp"/>
             </classpath>
         </java>
     </target>
@@ -75,7 +75,7 @@
             <classpath>
                 <fileset dir="${lib.dir}" includes="*.jar"/>
                 <fileset dir="${project.dst}" includes="*"/>
-                <pathelement path="src/main/resources"/>
+                <pathelement path="src/main/webapp"/>
             </classpath>
             <xmlfileset dir="src/test/resources" includes="testng.xml"/>
         </testng>

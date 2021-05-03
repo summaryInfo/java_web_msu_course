@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width,initial-scale=1"/>
-        <link href="resources/style.css" rel="stylesheet" type="text/css">
+        <link href="res/style.css" rel="stylesheet" type="text/css">
         <title>Product Categories View</title>
     </head>
     <body>
@@ -19,11 +19,11 @@
                 <label for="collapsible-${item.categoryId}" class="toggle-label">
                     <span> ${item.categoryId} </span>
                     <span> ${item.name} </span>
-                    <span> Item #7 </span>
+                    <span> ${item.description} </span>
                 </label>
                 <div class="collapsible-content">
                     <div class="content-inner">
-                        <p> ${item.description} </p>
+                        <p> More... (TODO) </p>
                     </div>
                 </div>
                 </c:forEach>
