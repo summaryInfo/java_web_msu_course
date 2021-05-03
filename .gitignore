@@ -1,0 +1,13 @@
+# Hidden files
+.*
+
+# Binaries
+*.class
+*.war
+
+# LSP root mark
+.project_root
+
+# Build directories
+bin
+docs
