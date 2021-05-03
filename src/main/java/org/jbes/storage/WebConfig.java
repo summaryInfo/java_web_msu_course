@@ -9,12 +9,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.hibernate.SessionFactory;
 import org.jbes.storage.entity.*;
+import org.jbes.storage.dao.*;
 import java.io.*;
 import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"org.jbes.storage.controller"})
+@ComponentScan(basePackages = {"org.jbes.storage"})
 public class WebConfig {
     @Bean
     ViewResolver viewResolver() {
@@ -60,5 +61,11 @@ public class WebConfig {
             System.out.println("Unable to create session factory: " + e);
         }
         return sessionFactory;
+    }
+
+    @Bean
+    @Scope("singleton")
+    public static ProductCategoryDAO productCategoryDAO() {
+        return new ProductCategoryDAO(sessionFactory());
     }
 }
