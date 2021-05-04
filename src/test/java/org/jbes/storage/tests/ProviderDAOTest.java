@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jbes.storage.dao.*;
 import org.jbes.storage.entity.*;
+import org.jbes.storage.WebConfig;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.Assert;
@@ -14,7 +15,7 @@ public class ProviderDAOTest {
 
     @BeforeClass
     public void init() {
-        dao = new ProviderDAO();
+        dao = WebConfig.providerDAO();
         plist = new ArrayList<Provider>();
         plist.add(new Provider(101L, "Food source", "Test description for food provider", new String[0],
                 new String[] { "1(111)111-11-11" }, new String[] { "food@source.com" }));

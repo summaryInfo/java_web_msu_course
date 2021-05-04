@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import org.jbes.storage.WebConfig;
 import org.jbes.storage.dao.*;
 import org.jbes.storage.entity.*;
 import org.testng.annotations.BeforeClass;
@@ -19,9 +20,9 @@ public class OrderDAOTest {
 
     @BeforeClass
     public void init() throws ParseException {
-        dao = new OrderDAO();
-        productDao = new ProductDAO();
-        consumerDao = new ConsumerDAO();
+        dao = WebConfig.orderDAO();
+        productDao = WebConfig.productDAO();
+        consumerDao = WebConfig.consumerDAO();
 
         plist = new ArrayList<Order>();
         Consumer cons = consumerDao.findById(101L);

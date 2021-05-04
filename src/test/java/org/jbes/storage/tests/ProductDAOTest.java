@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jbes.storage.dao.*;
 import org.jbes.storage.entity.*;
+import org.jbes.storage.WebConfig;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.Assert;
@@ -17,8 +18,8 @@ public class ProductDAOTest {
     @BeforeClass
     public void init() {
         /* At this point db is initiallized with values from fill_tables.sql */
-        dao = new ProductDAO();
-        catdao = new ProductCategoryDAO();
+        dao = WebConfig.productDAO();
+        catdao = WebConfig.productCategoryDAO();
 
         clist = new ArrayList<ProductCategory>();
         for (long i = 0; i < 4; i++) {

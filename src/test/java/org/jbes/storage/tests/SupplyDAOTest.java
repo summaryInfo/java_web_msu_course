@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jbes.storage.dao.*;
 import org.jbes.storage.entity.*;
+import org.jbes.storage.WebConfig;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.Assert;
@@ -19,9 +20,9 @@ public class SupplyDAOTest {
 
     @BeforeClass
     public void init() throws ParseException {
-        dao = new SupplyDAO();
-        productDao = new ProductDAO();
-        providerDao = new ProviderDAO();
+        dao = WebConfig.supplyDAO();
+        productDao = WebConfig.productDAO();
+        providerDao = WebConfig.providerDAO();
 
         plist = new ArrayList<Supply>();
         Provider c1 = providerDao.findById(101L);

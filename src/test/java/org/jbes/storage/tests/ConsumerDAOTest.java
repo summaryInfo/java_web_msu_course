@@ -2,6 +2,7 @@ package org.jbes.storage.tests;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.jbes.storage.WebConfig;
 import org.jbes.storage.dao.*;
 import org.jbes.storage.entity.*;
 import org.testng.annotations.BeforeClass;
@@ -14,7 +15,7 @@ public class ConsumerDAOTest {
 
     @BeforeClass
     public void init() {
-        dao = new ConsumerDAO();
+        dao = WebConfig.consumerDAO();
         cons = new Consumer(101L, "A potato consumer", null, new String[0], new String[] { "4(444)444-44-44" },
                 new String[] { "ilove@potates.com" });
     }

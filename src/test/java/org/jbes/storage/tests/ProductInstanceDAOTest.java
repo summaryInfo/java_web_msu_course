@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import org.jbes.storage.dao.*;
 import org.jbes.storage.entity.*;
+import org.jbes.storage.WebConfig;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.Assert;
@@ -21,10 +22,10 @@ public class ProductInstanceDAOTest {
 
     @BeforeClass
     public void init() throws ParseException {
-        dao = new ProductInstanceDAO();
-        orderDao = new OrderDAO();
-        supplyDao = new SupplyDAO();
-        productDao = new ProductDAO();
+        dao = WebConfig.productInstanceDAO();
+        orderDao = WebConfig.orderDAO();
+        supplyDao = WebConfig.supplyDAO();
+        productDao = WebConfig.productDAO();
         DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
         plist = new ArrayList<ProductInstance>();
         plist.add(new ProductInstance(101L, productDao.findById(101L), 10, fmt.parse("2020-12-21"), fmt.parse("2021-06-03"),

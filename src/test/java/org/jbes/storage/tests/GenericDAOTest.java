@@ -2,6 +2,7 @@ package org.jbes.storage.tests;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.jbes.storage.WebConfig;
 import org.jbes.storage.dao.*;
 import org.jbes.storage.entity.*;
 import org.testng.annotations.BeforeClass;
@@ -20,7 +21,7 @@ public class GenericDAOTest {
 
     @BeforeClass
     public void init() {
-        dao = new ProductCategoryDAO();
+        dao = WebConfig.productCategoryDAO();
         ids = new ArrayList<Long>();
     }
 
