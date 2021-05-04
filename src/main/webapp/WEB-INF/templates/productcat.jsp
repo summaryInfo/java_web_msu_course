@@ -22,7 +22,8 @@
                     <label for="name"> Description </label>
                     <input type="text" id="description" name="description" value="${descriptionvalue}">
                 </span>
-                <input type="submit" value="Apply query"/>
+                <input type="submit" name="query" value="Apply query"/>
+                <input type="submit" name="create" value="+" formaction="productcat_applyedit" formmethod="POST"/>
             </form>
             <div class="table-header">
                 <span> ID </span>
@@ -39,7 +40,7 @@
                 <div class="collapsible-content">
                     <div class="content-inner">
                         <form method="POST" action="productcat_applyedit">
-                            <input type="hidden" id="id", name="id", value="${item.categoryId}">
+                            <input type="hidden" id="qid", name="qid", value="${item.categoryId}">
                             <span>
                                 <label for="name"> Name </label>
                                 <input type="text" id="name" name="name" value="${item.name}">
@@ -48,11 +49,8 @@
                                 <label for="name"> Description </label>
                                 <input type="text" id="description" name="description" value="${item.description}">
                             </span>
-                            <input type="submit" value="Apply edit"/>
-                        </form>
-                        <form method="POST" action="productcat_delete">
-                            <input type="hidden" id="id", name="id", value="${item.categoryId}">
-                            <input type="submit" value="Delete"/>
+                            <input type="submit" name="edit" value="Apply edit"/>
+                            <input type="submit" name="delete" value="Delete" formaction="productcat_delete"/>
                         </form>
                     </div>
                 </div>

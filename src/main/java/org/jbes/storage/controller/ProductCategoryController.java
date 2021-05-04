@@ -39,10 +39,10 @@ public class ProductCategoryController {
     }
 
     @RequestMapping(value = "/productcat_delete", method = RequestMethod.POST)
-    public String productCatDelete(@RequestParam(required = false) Long id) {
+    public String productCatDelete(@RequestParam(required = false) Long qid) {
         ProductCategoryDAO dao = WebConfig.productCategoryDAO();
-        if (id != null) {
-            ProductCategory cat = dao.findById(id);
+        if (qid != null) {
+            ProductCategory cat = dao.findById(qid);
             if (cat != null) dao.delete(cat);
         }
         return "redirect:/productcat";
@@ -50,7 +50,7 @@ public class ProductCategoryController {
 
     @RequestMapping(value = "/productcat_applyedit", method = RequestMethod.POST)
     public String productCatModify(
-        @RequestParam(required = false) Long id,
+        @RequestParam(required = false) Long qid,
         @RequestParam(required = false) String name,
         @RequestParam(required = false) String description
     ) {
@@ -60,7 +60,7 @@ public class ProductCategoryController {
         if (description != null && description.length() == 0) description = null;
 
         ProductCategory old;
-        if (id == null || (old = dao.findById(id)) == null) {
+        if (qid == null || (old = dao.findById(qid)) == null) {
             old = new ProductCategory();
             if (name != null) old.setName(name);
             if (description != null) old.setDescription(description);
