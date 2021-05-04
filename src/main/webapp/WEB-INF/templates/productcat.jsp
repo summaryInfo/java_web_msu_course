@@ -9,6 +9,21 @@
     </head>
     <body>
         <div class="collapsible-table">
+            <form class="table-query">
+                <span>
+                    <label for="id"> ID </label>
+                    <input type="text" id="id" name="id" value="${idvalue}">
+                </span>
+                <span>
+                    <label for="name"> Name </label>
+                    <input type="text" id="name" name="name" value="${namevalue}">
+                </span>
+                <span>
+                    <label for="name"> Description </label>
+                    <input type="text" id="description" name="description" value="${descriptionvalue}">
+                </span>
+                <input type="submit" value="Apply query" formaction="productcat" method="get"/>
+            </form>
             <div class="table-header">
                 <span> ID </span>
                 <span> Name </span>

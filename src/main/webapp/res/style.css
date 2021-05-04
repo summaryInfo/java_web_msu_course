@@ -2,6 +2,43 @@ input[type='checkbox'] {
     display: none;
 }
 
+.table-query input[type='text'] {
+    background: #0050C0;
+    border: none;
+    color: white;
+    padding: .7rem;
+    text-decoration: none;
+    display: block;
+}
+
+.table-query span label {
+    color: black;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table-query span {
+    display: inline-block;
+}
+
+.table-query input[type='submit'] {
+    background: #0050C0;
+    border: none;
+    color: white;
+    padding: .7rem;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.table-query {
+    vertical-align: middle;
+    padding: .7rem;
+    margin: 0px;
+    background: #70A0FF;
+    color: black;
+}
+
 .toggle-label span {
     display: inline-block;
     vertical-align: middle;

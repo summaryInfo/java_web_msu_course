@@ -17,7 +17,7 @@ public class ProductCategoryDAO extends GenericDAO<ProductCategory> {
     }
 
     public List<ProductCategory> findAllMatching(String name, String description) {
-        CriteriaBuilder builder = factory.openSession().getCriteriaBuilder();
+        CriteriaBuilder builder = factory.getCriteriaBuilder();
         Session session = factory.openSession();
         CriteriaQuery<ProductCategory> query = builder.createQuery(ProductCategory.class);
         Root<ProductCategory> root = query.from(ProductCategory.class);
