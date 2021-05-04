@@ -2,7 +2,7 @@ input[type='checkbox'] {
     display: none;
 }
 
-.table-query input[type='text'] {
+form input[type='text'] {
     background: #0050C0;
     border: none;
     color: white;
@@ -11,32 +11,47 @@ input[type='checkbox'] {
     display: block;
 }
 
-.table-query span label {
+form span label {
     color: black;
     display: block;
     text-align: center;
     font-weight: bold;
 }
 
-.table-query span {
+form span {
     display: inline-block;
 }
 
-.table-query input[type='submit'] {
+form input[type='submit'] {
     background: #0050C0;
     border: none;
     color: white;
+    font-weight: bold;
     padding: .7rem;
     text-decoration: none;
     display: inline-block;
 }
 
-.table-query {
+form {
     vertical-align: middle;
     padding: .7rem;
     margin: 0px;
     background: #70A0FF;
     color: black;
+}
+
+.content-inner form {
+    display: inline-block;
+    padding-left: 0px;
+    padding-right: 0px;
+    background: none;
+}
+
+.content-inner form span label {
+    display: inline;
+}
+.content-inner form span input {
+    display: inline;
 }
 
 .toggle-label span {

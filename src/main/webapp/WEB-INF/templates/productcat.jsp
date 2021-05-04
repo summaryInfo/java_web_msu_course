@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="collapsible-table">
-            <form class="table-query">
+            <form class="table-query" method="GET" action="productcat">
                 <span>
                     <label for="id"> ID </label>
                     <input type="text" id="id" name="id" value="${idvalue}">
@@ -22,7 +22,7 @@
                     <label for="name"> Description </label>
                     <input type="text" id="description" name="description" value="${descriptionvalue}">
                 </span>
-                <input type="submit" value="Apply query" formaction="productcat" method="get"/>
+                <input type="submit" value="Apply query"/>
             </form>
             <div class="table-header">
                 <span> ID </span>
@@ -38,7 +38,22 @@
                 </label>
                 <div class="collapsible-content">
                     <div class="content-inner">
-                        <p> More... (TODO) </p>
+                        <form method="POST" action="productcat_applyedit">
+                            <input type="hidden" id="id", name="id", value="${item.categoryId}">
+                            <span>
+                                <label for="name"> Name </label>
+                                <input type="text" id="name" name="name" value="${item.name}">
+                            </span>
+                            <span>
+                                <label for="name"> Description </label>
+                                <input type="text" id="description" name="description" value="${item.description}">
+                            </span>
+                            <input type="submit" value="Apply edit"/>
+                        </form>
+                        <form method="POST" action="productcat_delete">
+                            <input type="hidden" id="id", name="id", value="${item.categoryId}">
+                            <input type="submit" value="Delete"/>
+                        </form>
                     </div>
                 </div>
                 </c:forEach>

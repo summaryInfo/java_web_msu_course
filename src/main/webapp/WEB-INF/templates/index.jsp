@@ -5,9 +5,7 @@
         <title>Hello</title>
     </head>
 <body>
-    <c:forEach items="${ints}" var="item">
-        ${item}<br>
-    </c:forEach>
+    <a href="productcat"> Product Categories </a>
 </body>
 </html>
 
