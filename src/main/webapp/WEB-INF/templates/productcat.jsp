@@ -19,7 +19,7 @@
                     <input type="text" id="name" name="name" value="${namevalue}">
                 </span>
                 <span>
-                    <label for="name"> Description </label>
+                    <label for="description"> Description </label>
                     <input type="text" id="description" name="description" value="${descriptionvalue}">
                 </span>
                 <input type="submit" name="query" value="Apply query"/>
@@ -46,7 +46,7 @@
                                 <input type="text" id="name" name="name" value="${item.name}">
                             </span>
                             <span>
-                                <label for="name"> Description </label>
+                                <label for="description"> Description </label>
                                 <input type="text" id="description" name="description" value="${item.description}">
                             </span>
                             <input type="submit" name="edit" value="Apply edit"/>
@@ -54,7 +54,7 @@
                         </form>
                     </div>
                 </div>
-                </c:forEach>
+            </c:forEach>
         </div>
     </body>
 </html>
