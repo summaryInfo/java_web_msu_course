@@ -62,15 +62,13 @@ public class ProductCategoryController {
         ProductCategory old;
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new ProductCategory();
-            if (name != null) old.setName(name);
-            if (description != null) old.setDescription(description);
-            dao.save(old);
-        } else {
-            if (name != null) old.setName(name);
-            if (description != null) old.setDescription(description);
-            dao.update(old);
         }
+
+        if (name != null) old.setName(name);
+        if (description != null) old.setDescription(description);
+
+        dao.saveOrUpdate(old);
+
         return "redirect:/productcat";
     }
-
 }
