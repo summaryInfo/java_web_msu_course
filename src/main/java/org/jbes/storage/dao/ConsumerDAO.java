@@ -30,18 +30,15 @@ public class ConsumerDAO extends GenericDAO<Consumer> {
             restr = restr != null ? builder.and(restr, n) : n;
         }
         if (address != null) {
-            Expression<Boolean> n = builder.equal(builder.function("arrayAnyLike", Boolean.class, root.get(Consumer_.address),
-                    builder.literal(address)), true);
+            Expression<Boolean> n = builder.like(root.get(Consumer_.address), address);
             restr = restr != null ? builder.and(restr, n) : n;
         }
         if (tel != null) {
-            Expression<Boolean> n = builder.equal(builder.function("arrayAnyLike", Boolean.class, root.get(Consumer_.tel),
-                    builder.literal(tel)), true);
+            Expression<Boolean> n = builder.like(root.get(Consumer_.tel), tel);
             restr = restr != null ? builder.and(restr, n) : n;
         }
         if (email != null) {
-            Expression<Boolean> n = builder.equal(builder.function("arrayAnyLike", Boolean.class, root.get(Consumer_.email),
-                    builder.literal(email)), true);
+            Expression<Boolean> n = builder.like(root.get(Consumer_.email), email);
             restr = restr != null ? builder.and(restr, n) : n;
         }
 

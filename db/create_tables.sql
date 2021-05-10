@@ -1,7 +1,3 @@
--- This is a helper function to use javax persistence criteria API
--- for PostgreSQL array types
-CREATE OR REPLACE FUNCTION arrayAnyLike(arrayContents text[], searchKey text) RETURNS BOOLEAN as 'SELECT count(*) != 0 FROM unnest(arrayContents) elem WHERE elem LIKE searchKey;' LANGUAGE SQL;
-
 CREATE TABLE product_categories(
     categoryId serial PRIMARY KEY,
     name text NOT NULL,
@@ -21,18 +17,18 @@ CREATE TABLE providers(
     providerId serial PRIMARY KEY,
     name text NOT NULL,
     description text,
-    address text[] NOT NULL,
-    tel text[] NOT NULL,
-    email text[] NOT NULL
+    address text,
+    tel text,
+    email text
 );
 
 CREATE TABLE consumers(
     consumerId serial PRIMARY KEY,
     name text NOT NULL,
     description text,
-    address text[] NOT NULL,
-    tel text[] NOT NULL,
-    email text[] NOT NULL
+    address text,
+    tel text,
+    email text
 );
 
 CREATE TABLE supplies(

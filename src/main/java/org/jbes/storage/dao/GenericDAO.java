@@ -30,6 +30,14 @@ public class GenericDAO<T> {
         session.close();
     }
 
+    public void saveOrUpdate(T entity) {
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.saveOrUpdate(entity);
+        tx.commit();
+        session.close();
+    }
+
     public void delete(T entity) {
         Session session = factory.openSession();
         Transaction tx = session.beginTransaction();

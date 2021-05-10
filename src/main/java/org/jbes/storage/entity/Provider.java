@@ -16,23 +16,16 @@ public class Provider {
 
     private String description;
 
-    @Type(type = "com.vladmihalcea.hibernate.type.array.StringArrayType")
-    @Column(nullable = false, name = "address", columnDefinition = "text[]")
-    private String[] address = new String[0];
+    private String address;
 
-    @Type(type = "com.vladmihalcea.hibernate.type.array.StringArrayType")
-    @Column(nullable = false, name = "tel", columnDefinition = "text[]")
-    private String[] tel = new String[0];
+    private String tel;
 
-    @Type(type = "com.vladmihalcea.hibernate.type.array.StringArrayType")
-    @Column(nullable = false, name = "email", columnDefinition = "text[]")
-    private String[] email = new String[0];
+    private String email;
 
     public Provider() {
     }
 
-    public Provider(Long providerId, String name, String description, String[] address, String[] tel,
-            String[] email) {
+    public Provider(Long providerId, String name, String description, String address, String tel, String email) {
         this.providerId = providerId;
         this.name = name;
         this.description = description;
@@ -65,27 +58,27 @@ public class Provider {
         this.description = description;
     }
 
-    public String[] getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(String[] address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public String[] getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(String[] tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 
-    public String[] getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String[] email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -104,11 +97,11 @@ public class Provider {
         if ((description == null) != (other.description == null)
                 || (description != null && !description.equals(other.description)))
             return false;
-        if ((address == null) != (other.address == null) || (address != null && !Arrays.equals(other.address, address)))
+        if ((address == null) != (other.address == null) || (address != null && !other.address.equals(address)))
             return false;
-        if ((tel == null) != (other.tel == null) || (tel != null && !Arrays.equals(other.tel, tel)))
+        if ((tel == null) != (other.tel == null) || (tel != null && !other.tel.equals(tel)))
             return false;
-        if ((email == null) != (other.email == null) || (email != null && !Arrays.equals(other.email, email)))
+        if ((email == null) != (other.email == null) || (email != null && !other.email.equals(email)))
             return false;
         return true;
     }
@@ -118,8 +111,7 @@ public class Provider {
         return "Provider(providerId=" + (providerId != null ? providerId.toString() : "<NULL>") + ", name="
                 + (name != null ? name.toString() : "<NULL>") + ", description="
                 + (description != null ? description.toString() : "<NULL>") + ", address="
-                + (address != null ? address.toString() : "<NULL>") + ", tel="
-                + (tel != null ? tel.toString() : "<NULL>") + ", email=" + (email != null ? email.toString() : "<NULL>")
-                + ")";
+                + (address != null ? address : "<NULL>") + ", tel=" + (tel != null ? tel : "<NULL>") + ", email="
+                + (email != null ? email : "<NULL>") + ")";
     }
 }

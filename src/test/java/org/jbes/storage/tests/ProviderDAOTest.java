@@ -17,12 +17,12 @@ public class ProviderDAOTest {
     public void init() {
         dao = WebConfig.providerDAO();
         plist = new ArrayList<Provider>();
-        plist.add(new Provider(101L, "Food source", "Test description for food provider", new String[0],
-                new String[] { "1(111)111-11-11" }, new String[] { "food@source.com" }));
-        plist.add(new Provider(102L, "Chemicals source", "Test description for chemicals source", new String[0],
-                new String[] { "2(222)222-22-22" }, new String[] { "contact@chemicals123.com" }));
-        plist.add(new Provider(103L, "Electronics provider", "Test description for electronics provider", new String[0],
-                new String[] { "3(333)333-33-33" }, new String[] { "mail@allelectronics.net" }));
+        plist.add(new Provider(101L, "Food source", "Test description for food provider", null,
+                "1(111)111-11-11", "food@source.com"));
+        plist.add(new Provider(102L, "Chemicals source", "Test description for chemicals source", null,
+                "2(222)222-22-22", "contact@chemicals123.com"));
+        plist.add(new Provider(103L, "Electronics provider", "Test description for electronics provider", null,
+                "3(333)333-33-33", "mail@allelectronics.net"));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class ProviderDAOTest {
     @Test
     public void testFindAllMatching2() {
         List<Provider> result = dao.findAllMatching("Food source", "Test description for food provider", null,
-                plist.get(0).getTel()[0], plist.get(0).getEmail()[0]);
+                plist.get(0).getTel(), plist.get(0).getEmail());
         Assert.assertEquals(result.get(0), plist.get(0), "Result does not contain some required reults");
         Assert.assertEquals(result.size(), 1, "Non-matching results returned");
     }

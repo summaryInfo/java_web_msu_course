@@ -25,26 +25,23 @@ public class ProviderDAO extends GenericDAO<Provider> {
         Expression<Boolean> restr = null;
 
         if (name != null) {
-            Expression<Boolean> n =builder.like(root.get(Provider_.name), name);
+            Expression<Boolean> n = builder.like(root.get(Provider_.name), name);
             restr = restr != null ? builder.and(restr, n) : n;
         }
         if (description != null) {
-            Expression<Boolean> n =builder.like(root.get(Provider_.description), description);
+            Expression<Boolean> n = builder.like(root.get(Provider_.description), description);
             restr = restr != null ? builder.and(restr, n) : n;
         }
         if (address != null) {
-            Expression<Boolean> n = builder.equal(builder.function("arrayAnyLike", Boolean.class, root.get(Provider_.address),
-                    builder.literal(address)), true);
+            Expression<Boolean> n = builder.like(root.get(Provider_.address), address);
             restr = restr != null ? builder.and(restr, n) : n;
         }
         if (tel != null) {
-            Expression<Boolean> n = builder.equal(builder.function("arrayAnyLike", Boolean.class, root.get(Provider_.tel),
-                    builder.literal(tel)), true);
+            Expression<Boolean> n = builder.like(root.get(Provider_.tel), tel);
             restr = restr != null ? builder.and(restr, n) : n;
         }
         if (email != null) {
-            Expression<Boolean> n = builder.equal(builder.function("arrayAnyLike", Boolean.class, root.get(Provider_.email),
-                    builder.literal(email)), true);
+            Expression<Boolean> n = builder.like(root.get(Provider_.email), email);
             restr = restr != null ? builder.and(restr, n) : n;
         }
 

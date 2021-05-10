@@ -13,12 +13,12 @@ INSERT INTO products(productId, name, description, categoryId, unit, oversized) 
     (106, 'Refrigerator', NULL, 104, 'Box', TRUE);
 
 INSERT INTO providers(providerId, name, description, address, tel, email) VALUES
-    (101, 'Food source', 'Test description for food provider', '{}', '{"1(111)111-11-11"}', '{"food@source.com"}'),
-    (102, 'Chemicals source', 'Test description for chemicals source', '{}', '{"2(222)222-22-22"}', '{"contact@chemicals123.com"}'),
-    (103, 'Electronics provider', 'Test description for electronics provider', '{}', '{"3(333)333-33-33"}', '{"mail@allelectronics.net"}');
+    (101, 'Food source', 'Test description for food provider', NULL, '1(111)111-11-11', 'food@source.com'),
+    (102, 'Chemicals source', 'Test description for chemicals source', NULL, '2(222)222-22-22', 'contact@chemicals123.com'),
+    (103, 'Electronics provider', 'Test description for electronics provider', NULL, '3(333)333-33-33', 'mail@allelectronics.net');
 
 INSERT INTO consumers(consumerId, name, description, address, tel, email) VALUES
-    (101, 'A potato consumer', NULL, '{}', '{"4(444)444-44-44"}', '{"ilove@potates.com"}');
+    (101, 'A potato consumer', NULL, NULL, '4(444)444-44-44', 'ilove@potates.com');
 
 INSERT INTO supplies(supplyId, providerId, productId, amount, time, completed) VALUES
     (101, 101, 101, 20, '2020-12-21', TRUE),
