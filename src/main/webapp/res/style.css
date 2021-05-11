@@ -49,17 +49,13 @@ form span {
 form input[type='checkbox'] {
     -webkit-appearance: none;
     background: #0050C0;
-    border: none;
-    padding: 1.2rem;
-    display: inline-block;
-    vertical-align: middle;
-
+    padding: .7rem 1.2rem;
 }
 
 form input[type='checkbox']:checked {
     background: white;
     border: #0050C0 solid .8rem;
-    padding: .45rem;
+    padding: 0rem .45rem;
 }
 
 form {
