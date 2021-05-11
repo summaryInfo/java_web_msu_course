@@ -16,54 +16,54 @@
             <form class="table-query" method="GET" action="instance">
                 <span>
                     <label for="id"> ID </label>
-                    <input type="number" id="id" name="id" value="${idvalue}">
+                    <input type="number" id="query_id" name="id" value="${idvalue}">
                 </span>
                 <span>
                     <label for="product"> Product </label>
-                    <input type="number" id="product" name="product" value="${productvalue}">
+                    <input type="number" id="query_product" name="product" value="${productvalue}">
                 </span>
                 <span>
                     <label for="amountlo"> Amount From </label>
-                    <input type="number" step="any" id="amountlo" name="amountlo" value="${amountlovalue}">
+                    <input type="number" step="any" id="query_amountlo" name="amountlo" value="${amountlovalue}">
                 </span>
                 <span>
                     <label for="amounthi"> Amount To </label>
-                    <input type="number" step="any" id="amounthi" name="amounthi" value="${amounthivalue}">
+                    <input type="number" step="any" id="query_amounthi" name="amounthi" value="${amounthivalue}">
                 </span>
                 <span>
                     <label for="arrivallo"> Arrival From </label>
-                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="arrivallo" name="arrivallo" value="${arrivallovalue}">
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="query_arrivallo" name="arrivallo" value="${arrivallovalue}">
                 </span>
                 <span>
                     <label for="arrivalhi"> Arrival To </label>
-                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="arrivalhi" name="arrivalhi" value="${arrivalhivalue}">
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="query_arrivalhi" name="arrivalhi" value="${arrivalhivalue}">
                 </span>
                 <span>
                     <label for="expireslo"> Expires From </label>
-                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="expireslo" name="expireslo" value="${expireslovalue}">
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="query_expireslo" name="expireslo" value="${expireslovalue}">
                 </span>
                 <span>
                     <label for="expireshi"> Expires To </label>
-                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="expireshi" name="expireshi" value="${expireshivalue}">
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="query_expireshi" name="expireshi" value="${expireshivalue}">
                 </span>
                 <span>
                     <label for="room"> Room </label>
-                    <input type="number" id="room" name="room" value="${roomvalue}">
+                    <input type="number" id="query_room" name="room" value="${roomvalue}">
                 </span>
                 <span>
                     <label for="shelf"> Shelf </label>
-                    <input type="number" id="shelf" name="shelf" value="${shelfvalue}">
+                    <input type="number" id="query_shelf" name="shelf" value="${shelfvalue}">
                 </span>
                 <span>
                     <label for="source"> Source </label>
-                    <input type="number" id="source" name="source" value="${sourcevalue}">
+                    <input type="number" id="query_source" name="source" value="${sourcevalue}">
                 </span>
                 <span>
                     <label for="destination"> Destination </label>
-                    <input type="number" id="destination" name="destination" value="${destinationvalue}">
+                    <input type="number" id="query_destination" name="destination" value="${destinationvalue}">
                 </span>
-                <input type="submit" name="query" value="Apply query"/>
-                <input type="submit" name="create" value="+" formaction="instance_applyedit" formmethod="POST"/>
+                <input type="submit" id="query_query" name="query" value="Apply query"/>
+                <input type="submit" id="query_create" name="create" value="+" formaction="instance_applyedit" formmethod="POST"/>
             </form>
             <c:if test="${errormsg.length() > 0}">
                 <div class="error">
@@ -97,38 +97,38 @@
                 <div class="collapsible-content">
                     <div class="content-inner">
                         <form method="POST" action="instance_applyedit">
-                            <input type="hidden" id="qid", name="qid", value="${item.instanceId}">
+                            <input type="hidden" name="qid" value="${item.instanceId}">
                             <span>
                                 <label for="product"> Product </label>
-                                <input type="number" id="product" product="product" value="${item.product.productId}">
+                                <input type="number" product="product" value="${item.product.productId}">
                             </span>
                             <span>
                                 <label for="amount"> Amount </label>
-                                <input type="number" step="any" id="amount" name="amount" value="${item.amount}">
+                                <input type="number" step="any" name="amount" value="${item.amount}">
                             </span>
                             <span>
                                 <label for="arrival"> Arrival </label>
-                                <input type="datetime-local" id="arrival" name="arrival" value="${item.arrival == null ? "" : formatter.format(item.arrival)}">
+                                <input type="datetime-local" name="arrival" value="${item.arrival == null ? "" : formatter.format(item.arrival)}">
                             </span>
                             <span>
                                 <label for="expires"> Expires </label>
-                                <input type="datetime-local" id="expires" name="expires" value="${item.expires == null ? "" : formatter.format(item.expires)}">
+                                <input type="datetime-local" name="expires" value="${item.expires == null ? "" : formatter.format(item.expires)}">
                             </span>
                             <span>
                                 <label for="room"> Room </label>
-                                <input type="number" id="room" name="room" value="${item.roomNo}">
+                                <input type="number" name="room" value="${item.roomNo}">
                             </span>
                             <span>
                                 <label for="shelf"> Shelf </label>
-                                <input type="number" id="shelf" name="shelf" value="${item.shelfNo}">
+                                <input type="number" name="shelf" value="${item.shelfNo}">
                             </span>
                             <span>
                                 <label for="source"> Source </label>
-                                <input type="number" id="source" name="source" value="${item.source == null ? '' : item.source.supplyId}">
+                                <input type="number" name="source" value="${item.source == null ? '' : item.source.supplyId}">
                             </span>
                             <span>
                                 <label for="destination"> Destination </label>
-                                <input type="text" id="destination" name="destination" value="${item.destination == null ? '' : item.destination.orderId}">
+                                <input type="text" name="destination" value="${item.destination == null ? '' : item.destination.orderId}">
                             </span>
                             <input type="submit" name="edit" value="Apply edit"/>
                             <input type="submit" name="delete" value="Delete"/>

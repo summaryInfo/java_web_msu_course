@@ -16,30 +16,30 @@
             <form class="table-query" method="GET" action="provider">
                 <span>
                     <label for="id"> ID </label>
-                    <input type="number" id="id" name="id" value="${idvalue}">
+                    <input type="number" id="query_id" name="id" value="${idvalue}">
                 </span>
                 <span>
                     <label for="name"> Name </label>
-                    <input type="text" id="name" name="name" value="${namevalue}">
+                    <input type="text" id="query_name" name="name" value="${namevalue}">
                 </span>
                 <span>
                     <label for="description"> Description </label>
-                    <input type="text" id="description" name="description" value="${descriptionvalue}">
+                    <input type="text" id="query_description" name="description" value="${descriptionvalue}">
                 </span>
                 <span>
                     <label for="address"> Address </label>
-                    <input type="text" id="address" name="address" value="${addressvalue}">
+                    <input type="text" id="query_address" name="address" value="${addressvalue}">
                 </span>
                 <span>
                     <label for="tel"> Phone </label>
-                    <input type="text" id="tel" name="tel" value="${telvalue}">
+                    <input type="text" id="query_tel" name="tel" value="${telvalue}">
                 </span>
                 <span>
                     <label for="email"> E-Mail </label>
-                    <input type="text" id="email" name="email" value="${emailvalue}">
+                    <input type="text" id="query_email" name="email" value="${emailvalue}">
                 </span>
-                <input type="submit" name="query" value="Apply query"/>
-                <input type="submit" name="create" value="+" formaction="provider_applyedit" formmethod="POST"/>
+                <input type="submit" id="query_query" name="query" value="Apply query"/>
+                <input type="submit" id="query_create" name="create" value="+" formaction="provider_applyedit" formmethod="POST"/>
             </form>
             <c:if test="${errormsg.length() > 0}">
                 <div class="error">
@@ -67,26 +67,26 @@
                 <div class="collapsible-content">
                     <div class="content-inner">
                         <form method="POST" action="provider_applyedit">
-                            <input type="hidden" id="qid", name="qid", value="${item.providerId}">
+                            <input type="hidden" name="qid" value="${item.providerId}">
                             <span>
                                 <label for="name"> Name </label>
-                                <input type="text" id="name" name="name" value="${item.name}">
+                                <input type="text" name="name" value="${item.name}">
                             </span>
                             <span>
                                 <label for="description"> Description </label>
-                                <input type="text" id="description" name="description" value="${item.description}">
+                                <input type="text" name="description" value="${item.description}">
                             </span>
                             <span>
                                 <label for="address"> Address </label>
-                                <input type="text" id="address" name="address" value="${item.address}">
+                                <input type="text" name="address" value="${item.address}">
                             </span>
                             <span>
                                 <label for="tel"> Phone </label>
-                                <input type="text" id="tel" name="tel" value="${item.tel}">
+                                <input type="text" name="tel" value="${item.tel}">
                             </span>
                             <span>
                                 <label for="email"> E-Mail </label>
-                                <input type="text" id="email" name="email" value="${item.email}">
+                                <input type="text" name="email" value="${item.email}">
                             </span>
                             <input type="submit" name="edit" value="Apply edit"/>
                             <input type="submit" name="delete" value="Delete" formaction="provider_delete"/>

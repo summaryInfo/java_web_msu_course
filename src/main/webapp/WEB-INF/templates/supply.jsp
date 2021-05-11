@@ -79,26 +79,26 @@
                 <div class="collapsible-content">
                     <div class="content-inner">
                         <form method="POST" action="supply_applyedit">
-                            <input type="hidden" id="qid", name="qid", value="${item.supplyId}">
+                            <input type="hidden" name="qid" value="${item.supplyId}">
                             <span>
                                 <label for="provider"> Provider </label>
-                                <input type="text" id="provider" name="provider" value="${item.provider.providerId}">
+                                <input type="text" name="provider" value="${item.provider.providerId}">
                             </span>
                             <span>
                                 <label for="product"> Product </label>
-                                <input type="text" id="product" name="product" value="${item.product.productId}">
+                                <input type="text" name="product" value="${item.product.productId}">
                             </span>
                             <span>
                                 <label for="amount"> Amount </label>
-                                <input type="text" id="amount" name="amount" value="${item.amount}">
+                                <input type="text" name="amount" value="${item.amount}">
                             </span>
                             <span>
                                 <label for="datetime-local"> Time </label>
-                                <input type="text" id="time" name="time" value="${formatter.format(item.time)}">
+                                <input type="text" name="time" value="${formatter.format(item.time)}">
                             </span>
                             <span>
                                 <label for="completed"> Completed </label>
-                                <input type="checkbox" id="completed" name="completed" value="${item.completed}">
+                                <input type="checkbox" name="completed" value="${item.completed}">
                             </span>
                             <input type="submit" name="edit" value="Apply edit"/>
                             <input type="submit" name="delete" value="Delete" formaction="supply_delete"/>

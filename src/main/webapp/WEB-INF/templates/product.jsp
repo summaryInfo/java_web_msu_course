@@ -16,34 +16,34 @@
             <form class="table-query" method="GET" action="product">
                 <span>
                     <label for="id"> ID </label>
-                    <input type="number" id="id" name="id" value="${idvalue}">
+                    <input type="number" id="query_id" name="id" value="${idvalue}">
                 </span>
                 <span>
                     <label for="name"> Name </label>
-                    <input type="text" id="name" name="name" value="${namevalue}">
+                    <input type="text" id="query_name" name="name" value="${namevalue}">
                 </span>
                 <span>
                     <label for="description"> Description </label>
-                    <input type="text" id="description" name="description" value="${descriptionvalue}">
+                    <input type="text" id="query_description" name="description" value="${descriptionvalue}">
                 </span>
                 <span>
                     <label for="category"> Category </label>
-                    <input type="number" id="category" name="category" value="${categoryvalue}">
+                    <input type="number" id="query_category" name="category" value="${categoryvalue}">
                 </span>
                 <span>
                     <label for="unit"> Unit </label>
-                    <input type="text" id="unit" name="unit" value="${unitvalue}">
+                    <input type="text" id="query_unit" name="unit" value="${unitvalue}">
                 </span>
                 <span>
                     <label for="oversized"> Oversized </label>
-                    <select type="text" id="oversized" name="oversized" value="${oversizedvalue}">
+                    <select type="text" id="query_oversized" name="oversized" value="${oversizedvalue}">
                         <option value="">Any</option>
                         <option value="true"  ${oversizedvalue == "true" ? "selected" : ""}>True</option>
                         <option value="false"  ${oversizedvalue == "false" ? "selected" : ""}>False</option>
                     </select>
                 </span>
-                <input type="submit" name="query" value="Apply query"/>
-                <input type="submit" name="create" value="+" formaction="product_applyedit" formmethod="POST"/>
+                <input type="submit" id="query_query" name="query" value="Apply query"/>
+                <input type="submit" id="query_create" name="create" value="+" formaction="product_applyedit" formmethod="POST"/>
             </form>
             <c:if test="${errormsg.length() > 0}">
                 <div class="error">
@@ -71,26 +71,26 @@
                 <div class="collapsible-content">
                     <div class="content-inner">
                         <form method="POST" action="product_applyedit">
-                            <input type="hidden" id="qid", name="qid", value="${item.productId}">
+                            <input type="hidden" name="qid" value="${item.productId}">
                             <span>
                                 <label for="name"> Name </label>
-                                <input type="text" id="name" name="name" value="${item.name}">
+                                <input type="text" name="name" value="${item.name}">
                             </span>
                             <span>
                                 <label for="description"> Description </label>
-                                <input type="text" id="description" name="description" value="${item.description}">
+                                <input type="text" name="description" value="${item.description}">
                             </span>
                             <span>
                                 <label for="category"> Category </label>
-                                <input type="number" id="category" name="category" value="${item.category.categoryId}">
+                                <input type="number" name="category" value="${item.category.categoryId}">
                             </span>
                             <span>
                                 <label for="unit"> Unit </label>
-                                <input type="text" id="unit" name="unit" value="${item.unit}">
+                                <input type="text" name="unit" value="${item.unit}">
                             </span>
                             <span>
                                 <label for="oversized"> Oversized </label>
-                                <input type="checkbox" id="oversized" name="oversized" ${item.oversized ? "checked" : ""}>
+                                <input type="checkbox" name="oversized" ${item.oversized ? "checked" : ""}>
                             </span>
                             <input type="submit" name="edit" value="Apply edit"/>
                             <input type="submit" name="delete" value="Delete" formaction="product_delete"/>

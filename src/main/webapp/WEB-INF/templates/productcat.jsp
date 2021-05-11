@@ -16,18 +16,18 @@
             <form class="table-query" method="GET" action="productcat">
                 <span>
                     <label for="id"> ID </label>
-                    <input type="number" id="id" name="id" value="${idvalue}">
+                    <input type="number" id="query_id" name="id" value="${idvalue}">
                 </span>
                 <span>
                     <label for="name"> Name </label>
-                    <input type="text" id="name" name="name" value="${namevalue}">
+                    <input type="text" id="query_name" name="name" value="${namevalue}">
                 </span>
                 <span>
                     <label for="description"> Description </label>
-                    <input type="text" id="description" name="description" value="${descriptionvalue}">
+                    <input type="text" id="query_description" name="description" value="${descriptionvalue}">
                 </span>
-                <input type="submit" name="query" value="Apply query"/>
-                <input type="submit" name="create" value="+" formaction="productcat_applyedit" formmethod="POST"/>
+                <input type="submit" id="query_query" name="query" value="Apply query"/>
+                <input type="submit" id="query_create" name="create" value="+" formaction="productcat_applyedit" formmethod="POST"/>
             </form>
             <c:if test="${errormsg.length() > 0}">
                 <div class="error">
@@ -49,14 +49,14 @@
                 <div class="collapsible-content">
                     <div class="content-inner">
                         <form method="POST" action="productcat_applyedit">
-                            <input type="hidden" id="qid", name="qid", value="${item.categoryId}">
+                            <input type="hidden" name="qid" value="${item.categoryId}">
                             <span>
                                 <label for="name"> Name </label>
-                                <input type="text" id="name" name="name" value="${item.name}">
+                                <input type="text" name="name" value="${item.name}">
                             </span>
                             <span>
                                 <label for="description"> Description </label>
-                                <input type="text" id="description" name="description" value="${item.description}">
+                                <input type="text" name="description" value="${item.description}">
                             </span>
                             <input type="submit" name="edit" value="Apply edit"/>
                             <input type="submit" name="delete" value="Delete" formaction="productcat_delete"/>

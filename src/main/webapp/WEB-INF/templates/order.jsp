@@ -16,42 +16,42 @@
             <form class="table-query" method="GET" action="order">
                 <span>
                     <label for="id"> ID </label>
-                    <input type="text" id="id" name="id" value="${idvalue}">
+                    <input type="text" id="query_id" name="id" value="${idvalue}">
                 </span>
                 <span>
                     <label for="consumer"> Consumer </label>
-                    <input type="number" id="consumer" consumer="consumer" value="${consumervalue}">
+                    <input type="number" id="query_consumer" consumer="consumer" value="${consumervalue}">
                 </span>
                 <span>
                     <label for="product"> Product </label>
-                    <input type="number" id="product" name="product" value="${productvalue}">
+                    <input type="number" id="query_product" name="product" value="${productvalue}">
                 </span>
                 <span>
                     <label for="amountlo"> Amount From </label>
-                    <input type="number" step="any" id="amountlo" name="amountlo" value="${amountlovalue}">
+                    <input type="number" step="any" id="query_amountlo" name="amountlo" value="${amountlovalue}">
                 </span>
                 <span>
                     <label for="amounthi"> Amount To </label>
-                    <input type="number" step="any" id="amounthi" name="amounthi" value="${amounthivalue}">
+                    <input type="number" step="any" id="query_amounthi" name="amounthi" value="${amounthivalue}">
                 </span>
                 <span>
                     <label for="timelo"> Time From </label>
-                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="timelo" name="timelo" value="${timelovalue}">
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="query_timelo" name="timelo" value="${timelovalue}">
                 </span>
                 <span>
                     <label for="timehi"> Time To </label>
-                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="timehi" name="timehi" value="${timehivalue}">
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="query_timehi" name="timehi" value="${timehivalue}">
                 </span>
                 <span>
                     <label for="completed"> Completed </label>
-                    <select type="checkbox" id="completed" name="completed" value="${completedvalue}">
+                    <select type="checkbox" id="query_completed" name="completed" value="${completedvalue}">
                         <option value="">Any</option>
                         <option value="true" ${completedvalue == "true" ? "selected" : ""}>True</option>
                         <option value="false"  ${completedvalue == "false" ? "selected" : ""}>False</option>
                     </select>
                 </span>
-                <input type="submit" name="query" value="Apply query"/>
-                <input type="submit" name="create" value="+" formaction="order_applyedit" formmethod="POST"/>
+                <input type="submit" id="query_query" name="query" value="Apply query"/>
+                <input type="submit" id="query_create" name="create" value="+" formaction="order_applyedit" formmethod="POST"/>
             </form>
             <c:if test="${errormsg.length() > 0}">
                 <div class="error">
@@ -79,26 +79,26 @@
                 <div class="collapsible-content">
                     <div class="content-inner">
                         <form method="POST" action="order_applyedit">
-                            <input type="hidden" id="qid", name="qid", value="${item.orderId}">
+                            <input type="hidden" name="qid" value="${item.orderId}">
                             <span>
                                 <label for="consumer"> Consumer </label>
-                                <input type="number" id="consumer" name="consumer" value="${item.consumer.consumerId}">
+                                <input type="number" name="consumer" value="${item.consumer.consumerId}">
                             </span>
                             <span>
                                 <label for="product"> Product </label>
-                                <input type="number" id="product" name="product" value="${item.product.productId}">
+                                <input type="number" name="product" value="${item.product.productId}">
                             </span>
                             <span>
                                 <label for="amount"> Amount </label>
-                                <input type="number" step="any" id="amount" name="amount" value="${item.amount}">
+                                <input type="number" step="any" name="amount" value="${item.amount}">
                             </span>
                             <span>
                                 <label for="time"> Time </label>
-                                <input type="datetime-local" id="time" name="time" value="${formatter.format(item.time)}">
+                                <input type="datetime-local" name="time" value="${formatter.format(item.time)}">
                             </span>
                             <span>
                                 <label for="completed"> Completed </label>
-                                <input type="checkbox" id="completed" name="completed" value="${item.completed}">
+                                <input type="checkbox" name="completed" value="${item.completed}">
                             </span>
                             <input type="submit" name="edit" value="Apply edit"/>
                             <input type="submit" name="delete" value="Delete" formaction="order_delete"/>
