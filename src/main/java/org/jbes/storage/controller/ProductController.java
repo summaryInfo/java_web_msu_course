@@ -94,8 +94,10 @@ public class ProductController {
             unit = null;
 
         Product old;
+        boolean update = true;
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new Product();
+            update = false;
         }
 
         if (name != null)
@@ -115,7 +117,10 @@ public class ProductController {
         if (oversized != null)
             old.setOversized(oversized);
 
-        dao.saveOrUpdate(old);
+        if (update)
+            dao.update(old);
+        else
+            dao.save(old);
 
         return "redirect:/product";
     }

@@ -87,8 +87,10 @@ public class ConsumerController {
             email = null;
 
         Consumer old;
+        boolean update = true;
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new Consumer();
+            update = false;
         }
 
         if (name != null)
@@ -102,7 +104,10 @@ public class ConsumerController {
         if (email != null)
             old.setEmail(email);
 
-        dao.saveOrUpdate(old);
+        if (update)
+            dao.update(old);
+        else
+            dao.save(old);
 
         return "redirect:/consumer";
     }

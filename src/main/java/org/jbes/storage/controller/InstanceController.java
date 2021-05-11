@@ -120,9 +120,11 @@ public class InstanceController {
         OrderDAO odao = WebConfig.orderDAO();
         SupplyDAO sdao = WebConfig.supplyDAO();
 
+        boolean update = true;
         ProductInstance old;
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new ProductInstance();
+            update = false;
         }
 
         if (product != null) {
@@ -164,7 +166,12 @@ public class InstanceController {
                 old.setDestination(dst);
             }
         }
-        dao.saveOrUpdate(old);
+
+        if (update)
+            dao.update(old);
+        else
+            dao.save(old);
+
 
         return "redirect:/instance";
     }

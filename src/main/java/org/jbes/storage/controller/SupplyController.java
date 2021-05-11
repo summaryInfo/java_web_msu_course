@@ -106,8 +106,10 @@ public class SupplyController {
         ProductDAO pdao = WebConfig.productDAO();
 
         Supply old;
+        boolean update = true;
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new Supply();
+            update = false;
         }
 
         if (provider != null) {
@@ -133,7 +135,11 @@ public class SupplyController {
         if (completed != null)
             old.setCompleted(completed);
 
-        dao.saveOrUpdate(old);
+        if (update)
+            dao.update(old);
+        else
+            dao.save(old);
+
 
         return "redirect:/supply";
     }

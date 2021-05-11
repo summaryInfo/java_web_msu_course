@@ -105,8 +105,10 @@ public class OrderController {
         ProductDAO pdao = WebConfig.productDAO();
 
         Order old;
+        boolean update = true;
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new Order();
+            update = false;
         }
 
         if (consumer != null) {
@@ -132,7 +134,12 @@ public class OrderController {
         if (completed != null)
             old.setCompleted(completed);
 
-        dao.saveOrUpdate(old);
+        if (update)
+            dao.update(old);
+        else
+            dao.save(old);
+
+
 
         return "redirect:/order";
     }

@@ -71,8 +71,10 @@ public class ProductCategoryController {
             description = null;
 
         ProductCategory old;
+        boolean update = true;
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new ProductCategory();
+            update = false;
         }
 
         if (name != null)
@@ -80,7 +82,10 @@ public class ProductCategoryController {
         if (description != null)
             old.setDescription(description);
 
-        dao.saveOrUpdate(old);
+        if (update)
+            dao.update(old);
+        else
+            dao.save(old);
 
         return "redirect:/productcat";
     }

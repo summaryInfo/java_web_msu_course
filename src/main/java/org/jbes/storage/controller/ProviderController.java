@@ -88,8 +88,10 @@ public class ProviderController {
         if (email != null && email.length() == 0) email = null;
 
         Provider old;
+        boolean update = true;
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new Provider();
+            update = false;
         }
 
         if (name != null) old.setName(name);
@@ -98,7 +100,10 @@ public class ProviderController {
         if (phone != null) old.setTel(phone);
         if (email != null) old.setEmail(email);
 
-        dao.saveOrUpdate(old);
+        if (update)
+            dao.update(old);
+        else
+            dao.save(old);
 
         return "redirect:/provider";
     }
