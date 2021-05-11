@@ -8,11 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 @Controller
 public class InstanceController {
@@ -20,8 +23,10 @@ public class InstanceController {
     public ModelAndView instance(@RequestParam(required = false) String errormsg,
             @RequestParam(required = false) Long id, @RequestParam(required = false) Long product,
             @RequestParam(required = false) Double amountlo, @RequestParam(required = false) Double amounthi,
-            @RequestParam(required = false) Date arrivallo, @RequestParam(required = false) Date arrivalhi,
-            @RequestParam(required = false) Date expireslo, @RequestParam(required = false) Date expireshi,
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date arrivallo,
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date arrivalhi,
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date expireslo,
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date expireshi,
             @RequestParam(required = false) Integer room, @RequestParam(required = false) Integer shelf,
             @RequestParam(required = false) Long source, @RequestParam(required = false) Long destination) {
         ModelAndView modelAndView = new ModelAndView("instance");
@@ -30,14 +35,17 @@ public class InstanceController {
         OrderDAO odao = WebConfig.orderDAO();
         SupplyDAO sdao = WebConfig.supplyDAO();
 
+        DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        modelAndView.addObject("formatter", fmt);
         modelAndView.addObject("idvalue", id == null ? "" : id.toString());
         modelAndView.addObject("productvalue", product == null ? "" : product.toString());
         modelAndView.addObject("amountlovalue", amountlo == null ? "" : amountlo.toString());
         modelAndView.addObject("amounthivalue", amounthi == null ? "" : amounthi.toString());
-        modelAndView.addObject("arrivallovalue", arrivallo == null ? "" : arrivallo.toString());
-        modelAndView.addObject("arrivalhivalue", arrivalhi == null ? "" : arrivalhi.toString());
-        modelAndView.addObject("expireslovalue", expireslo == null ? "" : expireslo.toString());
-        modelAndView.addObject("expireshivalue", expireshi == null ? "" : expireshi.toString());
+        modelAndView.addObject("arrivallovalue", arrivallo == null ? "" : fmt.format(arrivallo));
+        modelAndView.addObject("arrivalhivalue", arrivalhi == null ? "" : fmt.format(arrivalhi));
+        modelAndView.addObject("expireslovalue", expireslo == null ? "" : fmt.format(expireslo));
+        modelAndView.addObject("expireshivalue", expireshi == null ? "" : fmt.format(expireshi));
         modelAndView.addObject("roomvalue", room == null ? "" : room.toString());
         modelAndView.addObject("shelfvalue", shelf == null ? "" : shelf.toString());
         modelAndView.addObject("sourcevalue", source == null ? "" : source.toString());
@@ -102,10 +110,11 @@ public class InstanceController {
 
     @RequestMapping(value = "/instance_applyedit", method = RequestMethod.POST)
     public String instanceModify(@RequestParam(required = false) Long qid, @RequestParam(required = false) Long product,
-            @RequestParam(required = false) Double amount, @RequestParam(required = false) Date arrival,
-            @RequestParam(required = false) Date expires, @RequestParam(required = false) Integer room,
-            @RequestParam(required = false) Integer shelf, @RequestParam(required = false) Long source,
-            @RequestParam(required = false) Long destination) {
+            @RequestParam(required = false) Double amount,
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date arrival,
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date expires,
+            @RequestParam(required = false) Integer room, @RequestParam(required = false) Integer shelf,
+            @RequestParam(required = false) Long source, @RequestParam(required = false) Long destination) {
         ProductInstanceDAO dao = WebConfig.productInstanceDAO();
         ProductDAO pdao = WebConfig.productDAO();
         OrderDAO odao = WebConfig.orderDAO();

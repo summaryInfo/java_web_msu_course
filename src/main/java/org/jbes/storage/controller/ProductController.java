@@ -18,22 +18,20 @@ import java.util.ArrayList;
 @Controller
 public class ProductController {
     @RequestMapping(value = "/product", method = RequestMethod.GET)
-    public ModelAndView product(
-        @RequestParam(required = false) String errormsg,
-        @RequestParam(required = false) Long id,
-        @RequestParam(required = false) String name,
-        @RequestParam(required = false) String description,
-        @RequestParam(required = false) Long category,
-        @RequestParam(required = false) String unit,
-        @RequestParam(required = false) Boolean oversized
-    ) {
+    public ModelAndView product(@RequestParam(required = false) String errormsg,
+            @RequestParam(required = false) Long id, @RequestParam(required = false) String name,
+            @RequestParam(required = false) String description, @RequestParam(required = false) Long category,
+            @RequestParam(required = false) String unit, @RequestParam(required = false) Boolean oversized) {
         ModelAndView modelAndView = new ModelAndView("product");
         ProductDAO dao = WebConfig.productDAO();
         ProductCategoryDAO cdao = WebConfig.productCategoryDAO();
 
-        if (name != null && name.length() == 0) name = null;
-        if (description != null && description.length() == 0) description = null;
-        if (unit != null && unit.length() == 0) unit = null;
+        if (name != null && name.length() == 0)
+            name = null;
+        if (description != null && description.length() == 0)
+            description = null;
+        if (unit != null && unit.length() == 0)
+            unit = null;
 
         modelAndView.addObject("idvalue", id == null ? "" : id.toString());
         modelAndView.addObject("namevalue", name == null ? "" : name);
@@ -42,7 +40,8 @@ public class ProductController {
         modelAndView.addObject("unitvalue", unit == null ? "" : unit);
         modelAndView.addObject("oversizedvalue", oversized == null ? "" : oversized.toString());
 
-        if (errormsg == null) errormsg = "";
+        if (errormsg == null)
+            errormsg = "";
 
         List<Product> li;
         if (id != null) {
@@ -74,34 +73,35 @@ public class ProductController {
         ProductDAO dao = WebConfig.productDAO();
         if (qid != null) {
             Product cat = dao.findById(qid);
-            if (cat != null) dao.delete(cat);
+            if (cat != null)
+                dao.delete(cat);
         }
         return "redirect:/product";
     }
 
     @RequestMapping(value = "/product_applyedit", method = RequestMethod.POST)
-    public String productModify(
-        @RequestParam(required = false) Long qid,
-        @RequestParam(required = false) String name,
-        @RequestParam(required = false) String description,
-        @RequestParam(required = false) Long category,
-        @RequestParam(required = false) String unit,
-        @RequestParam(required = false) Boolean oversized
-    ) {
+    public String productModify(@RequestParam(required = false) Long qid, @RequestParam(required = false) String name,
+            @RequestParam(required = false) String description, @RequestParam(required = false) Long category,
+            @RequestParam(required = false) String unit, @RequestParam(required = false) Boolean oversized) {
         ProductDAO dao = WebConfig.productDAO();
         ProductCategoryDAO cdao = WebConfig.productCategoryDAO();
 
-        if (name != null && name.length() == 0) name = null;
-        if (description != null && description.length() == 0) description = null;
-        if (unit != null && unit.length() == 0) unit = null;
+        if (name != null && name.length() == 0)
+            name = null;
+        if (description != null && description.length() == 0)
+            description = null;
+        if (unit != null && unit.length() == 0)
+            unit = null;
 
         Product old;
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new Product();
         }
 
-        if (name != null) old.setName(name);
-        if (description != null) old.setDescription(description);
+        if (name != null)
+            old.setName(name);
+        if (description != null)
+            old.setDescription(description);
         if (category != null) {
             ProductCategory cat = cdao.findById(category);
             if (cat == null) {
@@ -110,8 +110,10 @@ public class ProductController {
                 old.setCategory(cat);
             }
         }
-        if (unit != null) old.setUnit(unit);
-        if (oversized != null) old.setOversized(oversized);
+        if (unit != null)
+            old.setUnit(unit);
+        if (oversized != null)
+            old.setOversized(oversized);
 
         dao.saveOrUpdate(old);
 

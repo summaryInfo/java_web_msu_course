@@ -12,41 +12,43 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 @Controller
 public class SupplyController {
     @RequestMapping(value = "/supply", method = RequestMethod.GET)
-    public ModelAndView supply(
-        @RequestParam(required = false) String errormsg,
-        @RequestParam(required = false) Long id,
-        @RequestParam(required = false) Long provider,
-        @RequestParam(required = false) Long product,
-        @RequestParam(required = false) Double amountlo,
-        @RequestParam(required = false) Double amounthi,
-        @RequestParam(required = false) Date timelo,
-        @RequestParam(required = false) Date timehi,
-        @RequestParam(required = false) Boolean completed
-    ) {
+    public ModelAndView supply(@RequestParam(required = false) String errormsg, @RequestParam(required = false) Long id,
+            @RequestParam(required = false) Long provider, @RequestParam(required = false) Long product,
+            @RequestParam(required = false) Double amountlo, @RequestParam(required = false) Double amounthi,
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date timelo,
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date timehi,
+            @RequestParam(required = false) Boolean completed) {
         ModelAndView modelAndView = new ModelAndView("supply");
         SupplyDAO dao = WebConfig.supplyDAO();
         ProviderDAO cdao = WebConfig.providerDAO();
         ProductDAO pdao = WebConfig.productDAO();
 
+        DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        modelAndView.addObject("formatter", fmt);
         modelAndView.addObject("idvalue", id == null ? "" : id.toString());
         modelAndView.addObject("providervalue", provider == null ? "" : provider.toString());
         modelAndView.addObject("productvalue", product == null ? "" : product.toString());
         modelAndView.addObject("amountlovalue", amountlo == null ? "" : amountlo.toString());
         modelAndView.addObject("amounthivalue", amounthi == null ? "" : amounthi.toString());
-        modelAndView.addObject("timelovalue", timelo == null ? "" : timelo.toString());
-        modelAndView.addObject("timehivalue", timehi == null ? "" : timehi.toString());
+        modelAndView.addObject("timelovalue", timelo == null ? "" : fmt.format(timelo));
+        modelAndView.addObject("timehivalue", timehi == null ? "" : fmt.format(timehi));
         modelAndView.addObject("completedvalue", completed == null ? "" : completed.toString());
 
-        if (errormsg == null) errormsg = "";
+        if (errormsg == null)
+            errormsg = "";
 
         List<Supply> li;
         if (id != null) {
@@ -88,20 +90,17 @@ public class SupplyController {
         SupplyDAO dao = WebConfig.supplyDAO();
         if (qid != null) {
             Supply cat = dao.findById(qid);
-            if (cat != null) dao.delete(cat);
+            if (cat != null)
+                dao.delete(cat);
         }
         return "redirect:/supply";
     }
 
     @RequestMapping(value = "/supply_applyedit", method = RequestMethod.POST)
-    public String supplyModify(
-        @RequestParam(required = false) Long qid,
-        @RequestParam(required = false) Long provider,
-        @RequestParam(required = false) Long product,
-        @RequestParam(required = false) Double amount,
-        @RequestParam(required = false) Date time,
-        @RequestParam(required = false) Boolean completed
-    ) {
+    public String supplyModify(@RequestParam(required = false) Long qid, @RequestParam(required = false) Long provider,
+            @RequestParam(required = false) Long product, @RequestParam(required = false) Double amount,
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date time,
+            @RequestParam(required = false) Boolean completed) {
         SupplyDAO dao = WebConfig.supplyDAO();
         ProviderDAO cdao = WebConfig.providerDAO();
         ProductDAO pdao = WebConfig.productDAO();
@@ -127,9 +126,12 @@ public class SupplyController {
                 old.setProduct(prod);
             }
         }
-        if (amount != null) old.setAmount(amount);
-        if (time != null) old.setTime(time);
-        if (completed != null) old.setCompleted(completed);
+        if (amount != null)
+            old.setAmount(amount);
+        if (time != null)
+            old.setTime(time);
+        if (completed != null)
+            old.setCompleted(completed);
 
         dao.saveOrUpdate(old);
 

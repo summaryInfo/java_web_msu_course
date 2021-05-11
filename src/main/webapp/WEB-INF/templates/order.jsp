@@ -73,7 +73,7 @@
                     <span> ${item.consumer.consumerId} </span>
                     <span> ${item.product.productId} </span>
                     <span> ${item.amount} </span>
-                    <span> ${item.time} </span>
+                    <span> ${formatter.format(item.time)} </span>
                     <span> ${item.completed} </span>
                 </label>
                 <div class="collapsible-content">
@@ -94,7 +94,7 @@
                             </span>
                             <span>
                                 <label for="time"> Time </label>
-                                <input type="datetime-local" id="time" name="time" value="${item.time}">
+                                <input type="datetime-local" id="time" name="time" value="${formatter.format(item.time)}">
                             </span>
                             <span>
                                 <label for="completed"> Completed </label>

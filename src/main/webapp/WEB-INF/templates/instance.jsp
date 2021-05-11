@@ -87,8 +87,8 @@
                     <span> ${item.instanceId} </span>
                     <span> ${item.product.productId} </span>
                     <span> ${item.amount} </span>
-                    <span> ${item.arrival} </span>
-                    <span> ${item.expires} </span>
+                    <span> ${formatter.format(item.arrival)} </span>
+                    <span> ${formatter.format(item.expires)} </span>
                     <span> ${item.roomNo} </span>
                     <span> ${item.shelfNo} </span>
                     <span> ${item.source == null ? "" : item.source.supplyId.toString()} </span>
@@ -108,11 +108,11 @@
                             </span>
                             <span>
                                 <label for="arrival"> Arrival </label>
-                                <input type="datetime-local" id="arrival" name="arrival" value="${item.arrival}">
+                                <input type="datetime-local" id="arrival" name="arrival" value="${formatter.format(item.arrival)}">
                             </span>
                             <span>
                                 <label for="expires"> Expires </label>
-                                <input type="datetime-local" id="expires" name="expires" value="${item.expires}">
+                                <input type="datetime-local" id="expires" name="expires" value="${formatter.format(item.expires)}">
                             </span>
                             <span>
                                 <label for="room"> Room </label>
