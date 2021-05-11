@@ -8,7 +8,7 @@
         <title>Product Categories View</title>
         <style>
             .toggle-label span { width: 23%; }
-            .table-head > span { width: 23.3%; }
+            .table-header > span { width: 23.3%; }
         </style>
     </head>
     <body>
@@ -29,6 +29,11 @@
                 <input type="submit" name="query" value="Apply query"/>
                 <input type="submit" name="create" value="+" formaction="productcat_applyedit" formmethod="POST"/>
             </form>
+            <c:if test="${errormsg.length() > 0}">
+                <div class="error">
+                    ${errormsg}
+                </div>
+            </c:if>
             <div class="table-header">
                 <span> ID </span>
                 <span> Name </span>

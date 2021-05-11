@@ -7,8 +7,8 @@
         <link href="res/style.css" rel="stylesheet" type="text/css">
         <title>Products View</title>
         <style>
-            .toggle-label span { width: 23%; }
-            .table-head > span { width: 23.3%; }
+            .toggle-label span { width: 15.3%; }
+            .table-header > span { width: 15.53%; }
         </style>
     </head>
     <body>
@@ -36,11 +36,20 @@
                 </span>
                 <span>
                     <label for="oversized"> Oversized </label>
-                    <input type="checkbox" id="oversized" name="oversized" value="${oversizedvalue}">
+                    <select type="text" id="oversized" name="oversized" value="${oversizedvalue}">
+                        <option value="">Any</option>
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                    </select>
                 </span>
                 <input type="submit" name="query" value="Apply query"/>
                 <input type="submit" name="create" value="+" formaction="product_applyedit" formmethod="POST"/>
             </form>
+            <c:if test="${errormsg.length() > 0}">
+                <div class="error">
+                    ${errormsg}
+                </div>
+            </c:if>
             <div class="table-header">
                 <span> ID </span>
                 <span> Name </span>
@@ -55,7 +64,7 @@
                     <span> ${item.productId} </span>
                     <span> ${item.name} </span>
                     <span> ${item.description} </span>
-                    <span> ${item.categoryId} </span>
+                    <span> <a href="productcat?id=${item.category.categoryId}">${item.category.categoryId}</a> </span>
                     <span> ${item.unit} </span>
                     <span> ${item.oversized} </span>
                 </label>
@@ -73,7 +82,7 @@
                             </span>
                             <span>
                                 <label for="category"> Category </label>
-                                <input type="text" id="category" name="category" value="${item.categoryId}">
+                                <input type="text" id="category" name="category" value="${item.category.categoryId}">
                             </span>
                             <span>
                                 <label for="unit"> Unit </label>
@@ -81,7 +90,7 @@
                             </span>
                             <span>
                                 <label for="oversized"> Oversized </label>
-                                <input type="checkbox" id="oversized" name="oversized" value="${item.oversized}">
+                                <input type="checkbox" id="oversized" name="oversized" ${item.oversized ? "checked" : ""}>
                             </span>
                             <input type="submit" name="edit" value="Apply edit"/>
                             <input type="submit" name="delete" value="Delete" formaction="product_delete"/>

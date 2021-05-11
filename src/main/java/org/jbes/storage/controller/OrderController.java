@@ -21,6 +21,7 @@ import java.util.Date;
 public class OrderController {
     @RequestMapping(value = "/order", method = RequestMethod.GET)
     public ModelAndView order(
+        @RequestParam(required = false) String errormsg,
         @RequestParam(required = false) Long id,
         @RequestParam(required = false) Long consumer,
         @RequestParam(required = false) Long product,
@@ -44,6 +45,8 @@ public class OrderController {
         modelAndView.addObject("timehivalue", timehi == null ? "" : timehi.toString());
         modelAndView.addObject("completedvalue", completed == null ? "" : completed.toString());
 
+        if (errormsg == null) errormsg = "";
+
         if (id != null) {
             modelAndView.addObject("cats", List.of(dao.findById(id)));
         } else {
@@ -51,7 +54,7 @@ public class OrderController {
             if (consumer != null) {
                 cons = cdao.findById(consumer);
                 if (cons == null) {
-                    // TODO
+                    errormsg += "\nConsumer " + consumer.toString() + " is not found!";
                 }
             }
 
@@ -59,13 +62,14 @@ public class OrderController {
             if (product != null) {
                 prod = pdao.findById(product);
                 if (prod == null) {
-                    // TODO
+                    errormsg += "\nProduct " + product.toString() + " is not found!";
                 }
             }
 
             modelAndView.addObject("cats", dao.findAllMatching(cons, prod, amountlo,
                                                                amounthi, timelo, timehi, completed));
         }
+        modelAndView.addObject("errormsg", errormsg);
         return modelAndView;
     }
 
@@ -100,7 +104,7 @@ public class OrderController {
         if (consumer != null) {
             Consumer cons = cdao.findById(consumer);
             if (cons == null) {
-                // TODO
+                return "redirect:/order?errormsg=Consumer%20" + consumer.toString() + "%20is%20not%20found!";
             } else {
                 old.setConsumer(cons);
             }
@@ -108,7 +112,7 @@ public class OrderController {
         if (product != null) {
             Product prod = pdao.findById(product);
             if (prod == null) {
-                // TODO
+                return "redirect:/order?errormsg=Product%20" + product.toString() + "%20is%20not%20found!";
             } else {
                 old.setProduct(prod);
             }

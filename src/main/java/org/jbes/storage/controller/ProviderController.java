@@ -16,6 +16,7 @@ import java.util.List;
 public class ProviderController {
     @RequestMapping(value = "/provider", method = RequestMethod.GET)
     public ModelAndView provider(
+        @RequestParam(required = false) String errormsg,
         @RequestParam(required = false) Long id,
         @RequestParam(required = false) String name,
         @RequestParam(required = false) String description,
@@ -38,6 +39,7 @@ public class ProviderController {
         modelAndView.addObject("addressvalue", address == null ? "" : address);
         modelAndView.addObject("phonevalue", phone == null ? "" : phone);
         modelAndView.addObject("emailvalue", email == null ? "" : email);
+        modelAndView.addObject("errormsg", errormsg == null ? "" : errormsg);
 
         if (id != null) {
             modelAndView.addObject("cats", List.of(dao.findById(id)));

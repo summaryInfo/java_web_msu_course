@@ -21,6 +21,7 @@ import java.util.Date;
 public class SupplyController {
     @RequestMapping(value = "/supply", method = RequestMethod.GET)
     public ModelAndView supply(
+        @RequestParam(required = false) String errormsg,
         @RequestParam(required = false) Long id,
         @RequestParam(required = false) Long provider,
         @RequestParam(required = false) Long product,
@@ -44,6 +45,8 @@ public class SupplyController {
         modelAndView.addObject("timehivalue", timehi == null ? "" : timehi.toString());
         modelAndView.addObject("completedvalue", completed == null ? "" : completed.toString());
 
+        if (errormsg == null) errormsg = "";
+
         if (id != null) {
             modelAndView.addObject("cats", List.of(dao.findById(id)));
         } else {
@@ -51,7 +54,7 @@ public class SupplyController {
             if (provider != null) {
                 cons = cdao.findById(provider);
                 if (cons == null) {
-                    // TODO
+                    errormsg += "\nProvider " + provider.toString() + " is not found";
                 }
             }
 
@@ -59,13 +62,15 @@ public class SupplyController {
             if (product != null) {
                 prod = pdao.findById(product);
                 if (prod == null) {
-                    // TODO
+                    errormsg += "\nProduct " + product.toString() + " is not found";
                 }
             }
 
             modelAndView.addObject("cats", dao.findAllMatching(cons, prod, amountlo,
                                                                amounthi, timelo, timehi, completed));
         }
+
+        modelAndView.addObject("errormsg", errormsg);
         return modelAndView;
     }
 
@@ -100,7 +105,7 @@ public class SupplyController {
         if (provider != null) {
             Provider cons = cdao.findById(provider);
             if (cons == null) {
-                // TODO
+                return "redirect:/supply?errormsg=Provider%20" + provider.toString() + "%20is%20not%20found";
             } else {
                 old.setProvider(cons);
             }
@@ -108,7 +113,7 @@ public class SupplyController {
         if (product != null) {
             Product prod = pdao.findById(product);
             if (prod == null) {
-                // TODO
+                return "redirect:/supply?errormsg=Product%20" + product.toString() + "%20is%20not%20found";
             } else {
                 old.setProduct(prod);
             }

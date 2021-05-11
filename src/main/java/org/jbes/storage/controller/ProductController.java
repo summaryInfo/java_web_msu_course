@@ -18,6 +18,7 @@ import java.util.List;
 public class ProductController {
     @RequestMapping(value = "/product", method = RequestMethod.GET)
     public ModelAndView product(
+        @RequestParam(required = false) String errormsg,
         @RequestParam(required = false) Long id,
         @RequestParam(required = false) String name,
         @RequestParam(required = false) String description,
@@ -31,6 +32,7 @@ public class ProductController {
 
         if (name != null && name.length() == 0) name = null;
         if (description != null && description.length() == 0) description = null;
+        if (unit != null && unit.length() == 0) unit = null;
 
         modelAndView.addObject("idvalue", id == null ? "" : id.toString());
         modelAndView.addObject("namevalue", name == null ? "" : name);
@@ -39,6 +41,8 @@ public class ProductController {
         modelAndView.addObject("unitvalue", unit == null ? "" : unit);
         modelAndView.addObject("oversizedvalue", oversized == null ? "" : oversized.toString());
 
+        if (errormsg == null) errormsg = "";
+
         if (id != null) {
             modelAndView.addObject("cats", List.of(dao.findById(id)));
         } else {
@@ -46,11 +50,13 @@ public class ProductController {
             if (category != null) {
                 cat = cdao.findById(category);
                 if (cat == null) {
-                    // TODO
+                    errormsg += "\nCategory " + category.toString() + " is not found";
                 }
             }
             modelAndView.addObject("cats", dao.findAllMatching(name, description, cat, unit, oversized));
         }
+
+        modelAndView.addObject("errormsg", errormsg);
         return modelAndView;
     }
 
@@ -90,7 +96,7 @@ public class ProductController {
         if (category != null) {
             ProductCategory cat = cdao.findById(category);
             if (cat == null) {
-                // TODO
+                return "redirect:/product?errormsg=Product%20category%20" + category.toString() + "%20is%20not%20found";
             } else {
                 old.setCategory(cat);
             }

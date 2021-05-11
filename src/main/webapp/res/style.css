@@ -2,7 +2,31 @@
     display: none;
 }
 
-form input[type='text'] {
+.error {
+    vertical-align: middle;
+    padding: .7rem;
+    margin: 0px;
+    background: #70A0FF;
+    color: red;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+form input {
+    background: #0050C0;
+    border: none;
+    color: white;
+    padding: .7rem;
+    text-decoration: none;
+    display: block;
+}
+
+form input[type="submit"] {
+    display: inline-block;
+}
+
+form select {
+    -webkit-appearance: none;
     background: #0050C0;
     border: none;
     color: white;
@@ -22,14 +46,20 @@ form span {
     display: inline-block;
 }
 
-form input[type='submit'] {
+form input[type='checkbox'] {
+    -webkit-appearance: none;
     background: #0050C0;
     border: none;
-    color: white;
-    font-weight: bold;
-    padding: .7rem;
-    text-decoration: none;
+    padding: 1.2rem;
     display: inline-block;
+    vertical-align: middle;
+
+}
+
+form input[type='checkbox']:checked {
+    background: white;
+    border: #0050C0 solid .8rem;
+    padding: .45rem;
 }
 
 form {

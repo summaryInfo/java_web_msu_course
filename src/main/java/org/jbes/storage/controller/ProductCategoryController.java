@@ -16,6 +16,7 @@ import java.util.List;
 public class ProductCategoryController {
     @RequestMapping(value = "/productcat", method = RequestMethod.GET)
     public ModelAndView productCat(
+        @RequestParam(required = false) String errormsg,
         @RequestParam(required = false) Long id,
         @RequestParam(required = false) String name,
         @RequestParam(required = false) String description
@@ -29,6 +30,7 @@ public class ProductCategoryController {
         modelAndView.addObject("idvalue", id == null ? "" : id.toString());
         modelAndView.addObject("namevalue", name == null ? "" : name);
         modelAndView.addObject("descriptionvalue", description == null ? "" : description);
+        modelAndView.addObject("errormsg", errormsg == null ? "" : errormsg);
 
         if (id != null) {
             modelAndView.addObject("cats", List.of(dao.findById(id)));

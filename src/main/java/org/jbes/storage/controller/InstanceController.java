@@ -17,6 +17,7 @@ import java.util.Date;
 public class InstanceController {
     @RequestMapping(value = "/instance", method = RequestMethod.GET)
     public ModelAndView instance(
+        @RequestParam(required = false) String errormsg,
         @RequestParam(required = false) Long id,
         @RequestParam(required = false) Long product,
         @RequestParam(required = false) Double amountlo,
@@ -49,6 +50,8 @@ public class InstanceController {
         modelAndView.addObject("sourcevalue", source == null ? "" : source.toString());
         modelAndView.addObject("destinationvalue", destination == null ? "" : destination.toString());
 
+        if (errormsg == null) errormsg = "";
+
         if (id != null) {
             modelAndView.addObject("cats", List.of(dao.findById(id)));
         } else {
@@ -56,7 +59,7 @@ public class InstanceController {
             if (product != null) {
                 prod = pdao.findById(product);
                 if (prod == null) {
-                    // TODO
+                    errormsg += "\nInstance product " + product + " is not found";
                 }
             }
 
@@ -64,7 +67,7 @@ public class InstanceController {
             if (source != null) {
                 src = sdao.findById(source);
                 if (src == null) {
-                    // TODO
+                    errormsg += "\nInstance source " + source.toString() + " is not found";
                 }
             }
 
@@ -72,13 +75,15 @@ public class InstanceController {
             if (destination != null) {
                 dst = odao.findById(destination);
                 if (dst == null) {
-                    // TODO
+                    errormsg += "\nInstance destination " + destination.toString() + " is not found";
                 }
             }
 
             modelAndView.addObject("cats", dao.findAllMatching(prod, amountlo, amounthi, arrivallo,
                                                                arrivalhi, expireslo, expireshi, room, shelf, src, dst));
         }
+
+        modelAndView.addObject("errormsg", errormsg);
         return modelAndView;
     }
 
@@ -117,7 +122,7 @@ public class InstanceController {
         if (product != null) {
             Product prod = pdao.findById(product);
             if (prod == null) {
-                // TODO
+                return "redirect:/instance?errormsg=Instance%20product%20" + product.toString() + "%20is%20not%20found";
             } else {
                 old.setProduct(prod);
             }
@@ -132,7 +137,7 @@ public class InstanceController {
             Supply src = null;
             src = sdao.findById(source);
             if (src == null) {
-                // TODO
+                return "redirect:/instance?errormsg=Instance%20source%20" + source.toString() + "%20is%20not%20found";
             } else {
                 old.setSource(src);
             }
@@ -142,7 +147,7 @@ public class InstanceController {
             Order dst = null;
             dst = odao.findById(destination);
             if (dst == null) {
-                // TODO
+                return "redirect:/instance?errormsg=Instance%20destination%20" + destination.toString() + "%20is%20not%20found";
             } else {
                 old.setDestination(dst);
             }

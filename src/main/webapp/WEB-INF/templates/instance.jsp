@@ -7,8 +7,8 @@
         <link href="res/style.css" rel="stylesheet" type="text/css">
         <title>Product Instances View</title>
         <style>
-            .toggle-label span { width: 23%; }
-            .table-head > span { width: 23.3%; }
+            .toggle-label span { width: 10.22%; }
+            .table-header > span { width: 10.35%; }
         </style>
     </head>
     <body>
@@ -65,6 +65,11 @@
                 <input type="submit" name="query" value="Apply query"/>
                 <input type="submit" name="create" value="+" formaction="instance_applyedit" formmethod="POST"/>
             </form>
+            <c:if test="${errormsg.length() > 0}">
+                <div class="error">
+                    ${errormsg}
+                </div>
+            </c:if>
             <div class="table-header">
                 <span> ID </span>
                 <span> Product </span>
@@ -80,14 +85,14 @@
                 <input id="collapsible-${item.instanceId}" class="toggle" type="checkbox">
                 <label for="collapsible-${item.instanceId}" class="toggle-label">
                     <span> ${item.instanceId} </span>
-                    <span> ${item.productId} </span>
+                    <span> ${item.product.productId} </span>
                     <span> ${item.amount} </span>
                     <span> ${item.arrival} </span>
                     <span> ${item.expires} </span>
                     <span> ${item.roomNo} </span>
                     <span> ${item.shelfNo} </span>
-                    <span> ${item.source} </span>
-                    <span> ${item.destination} </span>
+                    <span> ${item.source == null ? "" : item.source.supplyId.toString()} </span>
+                    <span> ${item.destination == null ? "" : item.destination.orderId.toString()} </span>
                 </label>
                 <div class="collapsible-content">
                     <div class="content-inner">
@@ -95,7 +100,7 @@
                             <input type="hidden" id="qid", name="qid", value="${item.instanceId}">
                             <span>
                                 <label for="product"> Product </label>
-                                <input type="text" id="product" product="product" value="${item.productId}">
+                                <input type="text" id="product" product="product" value="${item.product.productId}">
                             </span>
                             <span>
                                 <label for="amount"> Amount </label>
@@ -119,11 +124,11 @@
                             </span>
                             <span>
                                 <label for="source"> Source </label>
-                                <input type="text" id="source" name="source" value="${item.source}">
+                                <input type="text" id="source" name="source" value="${item.source == null ? "" : item.source.supplyId.toString()}">
                             </span>
                             <span>
                                 <label for="destination"> Destination </label>
-                                <input type="text" id="destination" name="destination" value="${item.destination}">
+                                <input type="text" id="destination" name="destination" value="${item.destination == null ? "" : item.destination.orderId.toString()}">
                             </span>
                             <input type="submit" name="edit" value="Apply edit"/>
                             <input type="submit" name="delete" value="Delete" formaction="instance_delete"/>

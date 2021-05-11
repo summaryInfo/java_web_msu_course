@@ -41,6 +41,11 @@
                 <input type="submit" name="query" value="Apply query"/>
                 <input type="submit" name="create" value="+" formaction="provider_applyedit" formmethod="POST"/>
             </form>
+            <c:if test="${errormsg.length() > 0}">
+                <div class="error">
+                    ${errormsg}
+                </div>
+            </c:if>
             <div class="table-header">
                 <span> ID </span>
                 <span> Name </span>
