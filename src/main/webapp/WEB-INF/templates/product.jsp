@@ -38,8 +38,8 @@
                     <label for="oversized"> Oversized </label>
                     <select type="text" id="oversized" name="oversized" value="${oversizedvalue}">
                         <option value="">Any</option>
-                        <option value="true">True</option>
-                        <option value="false">False</option>
+                        <option value="true"  ${oversizedvalue == "true" ? "selected" : ""}>True</option>
+                        <option value="false"  ${oversizedvalue == "false" ? "selected" : ""}>False</option>
                     </select>
                 </span>
                 <input type="submit" name="query" value="Apply query"/>

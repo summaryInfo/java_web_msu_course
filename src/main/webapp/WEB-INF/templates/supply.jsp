@@ -46,8 +46,8 @@
                     <label for="completed"> Completed </label>
                     <select type="checkbox" id="completed" name="completed" value="${completedvalue}">
                         <option value="">Any</option>
-                        <option value="true">True</option>
-                        <option value="false">False</option>
+                        <option value="true"  ${completedvalue == "true" ? "selected" : ""}>True</option>
+                        <option value="false"  ${completedvalue == "false" ? "selected" : ""}>False</option>
                     </select>
                 </span>
                 <input type="submit" name="query" value="Apply query"/>
