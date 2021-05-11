@@ -5,13 +5,15 @@
         <title>Hello</title>
     </head>
 <body>
-    <a href="productcat"> Product Categories </a>
-    <a href="product"> Products </a>
-    <a href="instance"> Product Instances </a>
-    <a href="provider"> Providers </a>
-    <a href="consumer"> Consumers </a>
-    <a href="order"> Orders </a>
-    <a href="supply"> Supplies </a>
+    <ul>
+        <li> <a href="productcat"> Product Categories </a> </li>
+        <li> <a href="product"> Products </a> </li>
+        <li> <a href="instance"> Product Instances </a> </li>
+        <li> <a href="provider"> Providers </a> </li>
+        <li> <a href="consumer"> Consumers </a> </li>
+        <li> <a href="order"> Orders </a> </li>
+        <li> <a href="supply"> Supplies </a> </li>
+    </ul>
 </body>
 </html>
 

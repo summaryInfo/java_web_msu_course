@@ -7,8 +7,8 @@
         <link href="res/style.css" rel="stylesheet" type="text/css">
         <title>Orders View</title>
         <style>
-            .toggle-label span { width: 23%; }
-            .table-head > span { width: 23.3%; }
+            .toggle-label span { width: 15.33%; }
+            .table-header > span { width: 15.53%; }
         </style>
     </head>
     <body>
@@ -70,8 +70,8 @@
                 <input id="collapsible-${item.orderId}" class="toggle" type="checkbox">
                 <label for="collapsible-${item.orderId}" class="toggle-label">
                     <span> ${item.orderId} </span>
-                    <span> ${item.consumerId} </span>
-                    <span> ${item.productId} </span>
+                    <span> ${item.consumer.consumerId} </span>
+                    <span> ${item.product.productId} </span>
                     <span> ${item.amount} </span>
                     <span> ${item.time} </span>
                     <span> ${item.completed} </span>
@@ -82,11 +82,11 @@
                             <input type="hidden" id="qid", name="qid", value="${item.orderId}">
                             <span>
                                 <label for="consumer"> Consumer </label>
-                                <input type="number" id="consumer" name="consumer" value="${item.consumerId}">
+                                <input type="number" id="consumer" name="consumer" value="${item.consumer.consumerId}">
                             </span>
                             <span>
                                 <label for="product"> Product </label>
-                                <input type="number" id="product" name="product" value="${item.productId}">
+                                <input type="number" id="product" name="product" value="${item.product.productId}">
                             </span>
                             <span>
                                 <label for="amount"> Amount </label>

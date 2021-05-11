@@ -7,8 +7,8 @@
         <link href="res/style.css" rel="stylesheet" type="text/css">
         <title>Providers View</title>
         <style>
-            .toggle-label span { width: 23%; }
-            .table-head > span { width: 23.3%; }
+            .toggle-label span { width: 15.33%; }
+            .table-header > span { width: 15.53%; }
         </style>
     </head>
     <body>

@@ -7,8 +7,8 @@
         <link href="res/style.css" rel="stylesheet" type="text/css">
         <title>Consumers View</title>
         <style>
-            .toggle-label span { width: 23%; }
-            .table-head > span { width: 23.3%; }
+            .toggle-label span { width: 15.3%; }
+            .table-header > span { width: 15.5%; }
         </style>
     </head>
     <body>
