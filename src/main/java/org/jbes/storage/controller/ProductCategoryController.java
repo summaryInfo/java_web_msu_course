@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @Controller
 public class ProductCategoryController {
@@ -32,11 +33,20 @@ public class ProductCategoryController {
         modelAndView.addObject("descriptionvalue", description == null ? "" : description);
         modelAndView.addObject("errormsg", errormsg == null ? "" : errormsg);
 
+        List<ProductCategory> li;
         if (id != null) {
-            modelAndView.addObject("cats", List.of(dao.findById(id)));
+            li = new ArrayList<ProductCategory>();
+            ProductCategory in = dao.findById(id);
+            if (in != null) {
+                li.add(in);
+            } else {
+                errormsg += "\nProduct category " + id.toString() + " is not found";
+            }
         } else {
-            modelAndView.addObject("cats", dao.findAllMatching(name, description));
+            li = dao.findAllMatching(name, description);
         }
+
+        modelAndView.addObject("cats", li);
         return modelAndView;
     }
 

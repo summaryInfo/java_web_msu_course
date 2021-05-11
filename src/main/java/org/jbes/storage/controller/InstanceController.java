@@ -11,26 +11,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
 public class InstanceController {
     @RequestMapping(value = "/instance", method = RequestMethod.GET)
-    public ModelAndView instance(
-        @RequestParam(required = false) String errormsg,
-        @RequestParam(required = false) Long id,
-        @RequestParam(required = false) Long product,
-        @RequestParam(required = false) Double amountlo,
-        @RequestParam(required = false) Double amounthi,
-        @RequestParam(required = false) Date arrivallo,
-        @RequestParam(required = false) Date arrivalhi,
-        @RequestParam(required = false) Date expireslo,
-        @RequestParam(required = false) Date expireshi,
-        @RequestParam(required = false) Integer room,
-        @RequestParam(required = false) Integer shelf,
-        @RequestParam(required = false) Long source,
-        @RequestParam(required = false) Long destination
-    ) {
+    public ModelAndView instance(@RequestParam(required = false) String errormsg,
+            @RequestParam(required = false) Long id, @RequestParam(required = false) Long product,
+            @RequestParam(required = false) Double amountlo, @RequestParam(required = false) Double amounthi,
+            @RequestParam(required = false) Date arrivallo, @RequestParam(required = false) Date arrivalhi,
+            @RequestParam(required = false) Date expireslo, @RequestParam(required = false) Date expireshi,
+            @RequestParam(required = false) Integer room, @RequestParam(required = false) Integer shelf,
+            @RequestParam(required = false) Long source, @RequestParam(required = false) Long destination) {
         ModelAndView modelAndView = new ModelAndView("instance");
         ProductInstanceDAO dao = WebConfig.productInstanceDAO();
         ProductDAO pdao = WebConfig.productDAO();
@@ -50,10 +43,18 @@ public class InstanceController {
         modelAndView.addObject("sourcevalue", source == null ? "" : source.toString());
         modelAndView.addObject("destinationvalue", destination == null ? "" : destination.toString());
 
-        if (errormsg == null) errormsg = "";
+        if (errormsg == null)
+            errormsg = "";
 
+        List<ProductInstance> li;
         if (id != null) {
-            modelAndView.addObject("cats", List.of(dao.findById(id)));
+            li = new ArrayList<ProductInstance>();
+            ProductInstance in = dao.findById(id);
+            if (in != null) {
+                li.add(in);
+            } else {
+                errormsg += "\nProduct instance " + id.toString() + " is not found";
+            }
         } else {
             Product prod = null;
             if (product != null) {
@@ -79,10 +80,11 @@ public class InstanceController {
                 }
             }
 
-            modelAndView.addObject("cats", dao.findAllMatching(prod, amountlo, amounthi, arrivallo,
-                                                               arrivalhi, expireslo, expireshi, room, shelf, src, dst));
+            li = dao.findAllMatching(prod, amountlo, amounthi, arrivallo, arrivalhi, expireslo, expireshi, room, shelf,
+                    src, dst);
         }
 
+        modelAndView.addObject("cats", li);
         modelAndView.addObject("errormsg", errormsg);
         return modelAndView;
     }
@@ -92,23 +94,18 @@ public class InstanceController {
         ProductInstanceDAO dao = WebConfig.productInstanceDAO();
         if (qid != null) {
             ProductInstance cat = dao.findById(qid);
-            if (cat != null) dao.delete(cat);
+            if (cat != null)
+                dao.delete(cat);
         }
         return "redirect:/instance";
     }
 
     @RequestMapping(value = "/instance_applyedit", method = RequestMethod.POST)
-    public String instanceModify(
-        @RequestParam(required = false) Long qid,
-        @RequestParam(required = false) Long product,
-        @RequestParam(required = false) Double amount,
-        @RequestParam(required = false) Date arrival,
-        @RequestParam(required = false) Date expires,
-        @RequestParam(required = false) Integer room,
-        @RequestParam(required = false) Integer shelf,
-        @RequestParam(required = false) Long source,
-        @RequestParam(required = false) Long destination
-    ) {
+    public String instanceModify(@RequestParam(required = false) Long qid, @RequestParam(required = false) Long product,
+            @RequestParam(required = false) Double amount, @RequestParam(required = false) Date arrival,
+            @RequestParam(required = false) Date expires, @RequestParam(required = false) Integer room,
+            @RequestParam(required = false) Integer shelf, @RequestParam(required = false) Long source,
+            @RequestParam(required = false) Long destination) {
         ProductInstanceDAO dao = WebConfig.productInstanceDAO();
         ProductDAO pdao = WebConfig.productDAO();
         OrderDAO odao = WebConfig.orderDAO();
@@ -127,11 +124,16 @@ public class InstanceController {
                 old.setProduct(prod);
             }
         }
-        if (amount != null) old.setAmount(amount);
-        if (arrival != null) old.setArrival(arrival);
-        if (expires != null) old.setExpires(expires);
-        if (room != null) old.setRoomNo(room);
-        if (shelf != null) old.setShelfNo(shelf);
+        if (amount != null)
+            old.setAmount(amount);
+        if (arrival != null)
+            old.setArrival(arrival);
+        if (expires != null)
+            old.setExpires(expires);
+        if (room != null)
+            old.setRoomNo(room);
+        if (shelf != null)
+            old.setShelfNo(shelf);
 
         if (source != null) {
             Supply src = null;
@@ -147,11 +149,12 @@ public class InstanceController {
             Order dst = null;
             dst = odao.findById(destination);
             if (dst == null) {
-                return "redirect:/instance?errormsg=Instance%20destination%20" + destination.toString() + "%20is%20not%20found";
+                return "redirect:/instance?errormsg=Instance%20destination%20" + destination.toString()
+                        + "%20is%20not%20found";
             } else {
                 old.setDestination(dst);
             }
-        }        
+        }
         dao.saveOrUpdate(old);
 
         return "redirect:/instance";

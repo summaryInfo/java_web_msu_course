@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @Controller
 public class ProductController {
@@ -43,8 +44,15 @@ public class ProductController {
 
         if (errormsg == null) errormsg = "";
 
+        List<Product> li;
         if (id != null) {
-            modelAndView.addObject("cats", List.of(dao.findById(id)));
+            li = new ArrayList<Product>();
+            Product in = dao.findById(id);
+            if (in != null) {
+                li.add(in);
+            } else {
+                errormsg += "\nProduct " + id.toString() + " is not found";
+            }
         } else {
             ProductCategory cat = null;
             if (category != null) {
@@ -53,9 +61,10 @@ public class ProductController {
                     errormsg += "\nCategory " + category.toString() + " is not found";
                 }
             }
-            modelAndView.addObject("cats", dao.findAllMatching(name, description, cat, unit, oversized));
+            li = dao.findAllMatching(name, description, cat, unit, oversized);
         }
 
+        modelAndView.addObject("cats", li);
         modelAndView.addObject("errormsg", errormsg);
         return modelAndView;
     }

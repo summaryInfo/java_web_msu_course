@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @Controller
 public class ProviderController {
@@ -41,11 +42,21 @@ public class ProviderController {
         modelAndView.addObject("emailvalue", email == null ? "" : email);
         modelAndView.addObject("errormsg", errormsg == null ? "" : errormsg);
 
+        List<Provider> li;
         if (id != null) {
+            li = new ArrayList<Provider>();
+            Provider in = dao.findById(id);
+            if (in != null) {
+                li.add(in);
+            } else {
+                errormsg += "\nProvider " + id.toString() + " is not found";
+            }
             modelAndView.addObject("cats", List.of(dao.findById(id)));
         } else {
-            modelAndView.addObject("cats", dao.findAllMatching(name, description, address, phone, email));
+             li = dao.findAllMatching(name, description, address, phone, email);
         }
+
+        modelAndView.addObject("cats", li);
         return modelAndView;
     }
 

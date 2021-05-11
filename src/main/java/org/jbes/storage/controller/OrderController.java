@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
@@ -47,8 +48,15 @@ public class OrderController {
 
         if (errormsg == null) errormsg = "";
 
+        List<Order> li;
         if (id != null) {
-            modelAndView.addObject("cats", List.of(dao.findById(id)));
+            li = new ArrayList<Order>();
+            Order in = dao.findById(id);
+            if (in != null) {
+                li.add(in);
+            } else {
+                errormsg += "\nOrder " + id.toString() + " is not found";
+            }
         } else {
             Consumer cons = null;
             if (consumer != null) {
@@ -66,9 +74,10 @@ public class OrderController {
                 }
             }
 
-            modelAndView.addObject("cats", dao.findAllMatching(cons, prod, amountlo,
-                                                               amounthi, timelo, timehi, completed));
+            li = dao.findAllMatching(cons, prod, amountlo, amounthi, timelo, timehi, completed);
         }
+
+        modelAndView.addObject("cats", li);
         modelAndView.addObject("errormsg", errormsg);
         return modelAndView;
     }
@@ -78,20 +87,16 @@ public class OrderController {
         OrderDAO dao = WebConfig.orderDAO();
         if (qid != null) {
             Order cat = dao.findById(qid);
-            if (cat != null) dao.delete(cat);
+            if (cat != null)
+                dao.delete(cat);
         }
         return "redirect:/order";
     }
 
     @RequestMapping(value = "/order_applyedit", method = RequestMethod.POST)
-    public String orderModify(
-        @RequestParam(required = false) Long qid,
-        @RequestParam(required = false) Long consumer,
-        @RequestParam(required = false) Long product,
-        @RequestParam(required = false) Double amount,
-        @RequestParam(required = false) Date time,
-        @RequestParam(required = false) Boolean completed
-    ) {
+    public String orderModify(@RequestParam(required = false) Long qid, @RequestParam(required = false) Long consumer,
+            @RequestParam(required = false) Long product, @RequestParam(required = false) Double amount,
+            @RequestParam(required = false) Date time, @RequestParam(required = false) Boolean completed) {
         OrderDAO dao = WebConfig.orderDAO();
         ConsumerDAO cdao = WebConfig.consumerDAO();
         ProductDAO pdao = WebConfig.productDAO();
@@ -117,9 +122,12 @@ public class OrderController {
                 old.setProduct(prod);
             }
         }
-        if (amount != null) old.setAmount(amount);
-        if (time != null) old.setTime(time);
-        if (completed != null) old.setCompleted(completed);
+        if (amount != null)
+            old.setAmount(amount);
+        if (time != null)
+            old.setTime(time);
+        if (completed != null)
+            old.setCompleted(completed);
 
         dao.saveOrUpdate(old);
 

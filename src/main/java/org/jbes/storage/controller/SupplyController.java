@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
@@ -47,7 +48,15 @@ public class SupplyController {
 
         if (errormsg == null) errormsg = "";
 
+        List<Supply> li;
         if (id != null) {
+            li = new ArrayList<Supply>();
+            Supply in = dao.findById(id);
+            if (in != null) {
+                li.add(in);
+            } else {
+                errormsg += "\nSupply " + id.toString() + " is not found";
+            }
             modelAndView.addObject("cats", List.of(dao.findById(id)));
         } else {
             Provider cons = null;
@@ -66,10 +75,10 @@ public class SupplyController {
                 }
             }
 
-            modelAndView.addObject("cats", dao.findAllMatching(cons, prod, amountlo,
-                                                               amounthi, timelo, timehi, completed));
+            li = dao.findAllMatching(cons, prod, amountlo, amounthi, timelo, timehi, completed);
         }
 
+        modelAndView.addObject("cats", li);
         modelAndView.addObject("errormsg", errormsg);
         return modelAndView;
     }
