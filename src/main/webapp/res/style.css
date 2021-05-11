@@ -17,11 +17,13 @@ form input {
     border: none;
     color: white;
     padding: .7rem;
+    margin: .3rem;
     text-decoration: none;
     display: block;
 }
 
 form input[type="submit"] {
+    margin-top: .7rem;
     display: inline-block;
 }
 
