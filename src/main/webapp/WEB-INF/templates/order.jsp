@@ -36,11 +36,11 @@
                 </span>
                 <span>
                     <label for="timelo"> Time From </label>
-                    <input type="text" pattern="\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}" id="timelo" name="timelo" value="${timelovalue}">
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="timelo" name="timelo" value="${timelovalue}">
                 </span>
                 <span>
                     <label for="timehi"> Time To </label>
-                    <input type="text" pattern="\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}" id="timehi" name="timehi" value="${timehivalue}">
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="timehi" name="timehi" value="${timehivalue}">
                 </span>
                 <span>
                     <label for="completed"> Completed </label>

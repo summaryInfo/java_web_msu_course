@@ -16,17 +16,16 @@ import java.util.ArrayList;
 @Controller
 public class ProductCategoryController {
     @RequestMapping(value = "/productcat", method = RequestMethod.GET)
-    public ModelAndView productCat(
-        @RequestParam(required = false) String errormsg,
-        @RequestParam(required = false) Long id,
-        @RequestParam(required = false) String name,
-        @RequestParam(required = false) String description
-    ) {
+    public ModelAndView productCat(@RequestParam(required = false) String errormsg,
+            @RequestParam(required = false) Long id, @RequestParam(required = false) String name,
+            @RequestParam(required = false) String description) {
         ModelAndView modelAndView = new ModelAndView("productcat");
         ProductCategoryDAO dao = WebConfig.productCategoryDAO();
 
-        if (name != null && name.length() == 0) name = null;
-        if (description != null && description.length() == 0) description = null;
+        if (name != null && name.length() == 0)
+            name = null;
+        if (description != null && description.length() == 0)
+            description = null;
 
         modelAndView.addObject("idvalue", id == null ? "" : id.toString());
         modelAndView.addObject("namevalue", name == null ? "" : name);
@@ -55,29 +54,31 @@ public class ProductCategoryController {
         ProductCategoryDAO dao = WebConfig.productCategoryDAO();
         if (qid != null) {
             ProductCategory cat = dao.findById(qid);
-            if (cat != null) dao.delete(cat);
+            if (cat != null)
+                dao.delete(cat);
         }
         return "redirect:/productcat";
     }
 
     @RequestMapping(value = "/productcat_applyedit", method = RequestMethod.POST)
-    public String productCatModify(
-        @RequestParam(required = false) Long qid,
-        @RequestParam(required = false) String name,
-        @RequestParam(required = false) String description
-    ) {
+    public String productCatModify(@RequestParam(required = false) Long qid,
+            @RequestParam(required = false) String name, @RequestParam(required = false) String description) {
         ProductCategoryDAO dao = WebConfig.productCategoryDAO();
 
-        if (name != null && name.length() == 0) name = null;
-        if (description != null && description.length() == 0) description = null;
+        if (name != null && name.length() == 0)
+            name = null;
+        if (description != null && description.length() == 0)
+            description = null;
 
         ProductCategory old;
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new ProductCategory();
         }
 
-        if (name != null) old.setName(name);
-        if (description != null) old.setDescription(description);
+        if (name != null)
+            old.setName(name);
+        if (description != null)
+            old.setDescription(description);
 
         dao.saveOrUpdate(old);
 

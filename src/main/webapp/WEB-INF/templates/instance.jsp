@@ -87,8 +87,8 @@
                     <span> ${item.instanceId} </span>
                     <span> <a href="product?id=${item.product.productId}">${item.product.productId}</a> </span>
                     <span> ${item.amount} </span>
-                    <span> ${formatter.format(item.arrival)} </span>
-                    <span> ${formatter.format(item.expires)} </span>
+                    <span> ${item.arrival == null ? "" : formatter.format(item.arrival)} </span>
+                    <span> ${item.expires == null ? "" : formatter.format(item.expires)} </span>
                     <span> ${item.roomNo} </span>
                     <span> ${item.shelfNo} </span>
                     <span> <a href="supply?id=${item.source == null ? '' : item.source.supplyId}">${item.source == null ? '' : item.source.supplyId}</a> </span>
@@ -108,11 +108,11 @@
                             </span>
                             <span>
                                 <label for="arrival"> Arrival </label>
-                                <input type="datetime-local" id="arrival" name="arrival" value="${formatter.format(item.arrival)}">
+                                <input type="datetime-local" id="arrival" name="arrival" value="${item.arrival == null ? "" : formatter.format(item.arrival)}">
                             </span>
                             <span>
                                 <label for="expires"> Expires </label>
-                                <input type="datetime-local" id="expires" name="expires" value="${formatter.format(item.expires)}">
+                                <input type="datetime-local" id="expires" name="expires" value="${item.expires == null ? "" : formatter.format(item.expires)}">
                             </span>
                             <span>
                                 <label for="room"> Room </label>
@@ -131,7 +131,7 @@
                                 <input type="text" id="destination" name="destination" value="${item.destination == null ? '' : item.destination.orderId}">
                             </span>
                             <input type="submit" name="edit" value="Apply edit"/>
-                            <input type="submit" name="delete" value="Delete" formaction="instance_delete"/>
+                            <input type="submit" name="delete" value="Delete"/>
                         </form>
                     </div>
                 </div>

@@ -68,7 +68,7 @@ public class InstanceController {
             if (product != null) {
                 prod = pdao.findById(product);
                 if (prod == null) {
-                    errormsg += "\nInstance product " + product + " is not found";
+                    errormsg += "\nInstance product " + product.toString() + " is not found";
                 }
             }
 
