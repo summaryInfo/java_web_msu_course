@@ -91,6 +91,8 @@ public class ConsumerController {
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new Consumer();
             update = false;
+            if (name == null)
+                return "redirect:/consumer?errormsg=Name%20cannot%20be%20NULL";
         }
 
         if (name != null)

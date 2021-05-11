@@ -109,6 +109,16 @@ public class OrderController {
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new Order();
             update = false;
+            if (consumer == null)
+                return "redirect:/consumer?errormsg=Consumer%20cannot%20be%20NULL";
+            if (product == null)
+                return "redirect:/consumer?errormsg=Product%20cannot%20be%20NULL";
+            if (amount == null)
+                return "redirect:/consumer?errormsg=Amount%20cannot%20be%20NULL";
+            if (time == null)
+                return "redirect:/consumer?errormsg=Time%20cannot%20be%20NULL";
+            if (completed == null)
+                return "redirect:/consumer?errormsg=Completed%20cannot%20be%20NULL";
         }
 
         if (consumer != null) {
@@ -138,8 +148,6 @@ public class OrderController {
             dao.update(old);
         else
             dao.save(old);
-
-
 
         return "redirect:/order";
     }

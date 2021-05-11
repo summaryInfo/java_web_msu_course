@@ -125,6 +125,16 @@ public class InstanceController {
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new ProductInstance();
             update = false;
+            if (amount == null)
+                return "redirect:/instance?errormsg=Amount%20cannot%20be%20NULL";
+            if (arrival == null)
+                return "redirect:/instance?errormsg=Arrival%20cannot%20be%20NULL";
+            if (room == null)
+                return "redirect:/instance?errormsg=Room%20cannot%20be%20NULL";
+            if (shelf == null)
+                return "redirect:/instance?errormsg=Shelf%20cannot%20be%20NULL";
+            if (source == null)
+                return "redirect:/instance?errormsg=Source%20cannot%20be%20NULL";
         }
 
         if (product != null) {
@@ -171,7 +181,6 @@ public class InstanceController {
             dao.update(old);
         else
             dao.save(old);
-
 
         return "redirect:/instance";
     }

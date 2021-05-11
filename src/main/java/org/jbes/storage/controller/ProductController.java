@@ -98,6 +98,14 @@ public class ProductController {
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new Product();
             update = false;
+            if (name == null)
+                return "redirect:/product?errormsg=Name%20cannot%20be%20NULL";
+            if (category == null)
+                return "redirect:/product?errormsg=Category%20cannot%20be%20NULL";
+            if (unit == null)
+                return "redirect:/product?errormsg=Unit%20cannot%20be%20NULL";
+            if (oversized == null)
+                return "redirect:/product?errormsg=Oversized%20cannot%20be%20NULL";
         }
 
         if (name != null)

@@ -110,6 +110,16 @@ public class SupplyController {
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new Supply();
             update = false;
+            if (provider == null)
+                return "redirect:/supply?errormsg=Provider%20cannot%20be%20NULL";
+            if (product == null)
+                return "redirect:/supply?errormsg=Product%20cannot%20be%20NULL";
+            if (amount == null)
+                return "redirect:/supply?errormsg=Amount%20cannot%20be%20NULL";
+            if (time == null)
+                return "redirect:/supply?errormsg=Time%20cannot%20be%20NULL";
+            if (completed == null)
+                return "redirect:/supply?errormsg=Completed%20cannot%20be%20NULL";
         }
 
         if (provider != null) {

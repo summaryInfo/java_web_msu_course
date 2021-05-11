@@ -92,6 +92,8 @@ public class ProviderController {
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new Provider();
             update = false;
+            if (name == null)
+                return "redirect:/provider?errormsg=Name%20cannot%20be%20NULL";
         }
 
         if (name != null) old.setName(name);

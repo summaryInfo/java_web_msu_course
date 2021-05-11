@@ -75,6 +75,8 @@ public class ProductCategoryController {
         if (qid == null || (old = dao.findById(qid)) == null) {
             old = new ProductCategory();
             update = false;
+            if (name == null)
+                return "redirect:/productcat?errormsg=Name%20cannot%20be%20NULL";
         }
 
         if (name != null)
