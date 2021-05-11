@@ -70,8 +70,8 @@
                 <input id="collapsible-${item.supplyId}" class="toggle" type="checkbox">
                 <label for="collapsible-${item.supplyId}" class="toggle-label">
                     <span> ${item.supplyId} </span>
-                    <span> ${item.provider.providerId} </span>
-                    <span> ${item.product.productId} </span>
+                    <span> <a href="provider?id=${item.provider.providerId}">${item.provider.providerId}</a> </span>
+                    <span> <a href="product?id=${item.product.productId}">${item.product.productId}</a> </span>
                     <span> ${item.amount} </span>
                     <span> ${formatter.format(item.time)} </span>
                     <span> ${item.completed} </span>

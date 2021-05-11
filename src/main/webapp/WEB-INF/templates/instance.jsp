@@ -85,14 +85,14 @@
                 <input id="collapsible-${item.instanceId}" class="toggle" type="checkbox">
                 <label for="collapsible-${item.instanceId}" class="toggle-label">
                     <span> ${item.instanceId} </span>
-                    <span> ${item.product.productId} </span>
+                    <span> <a href="product?id=${item.product.productId}">${item.product.productId}</a> </span>
                     <span> ${item.amount} </span>
                     <span> ${formatter.format(item.arrival)} </span>
                     <span> ${formatter.format(item.expires)} </span>
                     <span> ${item.roomNo} </span>
                     <span> ${item.shelfNo} </span>
-                    <span> ${item.source == null ? "" : item.source.supplyId.toString()} </span>
-                    <span> ${item.destination == null ? "" : item.destination.orderId.toString()} </span>
+                    <span> <a href="supply?id=${item.source == null ? '' : item.source.supplyId}">${item.source == null ? '' : item.source.supplyId}</a> </span>
+                    <span> <a href="orider?id=${item.destination == null ? '' : item.destination.orderId}">${item.destination == null ? '' : item.destination.orderId}</a> </span>
                 </label>
                 <div class="collapsible-content">
                     <div class="content-inner">
@@ -124,11 +124,11 @@
                             </span>
                             <span>
                                 <label for="source"> Source </label>
-                                <input type="number" id="source" name="source" value="${item.source == null ? "" : item.source.supplyId.toString()}">
+                                <input type="number" id="source" name="source" value="${item.source == null ? '' : item.source.supplyId}">
                             </span>
                             <span>
                                 <label for="destination"> Destination </label>
-                                <input type="text" id="destination" name="destination" value="${item.destination == null ? "" : item.destination.orderId.toString()}">
+                                <input type="text" id="destination" name="destination" value="${item.destination == null ? '' : item.destination.orderId}">
                             </span>
                             <input type="submit" name="edit" value="Apply edit"/>
                             <input type="submit" name="delete" value="Delete" formaction="instance_delete"/>
