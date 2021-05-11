@@ -16,7 +16,7 @@
             <form class="table-query" method="GET" action="provider">
                 <span>
                     <label for="id"> ID </label>
-                    <input type="text" id="id" name="id" value="${idvalue}">
+                    <input type="number" id="id" name="id" value="${idvalue}">
                 </span>
                 <span>
                     <label for="name"> Name </label>

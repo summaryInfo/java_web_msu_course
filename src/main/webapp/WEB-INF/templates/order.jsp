@@ -20,19 +20,19 @@
                 </span>
                 <span>
                     <label for="consumer"> Consumer </label>
-                    <input type="text" id="consumer" consumer="consumer" value="${consumervalue}">
+                    <input type="number" id="consumer" consumer="consumer" value="${consumervalue}">
                 </span>
                 <span>
                     <label for="product"> Product </label>
-                    <input type="text" id="product" name="product" value="${productvalue}">
+                    <input type="number" id="product" name="product" value="${productvalue}">
                 </span>
                 <span>
                     <label for="amountlo"> Amount From </label>
-                    <input type="text" id="amountlo" name="amountlo" value="${amountlovalue}">
+                    <input type="number" step="any" id="amountlo" name="amountlo" value="${amountlovalue}">
                 </span>
                 <span>
                     <label for="amounthi"> Amount To </label>
-                    <input type="text" id="amounthi" name="amounthi" value="${amounthivalue}">
+                    <input type="number" step="any" id="amounthi" name="amounthi" value="${amounthivalue}">
                 </span>
                 <span>
                     <label for="timelo"> Time From </label>
@@ -82,15 +82,15 @@
                             <input type="hidden" id="qid", name="qid", value="${item.orderId}">
                             <span>
                                 <label for="consumer"> Consumer </label>
-                                <input type="text" id="consumer" name="consumer" value="${item.consumerId}">
+                                <input type="number" id="consumer" name="consumer" value="${item.consumerId}">
                             </span>
                             <span>
                                 <label for="product"> Product </label>
-                                <input type="text" id="product" name="product" value="${item.productId}">
+                                <input type="number" id="product" name="product" value="${item.productId}">
                             </span>
                             <span>
                                 <label for="amount"> Amount </label>
-                                <input type="text" id="amount" name="amount" value="${item.amount}">
+                                <input type="number" step="any" id="amount" name="amount" value="${item.amount}">
                             </span>
                             <span>
                                 <label for="time"> Time </label>

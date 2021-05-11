@@ -16,7 +16,7 @@
             <form class="table-query" method="GET" action="product">
                 <span>
                     <label for="id"> ID </label>
-                    <input type="text" id="id" name="id" value="${idvalue}">
+                    <input type="number" id="id" name="id" value="${idvalue}">
                 </span>
                 <span>
                     <label for="name"> Name </label>
@@ -28,7 +28,7 @@
                 </span>
                 <span>
                     <label for="category"> Category </label>
-                    <input type="text" id="category" name="category" value="${categoryvalue}">
+                    <input type="number" id="category" name="category" value="${categoryvalue}">
                 </span>
                 <span>
                     <label for="unit"> Unit </label>
@@ -82,7 +82,7 @@
                             </span>
                             <span>
                                 <label for="category"> Category </label>
-                                <input type="text" id="category" name="category" value="${item.category.categoryId}">
+                                <input type="number" id="category" name="category" value="${item.category.categoryId}">
                             </span>
                             <span>
                                 <label for="unit"> Unit </label>

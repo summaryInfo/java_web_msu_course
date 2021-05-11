@@ -16,23 +16,23 @@
             <form class="table-query" method="GET" action="supply">
                 <span>
                     <label for="id"> ID </label>
-                    <input type="text" id="id" name="id" value="${idvalue}">
+                    <input type="number" id="id" name="id" value="${idvalue}">
                 </span>
                 <span>
                     <label for="provider"> Provider </label>
-                    <input type="text" id="provider" provider="provider" value="${providervalue}">
+                    <input type="number" id="provider" provider="provider" value="${providervalue}">
                 </span>
                 <span>
                     <label for="product"> Product </label>
-                    <input type="text" id="product" name="product" value="${productvalue}">
+                    <input type="number" id="product" name="product" value="${productvalue}">
                 </span>
                 <span>
                     <label for="amountlo"> Amount From </label>
-                    <input type="text" id="amountlo" name="amountlo" value="${amountlovalue}">
+                    <input type="number" step="any" id="amountlo" name="amountlo" value="${amountlovalue}">
                 </span>
                 <span>
                     <label for="amounthi"> Amount To </label>
-                    <input type="text" id="amounthi" name="amounthi" value="${amounthivalue}">
+                    <input type="number" step="any" id="amounthi" name="amounthi" value="${amounthivalue}">
                 </span>
                 <span>
                     <label for="timelo"> Time From </label>

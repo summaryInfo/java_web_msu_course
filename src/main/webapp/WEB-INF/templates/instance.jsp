@@ -16,19 +16,19 @@
             <form class="table-query" method="GET" action="instance">
                 <span>
                     <label for="id"> ID </label>
-                    <input type="text" id="id" name="id" value="${idvalue}">
+                    <input type="number" id="id" name="id" value="${idvalue}">
                 </span>
                 <span>
                     <label for="product"> Product </label>
-                    <input type="text" id="product" name="product" value="${productvalue}">
+                    <input type="number" id="product" name="product" value="${productvalue}">
                 </span>
                 <span>
                     <label for="amountlo"> Amount From </label>
-                    <input type="text" id="amountlo" name="amountlo" value="${amountlovalue}">
+                    <input type="number" step="any" id="amountlo" name="amountlo" value="${amountlovalue}">
                 </span>
                 <span>
                     <label for="amounthi"> Amount To </label>
-                    <input type="text" id="amounthi" name="amounthi" value="${amounthivalue}">
+                    <input type="number" step="any" id="amounthi" name="amounthi" value="${amounthivalue}">
                 </span>
                 <span>
                     <label for="arrivallo"> Arrival From </label>
@@ -48,19 +48,19 @@
                 </span>
                 <span>
                     <label for="room"> Room </label>
-                    <input type="text" id="room" name="room" value="${roomvalue}">
+                    <input type="number" id="room" name="room" value="${roomvalue}">
                 </span>
                 <span>
                     <label for="shelf"> Shelf </label>
-                    <input type="text" id="shelf" name="shelf" value="${shelfvalue}">
+                    <input type="number" id="shelf" name="shelf" value="${shelfvalue}">
                 </span>
                 <span>
                     <label for="source"> Source </label>
-                    <input type="text" id="source" name="source" value="${sourcevalue}">
+                    <input type="number" id="source" name="source" value="${sourcevalue}">
                 </span>
                 <span>
                     <label for="destination"> Destination </label>
-                    <input type="text" id="destination" name="destination" value="${destinationvalue}">
+                    <input type="number" id="destination" name="destination" value="${destinationvalue}">
                 </span>
                 <input type="submit" name="query" value="Apply query"/>
                 <input type="submit" name="create" value="+" formaction="instance_applyedit" formmethod="POST"/>
@@ -100,11 +100,11 @@
                             <input type="hidden" id="qid", name="qid", value="${item.instanceId}">
                             <span>
                                 <label for="product"> Product </label>
-                                <input type="text" id="product" product="product" value="${item.product.productId}">
+                                <input type="number" id="product" product="product" value="${item.product.productId}">
                             </span>
                             <span>
                                 <label for="amount"> Amount </label>
-                                <input type="text" id="amount" name="amount" value="${item.amount}">
+                                <input type="number" step="any" id="amount" name="amount" value="${item.amount}">
                             </span>
                             <span>
                                 <label for="arrival"> Arrival </label>
@@ -116,15 +116,15 @@
                             </span>
                             <span>
                                 <label for="room"> Room </label>
-                                <input type="text" id="room" name="room" value="${item.roomNo}">
+                                <input type="number" id="room" name="room" value="${item.roomNo}">
                             </span>
                             <span>
                                 <label for="shelf"> Shelf </label>
-                                <input type="text" id="shelf" name="shelf" value="${item.shelfNo}">
+                                <input type="number" id="shelf" name="shelf" value="${item.shelfNo}">
                             </span>
                             <span>
                                 <label for="source"> Source </label>
-                                <input type="text" id="source" name="source" value="${item.source == null ? "" : item.source.supplyId.toString()}">
+                                <input type="number" id="source" name="source" value="${item.source == null ? "" : item.source.supplyId.toString()}">
                             </span>
                             <span>
                                 <label for="destination"> Destination </label>
