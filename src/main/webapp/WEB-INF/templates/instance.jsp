@@ -32,19 +32,19 @@
                 </span>
                 <span>
                     <label for="arrivallo"> Arrival From </label>
-                    <input type="datetime-local" id="arrivallo" name="arrivallo" value="${arrivallovalue}">
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="arrivallo" name="arrivallo" value="${arrivallovalue}">
                 </span>
                 <span>
                     <label for="arrivalhi"> Arrival To </label>
-                    <input type="datetime-local" id="arrivalhi" name="arrivalhi" value="${arrivalhivalue}">
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="arrivalhi" name="arrivalhi" value="${arrivalhivalue}">
                 </span>
                 <span>
                     <label for="expireslo"> Expires From </label>
-                    <input type="datetime-local" id="expireslo" name="expireslo" value="${expireslovalue}">
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="expireslo" name="expireslo" value="${expireslovalue}">
                 </span>
                 <span>
                     <label for="expireshi"> Expires To </label>
-                    <input type="datetime-local" id="expireshi" name="expireshi" value="${expireshivalue}">
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="expireshi" name="expireshi" value="${expireshivalue}">
                 </span>
                 <span>
                     <label for="room"> Room </label>
