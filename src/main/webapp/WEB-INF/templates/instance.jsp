@@ -94,7 +94,7 @@
                     <span> <a href="supply?id=${item.source == null ? '' : item.source.supplyId}">${item.source == null ? '' : item.source.supplyId}</a> </span>
                     <span> <a href="orider?id=${item.destination == null ? '' : item.destination.orderId}">${item.destination == null ? '' : item.destination.orderId}</a> </span>
                 </label>
-                <div class="collapsible-content">
+                <div id="collapsible-content-${item.instanceId}" class="collapsible-content">
                     <div class="content-inner">
                         <form method="POST" action="instance_applyedit">
                             <input type="hidden" name="qid" value="${item.instanceId}">

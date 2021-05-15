@@ -64,7 +64,7 @@
                     <span> ${item.tel} </span>
                     <span> ${item.email} </span>
                 </label>
-                <div class="collapsible-content">
+                <div id="collapsible-content-${item.providerId}" class="collapsible-content">
                     <div class="content-inner">
                         <form method="POST" action="provider_applyedit">
                             <input type="hidden" name="qid" value="${item.providerId}">

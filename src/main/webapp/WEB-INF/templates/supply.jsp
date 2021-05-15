@@ -76,7 +76,7 @@
                     <span> ${formatter.format(item.time)} </span>
                     <span> ${item.completed} </span>
                 </label>
-                <div class="collapsible-content">
+                <div id="collapsible-content-${item.supplyId}" class="collapsible-content">
                     <div class="content-inner">
                         <form method="POST" action="supply_applyedit">
                             <input type="hidden" name="qid" value="${item.supplyId}">

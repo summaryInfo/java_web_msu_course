@@ -68,7 +68,7 @@
                     <span> ${item.unit} </span>
                     <span> ${item.oversized} </span>
                 </label>
-                <div class="collapsible-content">
+                <div id="collapsible-content-${item.productId}" class="collapsible-content">
                     <div class="content-inner">
                         <form method="POST" action="product_applyedit">
                             <input type="hidden" name="qid" value="${item.productId}">

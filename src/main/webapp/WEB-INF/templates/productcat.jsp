@@ -46,7 +46,7 @@
                     <span> ${item.name} </span>
                     <span> ${item.description} </span>
                 </label>
-                <div class="collapsible-content">
+                <div id="collapsible-content-${item.categoryId}" class="collapsible-content">
                     <div class="content-inner">
                         <form method="POST" action="productcat_applyedit">
                             <input type="hidden" name="qid" value="${item.categoryId}">
