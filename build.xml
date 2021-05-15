@@ -80,4 +80,19 @@
             <xmlfileset dir="src/test/resources" includes="testng.xml"/>
         </testng>
     </target>
+
+    <target name="testhtml" depends="build">
+        <fileset id="tests" dir="${project.dst}">
+            <include name="*"/>
+        </fileset>
+
+        <testng mode="mixed" classfilesetref="tests" outputdir="${test.dst}">
+            <classpath location="${project.dst}"/>
+            <classpath>
+                <fileset dir="${lib.dir}" includes="*.jar"/>
+                <fileset dir="${project.dst}" includes="*"/>
+            </classpath>
+            <xmlfileset dir="src/test/resources" includes="testng-html.xml"/>
+        </testng>
+    </target>
 </project>
