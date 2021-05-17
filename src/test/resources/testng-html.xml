@@ -10,4 +10,9 @@
             <class name="org.jbes.storage.tests.ProductPageTest"/>
         </classes>
     </test>
+    <test name="ProductInstancePageTest">
+        <classes>
+            <class name="org.jbes.storage.tests.ProductInstancePageTest"/>
+        </classes>
+    </test>
 </suite>
