@@ -25,4 +25,14 @@
             <class name="org.jbes.storage.tests.SupplyPageTest"/>
         </classes>
     </test>
+    <test name="ConsumerPageTest">
+        <classes>
+            <class name="org.jbes.storage.tests.ConsumerPageTest"/>
+        </classes>
+    </test>
+    <test name="ProviderPageTest">
+        <classes>
+            <class name="org.jbes.storage.tests.ProviderPageTest"/>
+        </classes>
+    </test>
 </suite>
