@@ -16,42 +16,42 @@
             <form class="table-query" method="GET" action="supply">
                 <span>
                     <label for="id"> ID </label>
-                    <input type="number" id="id" name="id" value="${idvalue}">
+                    <input type="number" id="query_id" name="id" value="${idvalue}">
                 </span>
                 <span>
                     <label for="provider"> Provider </label>
-                    <input type="number" id="provider" name="provider" value="${providervalue}">
+                    <input type="number" id="query_provider" name="provider" value="${providervalue}">
                 </span>
                 <span>
                     <label for="product"> Product </label>
-                    <input type="number" id="product" name="product" value="${productvalue}">
+                    <input type="number" id="query_product" name="product" value="${productvalue}">
                 </span>
                 <span>
                     <label for="amount"> Amount From </label>
-                    <input type="number" step="any" id="amount" name="amount" value="${amountvalue}">
+                    <input type="number" step="any" id="query_amount" name="amount" value="${amountvalue}">
                 </span>
                 <span>
                     <label for="amounthi"> Amount To </label>
-                    <input type="number" step="any" id="amounthi" name="amounthi" value="${amounthivalue}">
+                    <input type="number" step="any" id="query_amounthi" name="amounthi" value="${amounthivalue}">
                 </span>
                 <span>
                     <label for="time"> Time From </label>
-                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="time" name="time" value="${timevalue}">
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="query_time" name="time" value="${timevalue}">
                 </span>
                 <span>
                     <label for="timehi"> Time To </label>
-                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="timehi" name="timehi" value="${timehivalue}">
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="query_timehi" name="timehi" value="${timehivalue}">
                 </span>
                 <span>
                     <label for="completed"> Completed </label>
-                    <select type="checkbox" id="completed" name="completed" value="${completedvalue}">
+                    <select type="checkbox" id="query_completed" name="completed" value="${completedvalue}">
                         <option value="">Any</option>
                         <option value="true"  ${completedvalue == "true" ? "selected" : ""}>True</option>
                         <option value="false"  ${completedvalue == "false" ? "selected" : ""}>False</option>
                     </select>
                 </span>
-                <input type="submit" name="query" value="Apply query"/>
-                <input type="submit" name="create" value="+" formaction="supply_applyedit" formmethod="POST"/>
+                <input type="submit" name="query" id="query" value="Apply query"/>
+                <input type="submit" name="create" id="create" value="+" formaction="supply_applyedit" formmethod="POST"/>
             </form>
             <c:if test="${errormsg.length() > 0}">
                 <div class="error">
