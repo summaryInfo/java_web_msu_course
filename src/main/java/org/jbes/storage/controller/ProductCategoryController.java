@@ -1,6 +1,5 @@
 package org.jbes.storage.controller;
 
-import org.jbes.storage.WebConfig;
 import org.jbes.storage.dao.ProductCategoryDAO;
 import org.jbes.storage.entity.ProductCategory;
 
@@ -9,18 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.ArrayList;
 
 @Controller
 public class ProductCategoryController {
+    @Autowired
+    private ProductCategoryDAO dao;
+
     @RequestMapping(value = "/productcat", method = RequestMethod.GET)
     public ModelAndView productCat(@RequestParam(required = false) String errormsg,
             @RequestParam(required = false) Long id, @RequestParam(required = false) String name,
             @RequestParam(required = false) String description) {
         ModelAndView modelAndView = new ModelAndView("productcat");
-        ProductCategoryDAO dao = WebConfig.productCategoryDAO();
 
         if (name != null && name.length() == 0)
             name = null;
@@ -51,7 +53,6 @@ public class ProductCategoryController {
 
     @RequestMapping(value = "/productcat_delete", method = RequestMethod.POST)
     public String productCatDelete(@RequestParam(required = false) Long qid) {
-        ProductCategoryDAO dao = WebConfig.productCategoryDAO();
         if (qid != null) {
             ProductCategory cat = dao.findById(qid);
             if (cat != null)
@@ -63,7 +64,6 @@ public class ProductCategoryController {
     @RequestMapping(value = "/productcat_applyedit", method = RequestMethod.POST)
     public String productCatModify(@RequestParam(required = false) Long qid,
             @RequestParam(required = false) String name, @RequestParam(required = false) String description) {
-        ProductCategoryDAO dao = WebConfig.productCategoryDAO();
 
         if (name != null && name.length() == 0)
             name = null;

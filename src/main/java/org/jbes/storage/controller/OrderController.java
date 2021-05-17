@@ -1,6 +1,5 @@
 package org.jbes.storage.controller;
 
-import org.jbes.storage.WebConfig;
 import org.jbes.storage.dao.OrderDAO;
 import org.jbes.storage.dao.ConsumerDAO;
 import org.jbes.storage.dao.ProductDAO;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -23,6 +23,13 @@ import java.text.SimpleDateFormat;
 
 @Controller
 public class OrderController {
+    @Autowired
+    private OrderDAO dao;
+    @Autowired
+    private ConsumerDAO cdao;
+    @Autowired
+    private ProductDAO pdao;
+
     @RequestMapping(value = "/order", method = RequestMethod.GET)
     public ModelAndView order(@RequestParam(required = false) String errormsg, @RequestParam(required = false) Long id,
             @RequestParam(required = false) Long consumer, @RequestParam(required = false) Long product,
@@ -31,9 +38,6 @@ public class OrderController {
             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date timehi,
             @RequestParam(required = false) Boolean completed) {
         ModelAndView modelAndView = new ModelAndView("order");
-        OrderDAO dao = WebConfig.orderDAO();
-        ConsumerDAO cdao = WebConfig.consumerDAO();
-        ProductDAO pdao = WebConfig.productDAO();
 
         DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -86,7 +90,6 @@ public class OrderController {
 
     @RequestMapping(value = "/order_delete", method = RequestMethod.POST)
     public String orderDelete(@RequestParam(required = false) Long qid) {
-        OrderDAO dao = WebConfig.orderDAO();
         if (qid != null) {
             Order cat = dao.findById(qid);
             if (cat != null)
@@ -100,9 +103,6 @@ public class OrderController {
             @RequestParam(required = false) Long product, @RequestParam(required = false) Double amount,
             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date time,
             @RequestParam(required = false) Boolean completed) {
-        OrderDAO dao = WebConfig.orderDAO();
-        ConsumerDAO cdao = WebConfig.consumerDAO();
-        ProductDAO pdao = WebConfig.productDAO();
 
         Order old;
         boolean update = true;

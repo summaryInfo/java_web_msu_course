@@ -1,6 +1,5 @@
 package org.jbes.storage.controller;
 
-import org.jbes.storage.WebConfig;
 import org.jbes.storage.dao.SupplyDAO;
 import org.jbes.storage.dao.ProviderDAO;
 import org.jbes.storage.dao.ProductDAO;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -23,6 +23,13 @@ import java.text.SimpleDateFormat;
 
 @Controller
 public class SupplyController {
+    @Autowired
+    private SupplyDAO dao;
+    @Autowired
+    private ProviderDAO cdao;
+    @Autowired
+    private ProductDAO pdao;
+
     @RequestMapping(value = "/supply", method = RequestMethod.GET)
     public ModelAndView supply(@RequestParam(required = false) String errormsg, @RequestParam(required = false) Long id,
             @RequestParam(required = false) Long provider, @RequestParam(required = false) Long product,
@@ -31,9 +38,6 @@ public class SupplyController {
             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date timehi,
             @RequestParam(required = false) Boolean completed) {
         ModelAndView modelAndView = new ModelAndView("supply");
-        SupplyDAO dao = WebConfig.supplyDAO();
-        ProviderDAO cdao = WebConfig.providerDAO();
-        ProductDAO pdao = WebConfig.productDAO();
 
         DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -87,7 +91,6 @@ public class SupplyController {
 
     @RequestMapping(value = "/supply_delete", method = RequestMethod.POST)
     public String supplyDelete(@RequestParam(required = false) Long qid) {
-        SupplyDAO dao = WebConfig.supplyDAO();
         if (qid != null) {
             Supply cat = dao.findById(qid);
             if (cat != null)
@@ -101,9 +104,6 @@ public class SupplyController {
             @RequestParam(required = false) Long product, @RequestParam(required = false) Double amount,
             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date time,
             @RequestParam(required = false) Boolean completed) {
-        SupplyDAO dao = WebConfig.supplyDAO();
-        ProviderDAO cdao = WebConfig.providerDAO();
-        ProductDAO pdao = WebConfig.productDAO();
 
         Supply old;
         boolean update = true;

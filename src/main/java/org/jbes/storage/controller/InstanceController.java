@@ -1,6 +1,5 @@
 package org.jbes.storage.controller;
 
-import org.jbes.storage.WebConfig;
 import org.jbes.storage.dao.*;
 import org.jbes.storage.entity.*;
 
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -19,6 +19,15 @@ import java.text.SimpleDateFormat;
 
 @Controller
 public class InstanceController {
+    @Autowired
+    private ProductInstanceDAO dao;
+    @Autowired
+    private ProductDAO pdao;
+    @Autowired
+    private OrderDAO odao;
+    @Autowired
+    private SupplyDAO sdao;
+
     @RequestMapping(value = "/instance", method = RequestMethod.GET)
     public ModelAndView instance(@RequestParam(required = false) String errormsg,
             @RequestParam(required = false) Long id, @RequestParam(required = false) Long product,
@@ -30,10 +39,6 @@ public class InstanceController {
             @RequestParam(required = false) Integer room, @RequestParam(required = false) Integer shelf,
             @RequestParam(required = false) Long source, @RequestParam(required = false) Long destination) {
         ModelAndView modelAndView = new ModelAndView("instance");
-        ProductInstanceDAO dao = WebConfig.productInstanceDAO();
-        ProductDAO pdao = WebConfig.productDAO();
-        OrderDAO odao = WebConfig.orderDAO();
-        SupplyDAO sdao = WebConfig.supplyDAO();
 
         DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -99,7 +104,6 @@ public class InstanceController {
 
     @RequestMapping(value = "/instance_delete", method = RequestMethod.POST)
     public String instanceDelete(@RequestParam(required = false) Long qid) {
-        ProductInstanceDAO dao = WebConfig.productInstanceDAO();
         if (qid != null) {
             ProductInstance cat = dao.findById(qid);
             if (cat != null)
@@ -115,10 +119,6 @@ public class InstanceController {
             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date expires,
             @RequestParam(required = false) Integer room, @RequestParam(required = false) Integer shelf,
             @RequestParam(required = false) Long source, @RequestParam(required = false) Long destination) {
-        ProductInstanceDAO dao = WebConfig.productInstanceDAO();
-        ProductDAO pdao = WebConfig.productDAO();
-        OrderDAO odao = WebConfig.orderDAO();
-        SupplyDAO sdao = WebConfig.supplyDAO();
 
         boolean update = true;
         ProductInstance old;

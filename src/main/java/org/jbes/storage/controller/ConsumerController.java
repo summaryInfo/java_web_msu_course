@@ -1,6 +1,5 @@
 package org.jbes.storage.controller;
 
-import org.jbes.storage.WebConfig;
 import org.jbes.storage.dao.ConsumerDAO;
 import org.jbes.storage.entity.Consumer;
 
@@ -9,19 +8,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.ArrayList;
 
 @Controller
 public class ConsumerController {
+    @Autowired
+    private ConsumerDAO dao;
+
     @RequestMapping(value = "/consumer", method = RequestMethod.GET)
     public ModelAndView consumer(@RequestParam(required = false) String errormsg,
             @RequestParam(required = false) Long id, @RequestParam(required = false) String name,
             @RequestParam(required = false) String description, @RequestParam(required = false) String address,
             @RequestParam(required = false) String phone, @RequestParam(required = false) String email) {
         ModelAndView modelAndView = new ModelAndView("consumer");
-        ConsumerDAO dao = WebConfig.consumerDAO();
 
         if (name != null && name.length() == 0)
             name = null;
@@ -60,7 +62,6 @@ public class ConsumerController {
 
     @RequestMapping(value = "/consumer_delete", method = RequestMethod.POST)
     public String consumerDelete(@RequestParam(required = false) Long qid) {
-        ConsumerDAO dao = WebConfig.consumerDAO();
         if (qid != null) {
             Consumer cat = dao.findById(qid);
             if (cat != null)
@@ -73,8 +74,6 @@ public class ConsumerController {
     public String consumerModify(@RequestParam(required = false) Long qid, @RequestParam(required = false) String name,
             @RequestParam(required = false) String description, @RequestParam(required = false) String address,
             @RequestParam(required = false) String phone, @RequestParam(required = false) String email) {
-        ConsumerDAO dao = WebConfig.consumerDAO();
-
         if (name != null && name.length() == 0)
             name = null;
         if (description != null && description.length() == 0)
