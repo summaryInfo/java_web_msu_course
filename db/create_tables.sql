@@ -18,7 +18,7 @@ CREATE TABLE providers(
     name text NOT NULL,
     description text,
     address text,
-    tel text,
+    phone text,
     email text
 );
 
@@ -27,7 +27,7 @@ CREATE TABLE consumers(
     name text NOT NULL,
     description text,
     address text,
-    tel text,
+    phone text,
     email text
 );
 

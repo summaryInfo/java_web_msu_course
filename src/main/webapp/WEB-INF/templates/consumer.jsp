@@ -31,8 +31,8 @@
                     <input type="text" id="query_address" name="address" value="${addressvalue}">
                 </span>
                 <span>
-                    <label for="tel"> Phone </label>
-                    <input type="text" id="query_tel" name="tel" value="${telvalue}">
+                    <label for="phone"> Phone </label>
+                    <input type="text" id="query_phone" name="phone" value="${phonevalue}">
                 </span>
                 <span>
                     <label for="email"> E-Mail </label>
@@ -61,7 +61,7 @@
                     <span> ${item.name} </span>
                     <span> ${item.description} </span>
                     <span> ${item.address} </span>
-                    <span> ${item.tel} </span>
+                    <span> ${item.phone} </span>
                     <span> ${item.email} </span>
                 </label>
                 <div id="collapsible-content-${item.consumerId}" class="collapsible-content">
@@ -81,8 +81,8 @@
                                 <input type="text" name="address" value="${item.address}">
                             </span>
                             <span>
-                                <label for="tel"> Phone </label>
-                                <input type="text" name="tel" value="${item.tel}">
+                                <label for="phone"> Phone </label>
+                                <input type="text" name="phone" value="${item.phone}">
                             </span>
                             <span>
                                 <label for="email"> E-Mail </label>

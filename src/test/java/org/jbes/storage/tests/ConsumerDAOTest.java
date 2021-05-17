@@ -28,7 +28,7 @@ public class ConsumerDAOTest {
 
     @Test
     public void testFindAllMatching2() {
-        List<Consumer> results = dao.findAllMatching("A potato consumer", null, null, cons.getTel(), cons.getEmail());
+        List<Consumer> results = dao.findAllMatching("A potato consumer", null, null, cons.getPhone(), cons.getEmail());
         Assert.assertEquals(results.get(0), cons, "Result does not contain some required reults");
         Assert.assertEquals(results.size(), 1, "Non-matching results returned");
     }

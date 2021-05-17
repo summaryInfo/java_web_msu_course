@@ -46,7 +46,7 @@ public class ProviderDAOTest {
     @Test
     public void testFindAllMatching2() {
         List<Provider> result = dao.findAllMatching("Food source", "Test description for food provider", null,
-                plist.get(0).getTel(), plist.get(0).getEmail());
+                plist.get(0).getPhone(), plist.get(0).getEmail());
         Assert.assertEquals(result.get(0), plist.get(0), "Result does not contain some required reults");
         Assert.assertEquals(result.size(), 1, "Non-matching results returned");
     }

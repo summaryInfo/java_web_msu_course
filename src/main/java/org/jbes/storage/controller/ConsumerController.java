@@ -101,7 +101,7 @@ public class ConsumerController {
         if (address != null)
             old.setAddress(address);
         if (phone != null)
-            old.setTel(phone);
+            old.setPhone(phone);
         if (email != null)
             old.setEmail(email);
 

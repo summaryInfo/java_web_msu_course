@@ -13,7 +13,7 @@ public class ConsumerDAO extends GenericDAO<Consumer> {
         super(factory, Consumer.class);
     }
 
-    public List<Consumer> findAllMatching(String name, String description, String address, String tel, String email) {
+    public List<Consumer> findAllMatching(String name, String description, String address, String phone, String email) {
         CriteriaBuilder builder = factory.getCriteriaBuilder();
         Session session = factory.openSession();
         CriteriaQuery<Consumer> query = builder.createQuery(Consumer.class);
@@ -33,8 +33,8 @@ public class ConsumerDAO extends GenericDAO<Consumer> {
             Expression<Boolean> n = builder.like(root.get(Consumer_.address), address);
             restr = restr != null ? builder.and(restr, n) : n;
         }
-        if (tel != null) {
-            Expression<Boolean> n = builder.like(root.get(Consumer_.tel), tel);
+        if (phone != null) {
+            Expression<Boolean> n = builder.like(root.get(Consumer_.phone), phone);
             restr = restr != null ? builder.and(restr, n) : n;
         }
         if (email != null) {

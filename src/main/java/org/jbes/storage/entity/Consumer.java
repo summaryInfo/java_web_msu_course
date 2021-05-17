@@ -18,19 +18,19 @@ public class Consumer {
 
     private String address;
 
-    private String tel;
+    private String phone;
 
     private String email;
 
     public Consumer() {
     }
 
-    public Consumer(Long id, String name, String description, String address, String tel, String email) {
+    public Consumer(Long id, String name, String description, String address, String phone, String email) {
         this.consumerId = id;
         this.name = name;
         this.description = description;
         this.address = address;
-        this.tel = tel;
+        this.phone = phone;
         this.email = email;
     }
 
@@ -66,12 +66,12 @@ public class Consumer {
         this.address = address;
     }
 
-    public String getTel() {
-        return tel;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -99,7 +99,7 @@ public class Consumer {
             return false;
         if ((address == null) != (other.address == null) || (address != null && !other.address.equals(address)))
             return false;
-        if ((tel == null) != (other.tel == null) || (tel != null && !other.tel.equals(tel)))
+        if ((phone == null) != (other.phone == null) || (phone != null && !other.phone.equals(phone)))
             return false;
         if ((email == null) != (other.email == null) || (email != null && !other.email.equals(email)))
             return false;
@@ -111,7 +111,7 @@ public class Consumer {
         return "Consumer(consumerId=" + (consumerId != null ? consumerId.toString() : "<NULL>") + ", name="
                 + (name != null ? name.toString() : "<NULL>") + ", description="
                 + (description != null ? description.toString() : "<NULL>") + ", address="
-                + (address != null ? address : "<NULL>") + ", tel=" + (tel != null ? tel : "<NULL>") + ", email="
+                + (address != null ? address : "<NULL>") + ", phone=" + (phone != null ? phone : "<NULL>") + ", email="
                 + (email != null ? email : "<NULL>") + ")";
     }
 }

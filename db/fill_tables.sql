@@ -12,12 +12,12 @@ INSERT INTO products(productId, name, description, categoryId, unit, oversized) 
     (105, 'Electric teapot', NULL, 104, 'Item', FALSE),
     (106, 'Refrigerator', NULL, 104, 'Box', TRUE);
 
-INSERT INTO providers(providerId, name, description, address, tel, email) VALUES
+INSERT INTO providers(providerId, name, description, address, phone, email) VALUES
     (101, 'Food source', 'Test description for food provider', NULL, '1(111)111-11-11', 'food@source.com'),
     (102, 'Chemicals source', 'Test description for chemicals source', NULL, '2(222)222-22-22', 'contact@chemicals123.com'),
     (103, 'Electronics provider', 'Test description for electronics provider', NULL, '3(333)333-33-33', 'mail@allelectronics.net');
 
-INSERT INTO consumers(consumerId, name, description, address, tel, email) VALUES
+INSERT INTO consumers(consumerId, name, description, address, phone, email) VALUES
     (101, 'A potato consumer', NULL, NULL, '4(444)444-44-44', 'ilove@potates.com');
 
 INSERT INTO supplies(supplyId, providerId, productId, amount, time, completed) VALUES

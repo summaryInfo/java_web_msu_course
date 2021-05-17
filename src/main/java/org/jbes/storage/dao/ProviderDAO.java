@@ -16,7 +16,7 @@ public class ProviderDAO extends GenericDAO<Provider> {
         super(factory, Provider.class);
     }
 
-    public List<Provider> findAllMatching(String name, String description, String address, String tel, String email) {
+    public List<Provider> findAllMatching(String name, String description, String address, String phone, String email) {
         CriteriaBuilder builder = factory.getCriteriaBuilder();
         Session session = factory.openSession();
         CriteriaQuery<Provider> query = builder.createQuery(Provider.class);
@@ -36,8 +36,8 @@ public class ProviderDAO extends GenericDAO<Provider> {
             Expression<Boolean> n = builder.like(root.get(Provider_.address), address);
             restr = restr != null ? builder.and(restr, n) : n;
         }
-        if (tel != null) {
-            Expression<Boolean> n = builder.like(root.get(Provider_.tel), tel);
+        if (phone != null) {
+            Expression<Boolean> n = builder.like(root.get(Provider_.phone), phone);
             restr = restr != null ? builder.and(restr, n) : n;
         }
         if (email != null) {
