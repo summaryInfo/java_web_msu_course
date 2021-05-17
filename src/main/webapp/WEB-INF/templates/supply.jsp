@@ -20,7 +20,7 @@
                 </span>
                 <span>
                     <label for="provider"> Provider </label>
-                    <input type="number" id="provider" provider="provider" value="${providervalue}">
+                    <input type="number" id="provider" name="provider" value="${providervalue}">
                 </span>
                 <span>
                     <label for="product"> Product </label>

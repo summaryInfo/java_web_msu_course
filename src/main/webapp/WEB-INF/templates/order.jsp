@@ -20,7 +20,7 @@
                 </span>
                 <span>
                     <label for="consumer"> Consumer </label>
-                    <input type="number" id="query_consumer" consumer="consumer" value="${consumervalue}">
+                    <input type="number" id="query_consumer" name="consumer" value="${consumervalue}">
                 </span>
                 <span>
                     <label for="product"> Product </label>

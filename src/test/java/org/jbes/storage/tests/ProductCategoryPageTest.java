@@ -53,7 +53,6 @@ public class ProductCategoryPageTest {
     Assert.assertEquals(driver.findElements(By.cssSelector(".collapsible-content")).size(), 1);
 
     driver.findElement(By.id("query_id")).clear();
-    driver.findElement(By.id("query_id")).sendKeys("");
     driver.findElement(By.id("query_name")).clear();
     driver.findElement(By.id("query_name")).sendKeys("Fo%");
     driver.findElement(By.id("query_query")).click();
