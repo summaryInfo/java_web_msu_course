@@ -131,7 +131,7 @@
                                 <input type="text" name="destination" value="${item.destination == null ? '' : item.destination.orderId}">
                             </span>
                             <input type="submit" name="edit" value="Apply edit"/>
-                            <input type="submit" name="delete" value="Delete"/>
+                            <input type="submit" name="delete" value="Delete" formaction="instance_delete"/>
                         </form>
                     </div>
                 </div>
