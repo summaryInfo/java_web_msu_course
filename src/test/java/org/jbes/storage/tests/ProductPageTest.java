@@ -9,13 +9,15 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
+import java.util.List;
+
 public class ProductPageTest {
   private WebDriver driver;
 
   @BeforeClass
   public void setUp() {
     driver = new FirefoxDriver();
-    //driver.get("http://127.0.0.1:8080/app/productcat");
+    //driver.get("http://127.0.0.1:8080/app/product");
     driver.get("http://192.168.1.39:8080/app/product");
     driver.manage().window().maximize();
   }
@@ -98,48 +100,58 @@ public class ProductPageTest {
     (new Select(driver.findElement(By.id("query_oversized")))).selectByVisibleText("True");
     driver.findElement(By.id("query_create")).click();
 
-    Assert.assertEquals(driver.findElement(By.cssSelector(".toggle-label:last-of-type span:nth-of-type(2)")).getText(), "A");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".toggle-label:last-of-type span:nth-of-type(3)")).getText(), "B");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".toggle-label:last-of-type span:nth-of-type(4)")).getText(), "101");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".toggle-label:last-of-type span:nth-of-type(5)")).getText(), "C");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".toggle-label:last-of-type span:nth-of-type(6)")).getText(), "true");
+    List<WebElement> els = driver.findElements(By.cssSelector(".toggle-label span:nth-of-type(1)"));
+    String newid = null;
+    for (WebElement el : els) {
+        Long l = Long.parseLong(el.getText());
+        if (l < 100L) {
+            newid = el.getText();
+            break;
+        }
+    }
+    Assert.assertNotNull(newid);
 
-    driver.findElement(By.cssSelector(".toggle-label:last-of-type span:nth-of-type(1)")).click();
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-" + newid + " + label span:nth-of-type(2)")).getText(), "A");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-" + newid + " + label span:nth-of-type(3)")).getText(), "B");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-" + newid + " + label span:nth-of-type(4)")).getText(), "101");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-" + newid + " + label span:nth-of-type(5)")).getText(), "C");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-" + newid + " + label span:nth-of-type(6)")).getText(), "true");
+
+    driver.findElement(By.cssSelector("#collapsible-" + newid + " + label span:nth-of-type(1)")).click();
 
     WebDriverWait wait = new WebDriverWait(driver, 10);
-    WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(1) input")));
+    WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(1) input")));
 
-    Assert.assertEquals(driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(1) input")).getAttribute("value"), "A");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(2) input")).getAttribute("value"), "B");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(3) input")).getAttribute("value"), "101");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(4) input")).getAttribute("value"), "C");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(5) input")).getAttribute("checked"), "true");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(1) input")).getAttribute("value"), "A");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(2) input")).getAttribute("value"), "B");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(3) input")).getAttribute("value"), "101");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(4) input")).getAttribute("value"), "C");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(5) input")).getAttribute("checked"), "true");
 
-    driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(1) input")).sendKeys("c");
-    driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(2) input")).sendKeys("c");
-    driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(3) input")).clear();
-    driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(3) input")).sendKeys("102");
-    driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(4) input")).sendKeys("c");
-    driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(5) input")).click();
-    driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form input:nth-of-type(2)")).click();
-    String newid = driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form input:nth-of-type(1)")).getText();
+    driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(1) input")).sendKeys("c");
+    driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(2) input")).sendKeys("c");
+    driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(3) input")).clear();
+    driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(3) input")).sendKeys("102");
+    driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(4) input")).sendKeys("c");
+    driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(5) input")).click();
+    driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form input:nth-of-type(2)")).click();
 
-    Assert.assertEquals(driver.findElement(By.cssSelector(".toggle-label:last-of-type span:nth-of-type(2)")).getText(), "Ac");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".toggle-label:last-of-type span:nth-of-type(3)")).getText(), "Bc");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".toggle-label:last-of-type span:nth-of-type(4)")).getText(), "102");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".toggle-label:last-of-type span:nth-of-type(5)")).getText(), "Cc");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".toggle-label:last-of-type span:nth-of-type(6)")).getText(), "false");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(1) input")).getAttribute("value"), "Ac");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(2) input")).getAttribute("value"), "Bc");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(3) input")).getAttribute("value"), "102");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(4) input")).getAttribute("value"), "Cc");
-    Assert.assertEquals(driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(5) input")).getAttribute("checked"), null);
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-" + newid + " + label span:nth-of-type(2)")).getText(), "Ac");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-" + newid + " + label span:nth-of-type(3)")).getText(), "Bc");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-" + newid + " + label span:nth-of-type(4)")).getText(), "102");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-" + newid + " + label span:nth-of-type(5)")).getText(), "Cc");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-" + newid + " + label span:nth-of-type(6)")).getText(), "false");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(1) input")).getAttribute("value"), "Ac");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(2) input")).getAttribute("value"), "Bc");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(3) input")).getAttribute("value"), "102");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(4) input")).getAttribute("value"), "Cc");
+    Assert.assertEquals(driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form span:nth-of-type(5) input")).getAttribute("checked"), null);
 
     Assert.assertEquals(driver.findElements(By.cssSelector(".collapsible-content")).size(), 7);
 
-    driver.findElement(By.cssSelector(".toggle-label:last-of-type")).click();
-    WebElement element2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".collapsible-content:last-of-type div form input:nth-of-type(3)")));
-    driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form input:nth-of-type(3)")).click();
+    driver.findElement(By.cssSelector("#collapsible-" + newid + " + label")).click();
+    WebElement element2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#collapsible-content-" + newid + " div form input:nth-of-type(3)")));
+    driver.findElement(By.cssSelector("#collapsible-content-" + newid + " div form input:nth-of-type(3)")).click();
     
     try {
         driver.findElement(By.id("collapsible-" + newid));
