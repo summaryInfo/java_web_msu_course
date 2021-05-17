@@ -50,8 +50,8 @@
                         <option value="false"  ${completedvalue == "false" ? "selected" : ""}>False</option>
                     </select>
                 </span>
-                <input type="submit" name="query" id="query" value="Apply query"/>
-                <input type="submit" name="create" id="create" value="+" formaction="supply_applyedit" formmethod="POST"/>
+                <input type="submit" name="query" id="query_query" value="Apply query"/>
+                <input type="submit" name="create" id="query_create" value="+" formaction="supply_applyedit" formmethod="POST"/>
             </form>
             <c:if test="${errormsg.length() > 0}">
                 <div class="error">
