@@ -15,4 +15,14 @@
             <class name="org.jbes.storage.tests.ProductInstancePageTest"/>
         </classes>
     </test>
+    <test name="OrderPageTest">
+        <classes>
+            <class name="org.jbes.storage.tests.OrderPageTest"/>
+        </classes>
+    </test>
+    <test name="SupplyPageTest">
+        <classes>
+            <class name="org.jbes.storage.tests.SupplyPageTest"/>
+        </classes>
+    </test>
 </suite>
