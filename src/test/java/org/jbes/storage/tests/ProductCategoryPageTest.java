@@ -15,9 +15,8 @@ public class ProductCategoryPageTest {
   @BeforeClass
   public void setUp() {
     driver = new FirefoxDriver();
-    driver.get("http://127.0.0.1:8080/app/productcat");
-    //driver.get("http://192.168.1.39:8080/app/productcat");
-    driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+    //driver.get("http://127.0.0.1:8080/app/productcat");
+    driver.get("http://192.168.1.39:8080/app/productcat");
     driver.manage().window().maximize();
   }
 
@@ -90,6 +89,8 @@ public class ProductCategoryPageTest {
     Assert.assertEquals(driver.findElement(By.cssSelector(".toggle-label:last-of-type span:nth-of-type(3)")).getText(), "Bc");
     Assert.assertEquals(driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(1) input")).getAttribute("value"), "Ac");
     Assert.assertEquals(driver.findElement(By.cssSelector(".collapsible-content:last-of-type div form span:nth-of-type(2) input")).getAttribute("value"), "Bc");
+
+    Assert.assertEquals(driver.findElements(By.cssSelector(".collapsible-content")).size(), 5);
 
     driver.findElement(By.cssSelector(".toggle-label:last-of-type")).click();
     WebElement element2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".collapsible-content:last-of-type div form input:nth-of-type(3)")));

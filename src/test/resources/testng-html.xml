@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="System Suite" verbose="3" >
+    <test name="ProductCategoryPageTest">
+        <classes>
+            <class name="org.jbes.storage.tests.ProductCategoryPageTest"/>
+        </classes>
+    </test>
+    <test name="ProductPageTest">
+        <classes>
+            <class name="org.jbes.storage.tests.ProductPageTest"/>
+        </classes>
+    </test>
+</suite>
