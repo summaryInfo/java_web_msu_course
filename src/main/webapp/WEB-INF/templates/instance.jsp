@@ -100,7 +100,7 @@
                             <input type="hidden" name="qid" value="${item.instanceId}">
                             <span>
                                 <label for="product"> Product </label>
-                                <input type="number" product="product" value="${item.product.productId}">
+                                <input type="number" name="product" value="${item.product.productId}">
                             </span>
                             <span>
                                 <label for="amount"> Amount </label>
