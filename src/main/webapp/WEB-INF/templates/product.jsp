@@ -90,7 +90,7 @@
                             </span>
                             <span>
                                 <label for="oversized"> Oversized </label>
-                                <input type="checkbox" name="oversized" ${item.oversized ? "checked" : ""}>
+                                <input type="checkbox" name="oversized" value="true" ${item.oversized ? "checked" : ""}>
                             </span>
                             <input type="submit" name="edit" value="Apply edit"/>
                             <input type="submit" name="delete" value="Delete" formaction="product_delete"/>

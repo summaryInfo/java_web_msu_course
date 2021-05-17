@@ -98,7 +98,7 @@
                             </span>
                             <span>
                                 <label for="completed"> Completed </label>
-                                <input type="checkbox" name="completed" value="${item.completed}">
+                                <input type="checkbox" name="completed" value="true" ${item.completed ? "checked" : ""}>
                             </span>
                             <input type="submit" name="edit" value="Apply edit"/>
                             <input type="submit" name="delete" value="Delete" formaction="order_delete"/>

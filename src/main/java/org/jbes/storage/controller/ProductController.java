@@ -122,8 +122,9 @@ public class ProductController {
         }
         if (unit != null)
             old.setUnit(unit);
-        if (oversized != null)
-            old.setOversized(oversized);
+        if (oversized == null)
+            oversized = false;
+        old.setOversized(oversized);
 
         if (update)
             dao.update(old);

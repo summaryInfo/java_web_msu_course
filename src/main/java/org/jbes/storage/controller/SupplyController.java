@@ -142,8 +142,9 @@ public class SupplyController {
             old.setAmount(amount);
         if (time != null)
             old.setTime(time);
-        if (completed != null)
-            old.setCompleted(completed);
+        if (completed == null)
+            completed = false;
+        old.setCompleted(completed);
 
         if (update)
             dao.update(old);
