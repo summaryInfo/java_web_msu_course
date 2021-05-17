@@ -23,24 +23,24 @@
                     <input type="number" id="query_product" name="product" value="${productvalue}">
                 </span>
                 <span>
-                    <label for="amountlo"> Amount From </label>
-                    <input type="number" step="any" id="query_amountlo" name="amountlo" value="${amountlovalue}">
+                    <label for="amount"> Amount From </label>
+                    <input type="number" step="any" id="query_amount" name="amount" value="${amountvalue}">
                 </span>
                 <span>
                     <label for="amounthi"> Amount To </label>
                     <input type="number" step="any" id="query_amounthi" name="amounthi" value="${amounthivalue}">
                 </span>
                 <span>
-                    <label for="arrivallo"> Arrival From </label>
-                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="query_arrivallo" name="arrivallo" value="${arrivallovalue}">
+                    <label for="arrival"> Arrival From </label>
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="query_arrival" name="arrival" value="${arrivalvalue}">
                 </span>
                 <span>
                     <label for="arrivalhi"> Arrival To </label>
                     <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="query_arrivalhi" name="arrivalhi" value="${arrivalhivalue}">
                 </span>
                 <span>
-                    <label for="expireslo"> Expires From </label>
-                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="query_expireslo" name="expireslo" value="${expireslovalue}">
+                    <label for="expires"> Expires From </label>
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="query_expires" name="expires" value="${expiresvalue}">
                 </span>
                 <span>
                     <label for="expireshi"> Expires To </label>

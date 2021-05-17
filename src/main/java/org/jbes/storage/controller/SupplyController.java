@@ -33,8 +33,8 @@ public class SupplyController {
     @RequestMapping(value = "/supply", method = RequestMethod.GET)
     public ModelAndView supply(@RequestParam(required = false) String errormsg, @RequestParam(required = false) Long id,
             @RequestParam(required = false) Long provider, @RequestParam(required = false) Long product,
-            @RequestParam(required = false) Double amountlo, @RequestParam(required = false) Double amounthi,
-            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date timelo,
+            @RequestParam(required = false) Double amount, @RequestParam(required = false) Double amounthi,
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date time,
             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date timehi,
             @RequestParam(required = false) Boolean completed) {
         ModelAndView modelAndView = new ModelAndView("supply");
@@ -45,9 +45,9 @@ public class SupplyController {
         modelAndView.addObject("idvalue", id == null ? "" : id.toString());
         modelAndView.addObject("providervalue", provider == null ? "" : provider.toString());
         modelAndView.addObject("productvalue", product == null ? "" : product.toString());
-        modelAndView.addObject("amountlovalue", amountlo == null ? "" : amountlo.toString());
+        modelAndView.addObject("amountvalue", amount == null ? "" : amount.toString());
         modelAndView.addObject("amounthivalue", amounthi == null ? "" : amounthi.toString());
-        modelAndView.addObject("timelovalue", timelo == null ? "" : fmt.format(timelo));
+        modelAndView.addObject("timevalue", time == null ? "" : fmt.format(time));
         modelAndView.addObject("timehivalue", timehi == null ? "" : fmt.format(timehi));
         modelAndView.addObject("completedvalue", completed == null ? "" : completed.toString());
 
@@ -81,7 +81,7 @@ public class SupplyController {
                 }
             }
 
-            li = dao.findAllMatching(cons, prod, amountlo, amounthi, timelo, timehi, completed);
+            li = dao.findAllMatching(cons, prod, amount, amounthi, time, timehi, completed);
         }
 
         modelAndView.addObject("cats", li);

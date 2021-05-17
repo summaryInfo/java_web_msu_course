@@ -27,16 +27,16 @@
                     <input type="number" id="product" name="product" value="${productvalue}">
                 </span>
                 <span>
-                    <label for="amountlo"> Amount From </label>
-                    <input type="number" step="any" id="amountlo" name="amountlo" value="${amountlovalue}">
+                    <label for="amount"> Amount From </label>
+                    <input type="number" step="any" id="amount" name="amount" value="${amountvalue}">
                 </span>
                 <span>
                     <label for="amounthi"> Amount To </label>
                     <input type="number" step="any" id="amounthi" name="amounthi" value="${amounthivalue}">
                 </span>
                 <span>
-                    <label for="timelo"> Time From </label>
-                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="timelo" name="timelo" value="${timelovalue}">
+                    <label for="time"> Time From </label>
+                    <input type="text" pattern="\d{1,4}-\d{2}-\d{2} \d{1,2}:\d{1,2}:\d{1,2}" id="time" name="time" value="${timevalue}">
                 </span>
                 <span>
                     <label for="timehi"> Time To </label>

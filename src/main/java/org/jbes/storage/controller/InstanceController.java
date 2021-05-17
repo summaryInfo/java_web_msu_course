@@ -31,10 +31,10 @@ public class InstanceController {
     @RequestMapping(value = "/instance", method = RequestMethod.GET)
     public ModelAndView instance(@RequestParam(required = false) String errormsg,
             @RequestParam(required = false) Long id, @RequestParam(required = false) Long product,
-            @RequestParam(required = false) Double amountlo, @RequestParam(required = false) Double amounthi,
-            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date arrivallo,
+            @RequestParam(required = false) Double amount, @RequestParam(required = false) Double amounthi,
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date arrival,
             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date arrivalhi,
-            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date expireslo,
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date expires,
             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(required = false) Date expireshi,
             @RequestParam(required = false) Integer room, @RequestParam(required = false) Integer shelf,
             @RequestParam(required = false) Long source, @RequestParam(required = false) Long destination) {
@@ -45,11 +45,11 @@ public class InstanceController {
         modelAndView.addObject("formatter", fmt);
         modelAndView.addObject("idvalue", id == null ? "" : id.toString());
         modelAndView.addObject("productvalue", product == null ? "" : product.toString());
-        modelAndView.addObject("amountlovalue", amountlo == null ? "" : amountlo.toString());
+        modelAndView.addObject("amountvalue", amount == null ? "" : amount.toString());
         modelAndView.addObject("amounthivalue", amounthi == null ? "" : amounthi.toString());
-        modelAndView.addObject("arrivallovalue", arrivallo == null ? "" : fmt.format(arrivallo));
+        modelAndView.addObject("arrivalvalue", arrival == null ? "" : fmt.format(arrival));
         modelAndView.addObject("arrivalhivalue", arrivalhi == null ? "" : fmt.format(arrivalhi));
-        modelAndView.addObject("expireslovalue", expireslo == null ? "" : fmt.format(expireslo));
+        modelAndView.addObject("expiresvalue", expires == null ? "" : fmt.format(expires));
         modelAndView.addObject("expireshivalue", expireshi == null ? "" : fmt.format(expireshi));
         modelAndView.addObject("roomvalue", room == null ? "" : room.toString());
         modelAndView.addObject("shelfvalue", shelf == null ? "" : shelf.toString());
@@ -93,7 +93,7 @@ public class InstanceController {
                 }
             }
 
-            li = dao.findAllMatching(prod, amountlo, amounthi, arrivallo, arrivalhi, expireslo, expireshi, room, shelf,
+            li = dao.findAllMatching(prod, amount, amounthi, arrival, arrivalhi, expires, expireshi, room, shelf,
                     src, dst);
         }
 
